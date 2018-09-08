@@ -1,0 +1,17 @@
+version: '3'
+services:
+  conversions:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    container_name: conversions
+    networks:
+      - conversions
+    ports:
+      - '3000:3000'
+    environment:
+     - HOST=0.0.0.0
+    command: npm run start
+networks:
+  conversions:
+    driver: bridge

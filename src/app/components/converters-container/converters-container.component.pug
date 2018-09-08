@@ -1,0 +1,7 @@
+doctype html
+
+.conversions-container
+  div(*ngFor="let c of conversions")
+    converter(on-closed="onClosed($event)" bind-conversion="c")
+
+floating-action-button(on-click="onAddClicked()" icon="add")

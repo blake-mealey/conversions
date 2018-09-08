@@ -1,0 +1,46 @@
+@import "src/styles/tailwind";
+
+$padding-x: 14px;
+$padding-y: 16px;
+
+$padding-label-x: 4px;
+
+.text-field-component {
+  @apply .relative;
+  @apply .select-none .cursor-pointer .mb-3;
+
+  .label {
+    @apply .absolute .bg-white .pointer-events-none;
+
+    left: calc(#{$padding-x} + 1px);
+    bottom: calc(#{$padding-y} + 2px);
+
+    transition: 0.2s;
+
+    &.filled {
+      @apply .text-xs .text-grey-dark;
+      padding: 0 $padding-label-x;
+      bottom: calc(100% - 7px);
+    }
+
+    &.focused {
+      @apply .text-teal;
+    }
+  }
+
+  /deep/ input {
+    @apply .w-full .h-full;
+    @apply .rounded .border .border-grey-dark;
+    @apply .cursor-pointer;
+
+    padding: $padding-y $padding-x;
+
+    transition: 0.2s;
+
+    &:focus {
+      outline: none;
+      padding: calc(#{$padding-y} - 1px) calc(#{$padding-x} - 1px);
+      @apply .border-2 .border-teal;
+    }
+  }
+}

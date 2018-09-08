@@ -1,0 +1,41 @@
+@import "src/styles/tailwind";
+
+$size-default: 56px;
+$size-mini: 40px;
+
+$icon-size: 24px;
+
+$page-padding: 16px;
+
+.floating-action-button-component {
+  @apply .fixed .flex .items-center .justify-center;
+  @apply .bg-teal .text-white .font-bold .rounded-full;
+  @apply .select-none .cursor-pointer;
+  @apply .shadow;
+
+  bottom: $page-padding;
+  right: $page-padding;
+
+  width: $size-default;
+  height: $size-default;
+
+  &.mini {
+    width: $size-mini;
+    height: $size-mini;
+  }
+
+  transition: 0.2s;
+
+  span {
+    font-size: $icon-size;
+  }
+
+  &:hover {
+    @apply bg-teal-light;
+    @apply .shadow-md;
+  }
+
+  &:active {
+    @apply .shadow-lg;
+  }
+}

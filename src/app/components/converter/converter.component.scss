@@ -1,0 +1,16 @@
+@import 'src/styles/tailwind';
+
+$width: 100px;
+
+.conversion-component {
+  @apply .flex .flex-col .shadow .rounded-lg .bg-white .m-3;
+
+  .header {
+    @apply .flex .justify-end .items-center;
+    @apply .rounded-t-lg .h-12 .bg-teal .p-1 .text-white;
+  }
+
+  .body {
+    @apply .rounded-b-lg .p-2;
+  }
+}
