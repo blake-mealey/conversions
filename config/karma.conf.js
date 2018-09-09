@@ -144,7 +144,7 @@ module.exports = function (config) {
      * For slower machines you may need to have a longer browser
      * wait time . Uncomment the line below if required.
      */
-    // browserNoActivityTimeout: 30000
+    // browserNoActivityTimeout: 89890
 
   };
 

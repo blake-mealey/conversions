@@ -8,7 +8,7 @@ services:
     networks:
       - conversions
     ports:
-      - '3000:3000'
+      - '8989:8989'
     environment:
      - HOST=0.0.0.0
     command: npm run start
