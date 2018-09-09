@@ -1,7 +1,8 @@
 doctype html
 
 .menu-component(bind-hidden="!open")
-  .menu-list
+  .menu
     text-field(*ngIf="searchEnabled" label="Search" dense="true")
       input(#input bindon-ngModel="searchValue")
-    .menu-item(*ngFor="let item of displayedItems; index as i" on-click="onItemClick(item)" bind-ngClass="{'selected':i === selectedIndex}") {{item.displayName}}
+    .menu-items
+      .menu-item(*ngFor="let item of displayedItems; index as i" on-click="onItemClick(item)" bind-ngClass="{'selected':i === selectedIndex}") {{item.displayName}}
