@@ -6,18 +6,15 @@ doctype html
     span.buttons
       icon-button(on-buttonClick="onCopyClicked()" icon="file_copy")
       icon-button(on-buttonClick="onSwapClicked()" icon="swap_vert")
-      icon-button(on-buttonClick="onCategoryClicked()" icon="category")
-        menu(bind-items="unitTypes" bind-open="categoriesOpen" on-itemSelected="onCategoryItemClicked($event)" searchEnabled="true")
+      icon-button-menu(icon="category" bind-items="unitTypes" open="true" on-itemSelected="onCategorySelected($event)" searchEnabled="true")
       icon-button(on-buttonClick="onCloseClicked()" icon="close")
   .body
     .row
       text-field(label="Input" bind-rightText="conversion.inputUnit.symbol")
         input(#input bindon-ngModel="conversion.input" type="number")
-      icon-button(on-buttonClick="onInputUnitClicked()" icon="arrow_drop_down")
-        menu(bind-items="getUnitItems()" bind-open="inputUnitsOpen" on-itemSelected="onInputUnitItemClicked($event)" searchEnabled="true")
+      icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onInputUnitSelected($event)" searchEnabled="true")
 
     .row
       text-field(label="Output" bind-rightText="conversion.outputUnit.symbol")
         input(#input bindon-ngModel="conversion.output" type="number" readonly)
-      icon-button(on-buttonClick="onOutputUnitClicked()" icon="arrow_drop_down")
-        menu(bind-items="getUnitItems()" bind-open="outputUnitsOpen" on-itemSelected="onOutputUnitItemClicked($event)" searchEnabled="true")
+      icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onOutputUnitSelected($event)" searchEnabled="true")

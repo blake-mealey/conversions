@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild,
 } from '@angular/core';
-import { MenuItem } from '../../../app/models/menu-item';
+import { MenuItem } from './menu-item';
 
 @Component({
   selector: 'menu',
@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
       this.selectedIndex = 0;
       setTimeout(() => {
         this.input.nativeElement.focus();
-      }, 5);
+      }, 10);
     }
   }
 

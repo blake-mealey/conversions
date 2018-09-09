@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Conversion } from '../../models/conversion';
-import { MenuItem } from '../../models/menu-item';
+import { MenuItem } from '../../../material/components/menu/menu-item';
 import { UnitType } from '../../models/unit-type';
 import { Unit } from '../../models/unit';
 
@@ -18,20 +18,12 @@ export class ConverterComponent implements OnInit {
 
   unitTypes: Array<MenuItem> = MenuItem.fromArray(UnitType.ALL_UNIT_TYPES);
 
-  categoriesOpen: boolean = true;
-  inputUnitsOpen: boolean = false;
-  outputUnitsOpen: boolean = false;
-
   constructor() {}
 
   public ngOnInit() {}
 
   public onCloseClicked() {
     this.closed.emit(this.conversion);
-  }
-
-  public onCategoryClicked() {
-    this.categoriesOpen = !this.categoriesOpen;
   }
 
   public onSwapClicked() {
@@ -46,30 +38,19 @@ export class ConverterComponent implements OnInit {
     // TODO: Copy output to clipboard
   }
 
-  public onCategoryItemClicked(selectedUnitType: UnitType) {
+  public onCategorySelected(selectedUnitType: UnitType) {
     this.conversion.unitType = selectedUnitType;
-    this.categoriesOpen = false;
   }
 
   public getUnitItems(): Array<MenuItem> {
     return MenuItem.fromArray(this.conversion.unitType.units);
   }
 
-  public onInputUnitClicked() {
-    this.inputUnitsOpen = !this.inputUnitsOpen;
-  }
-
-  public onInputUnitItemClicked(selectedInputUnit: Unit) {
+  public onInputUnitSelected(selectedInputUnit: Unit) {
     this.conversion.inputUnit = selectedInputUnit;
-    this.inputUnitsOpen = false;
   }
 
-  public onOutputUnitClicked() {
-    this.outputUnitsOpen = !this.outputUnitsOpen;
-  }
-
-  public onOutputUnitItemClicked(selectedOutputUnit: Unit) {
+  public onOutputUnitSelected(selectedOutputUnit: Unit) {
     this.conversion.outputUnit = selectedOutputUnit;
-    this.outputUnitsOpen = false;
   }
 }
