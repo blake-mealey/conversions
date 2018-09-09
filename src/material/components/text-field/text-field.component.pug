@@ -1,5 +1,5 @@
 .text-field-component
   ng-content
-  span.label(bind-ngClass="{'filled': filled || focused, 'focused': focused}") {{label}}
+  span.label(bind-ngClass="{'hovered': filled && hovered, 'filled': filled || focused, 'focused': focused}") {{label}}
   span.right(*ngIf="rightText") {{rightText}}
   ng-content

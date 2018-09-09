@@ -10,7 +10,7 @@ $padding-label-x: 4px;
   @apply .select-none .cursor-pointer;
 
   .label {
-    @apply .absolute .bg-white .pointer-events-none;
+    @apply .absolute .bg-white .pointer-events-none .font-normal;
 
     left: calc(#{$padding-x} + 1px);
     bottom: calc(#{$padding-y} + 2px);
@@ -23,8 +23,12 @@ $padding-label-x: 4px;
       bottom: calc(100% - 7px);
     }
 
+    &.hovered {
+      @apply .text-grey-darkest;
+    }
+
     &.focused {
-      @apply .text-teal;
+      @apply .text-teal .font-medium;
     }
   }
 
@@ -44,6 +48,10 @@ $padding-label-x: 4px;
     padding: $padding-y $padding-x;
 
     transition: 0.2s;
+
+    &:hover {
+      @apply .border-grey-darkest;
+    }
 
     &:focus {
       outline: none;
