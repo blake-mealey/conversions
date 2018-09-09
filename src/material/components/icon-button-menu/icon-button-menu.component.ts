@@ -22,7 +22,7 @@ export class IconButtonMenuComponent implements OnInit {
 
   constructor() {}
 
-  public ngOnInit() {}
+  ngOnInit() {}
 
   onButtonClicked() {
     if (!this.open && !this.openDisabledDebounce) {

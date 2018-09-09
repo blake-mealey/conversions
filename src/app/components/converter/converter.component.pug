@@ -6,7 +6,7 @@ doctype html
     span.buttons
       icon-button(on-buttonClick="onCopyClicked()" icon="file_copy")
       icon-button(on-buttonClick="onSwapClicked()" icon="swap_vert")
-      icon-button-menu(icon="category" bind-items="unitTypes" open="true" on-itemSelected="onCategorySelected($event)" searchEnabled="true")
+      icon-button-menu(icon="category" bind-items="unitTypes" bind-open="categoriesOpen" on-itemSelected="onCategorySelected($event)" searchEnabled="true")
       icon-button(on-buttonClick="onCloseClicked()" icon="close")
   .body
     .row

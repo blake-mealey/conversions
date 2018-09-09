@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
       this.selectedIndex = 0;
       setTimeout(() => {
         this.input.nativeElement.focus();
-      }, 10);
+      }, 5);
     }
   }
 

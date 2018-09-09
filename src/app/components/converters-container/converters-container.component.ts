@@ -29,11 +29,11 @@ export class ConvertersContainerComponent implements OnInit{
     });
   }
 
-  public onAddClicked() {
+  onAddClicked() {
     this.conversions.push(new Conversion(UnitType.LENGTH));
   }
 
-  public onClosed(conversion: Conversion) {
+  onClosed(conversion: Conversion) {
     let index = this.conversions.indexOf(conversion);
     if (index > -1) {
       this.conversions.splice(index, 1);

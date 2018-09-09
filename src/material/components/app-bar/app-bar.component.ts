@@ -13,6 +13,6 @@ export class AppBarComponent implements OnInit {
 
   constructor() {}
 
-  public ngOnInit() {}
+  ngOnInit() {}
 
 }

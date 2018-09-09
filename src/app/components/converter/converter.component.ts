@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Conversion } from '../../models/conversion';
 import { MenuItem } from '../../../material/components/menu/menu-item';
 import { UnitType } from '../../models/unit-type';
@@ -11,22 +11,26 @@ import { Unit } from '../../models/unit';
   ],
   templateUrl: './converter.component.pug'
 })
-export class ConverterComponent implements OnInit {
+export class ConverterComponent implements AfterViewInit {
 
   @Input() conversion: Conversion;
   @Output() closed = new EventEmitter<Conversion>();
+
+  categoriesOpen: boolean;
 
   unitTypes: Array<MenuItem> = MenuItem.fromArray(UnitType.ALL_UNIT_TYPES);
 
   constructor() {}
 
-  public ngOnInit() {}
+  ngAfterViewInit(): void {
+    this.categoriesOpen = true;
+  }
 
-  public onCloseClicked() {
+  onCloseClicked() {
     this.closed.emit(this.conversion);
   }
 
-  public onSwapClicked() {
+  onSwapClicked() {
     this.conversion.input = this.conversion.output;
 
     let inputUnit = this.conversion.inputUnit;
@@ -34,23 +38,23 @@ export class ConverterComponent implements OnInit {
     this.conversion.outputUnit = inputUnit;
   }
 
-  public onCopyClicked() {
+  onCopyClicked() {
     // TODO: Copy output to clipboard
   }
 
-  public onCategorySelected(selectedUnitType: UnitType) {
+  onCategorySelected(selectedUnitType: UnitType) {
     this.conversion.unitType = selectedUnitType;
   }
 
-  public getUnitItems(): Array<MenuItem> {
+  getUnitItems(): Array<MenuItem> {
     return MenuItem.fromArray(this.conversion.unitType.units);
   }
 
-  public onInputUnitSelected(selectedInputUnit: Unit) {
+  onInputUnitSelected(selectedInputUnit: Unit) {
     this.conversion.inputUnit = selectedInputUnit;
   }
 
-  public onOutputUnitSelected(selectedOutputUnit: Unit) {
+  onOutputUnitSelected(selectedOutputUnit: Unit) {
     this.conversion.outputUnit = selectedOutputUnit;
   }
 }
