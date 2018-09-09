@@ -4,7 +4,13 @@ $width: 200px;
 $max-height: 300px;
 
 .menu-component {
-  @apply .relative;
+  @apply .relative .opacity-0 .z-10 .pointer-events-none;
+
+  transition: 0.2s;
+
+  &.open {
+    @apply .opacity-100 .pointer-events-auto;
+  }
 
   .menu {
     @apply .absolute .pin-r .z-10 .flex .flex-col;
