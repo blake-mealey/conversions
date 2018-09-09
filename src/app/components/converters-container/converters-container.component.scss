@@ -1,13 +1,13 @@
 @import "src/styles/tailwind";
 
-$conversion-base-width: 300px;
+$converter-min-width: 285px;
 
 .conversions-container {
   @apply .flex .flex-wrap;
 
   div {
-    @apply .flex-auto;
-    width: $conversion-base-width;
+    flex: 1 0 auto;
+    min-width: $converter-min-width;
   }
 
   .empty {

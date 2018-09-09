@@ -4,6 +4,8 @@ doctype html
   .header
     span.title {{conversion.unitType.displayName}} Converter
     span.buttons
+      icon-button(on-buttonClick="onCopyClicked()" icon="file_copy")
+      icon-button(on-buttonClick="onSwapClicked()" icon="swap_vert")
       icon-button(on-buttonClick="onCategoryClicked()" icon="category")
         search-menu(bind-items="unitTypes" bind-open="categoriesOpen" on-itemSelected="onCategoryItemClicked($event)")
       icon-button(on-buttonClick="onCloseClicked()" icon="close")
@@ -11,11 +13,11 @@ doctype html
     .row
       text-field(label="Input" bind-rightText="conversion.inputUnit.symbol")
         input(#input bindon-ngModel="conversion.input" type="number")
-      icon-button(on-buttonClick="onInputUnitClicked()" icon="category")
+      icon-button(on-buttonClick="onInputUnitClicked()" icon="arrow_drop_down")
         search-menu(bind-items="getUnitItems()" bind-open="inputUnitsOpen" on-itemSelected="onInputUnitItemClicked($event)")
 
     .row
       text-field(label="Output" bind-rightText="conversion.outputUnit.symbol")
         input(#input bindon-ngModel="conversion.output" type="number" readonly)
-      icon-button(on-buttonClick="onOutputUnitClicked()" icon="category")
+      icon-button(on-buttonClick="onOutputUnitClicked()" icon="arrow_drop_down")
         search-menu(bind-items="getUnitItems()" bind-open="outputUnitsOpen" on-itemSelected="onOutputUnitItemClicked($event)")

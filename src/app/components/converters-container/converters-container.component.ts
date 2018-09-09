@@ -16,7 +16,8 @@ export class ConvertersContainerComponent implements OnInit{
   constructor() {}
 
   ngOnInit(): void {
-    for (let i = 0; i < 4; i++) {
+    let count = 0;
+    for (let i = 0; i < count; i++) {
       this.onAddClicked();
     }
   }

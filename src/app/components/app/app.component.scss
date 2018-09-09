@@ -1,2 +1,13 @@
 @import "src/styles/tailwind";
 
+.app-component {
+  @apply .flex .flex-col .h-full;
+
+  main {
+    @apply .flex .flex-1;
+
+    converters-container {
+      @apply .flex-1;
+    }
+  }
+}

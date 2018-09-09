@@ -1,0 +1,10 @@
+@import "src/styles/tailwind";
+
+$width: 56px;
+
+.side-bar-component {
+  @apply .bg-teal-lightest .shadow;
+
+  width: $width;
+  height: 100%;
+}

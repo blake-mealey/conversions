@@ -1,7 +1,5 @@
 @import 'src/styles/tailwind';
 
-$width: 100px;
-
 .conversion-component {
   @apply .flex .flex-col .shadow .rounded-lg .bg-white .m-3;
 

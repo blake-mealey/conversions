@@ -6,6 +6,8 @@ import { FloatingActionButtonComponent } from './components/floating-action-butt
 import { TextFieldComponent } from './components/text-field/text-field.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
 import { SearchMenuComponent } from './components/search-menu/search-menu.component';
+import { AppBarComponent } from './components/app-bar/app-bar.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
 
 @NgModule({
   imports: [
@@ -16,13 +18,17 @@ import { SearchMenuComponent } from './components/search-menu/search-menu.compon
     FloatingActionButtonComponent,
     IconButtonComponent,
     TextFieldComponent,
-    SearchMenuComponent
+    SearchMenuComponent,
+    AppBarComponent,
+    SideBarComponent
   ],
   exports: [
     FloatingActionButtonComponent,
     IconButtonComponent,
     TextFieldComponent,
-    SearchMenuComponent
+    SearchMenuComponent,
+    AppBarComponent,
+    SideBarComponent
   ]
 })
 export class MaterialModule {}

@@ -18,7 +18,7 @@ export class ConverterComponent implements OnInit {
 
   unitTypes: Array<MenuItem> = MenuItem.fromArray(UnitType.ALL_UNIT_TYPES);
 
-  categoriesOpen: boolean = false;
+  categoriesOpen: boolean = true;
   inputUnitsOpen: boolean = false;
   outputUnitsOpen: boolean = false;
 
@@ -32,6 +32,18 @@ export class ConverterComponent implements OnInit {
 
   public onCategoryClicked() {
     this.categoriesOpen = !this.categoriesOpen;
+  }
+
+  public onSwapClicked() {
+    this.conversion.input = this.conversion.output;
+
+    let inputUnit = this.conversion.inputUnit;
+    this.conversion.inputUnit = this.conversion.outputUnit;
+    this.conversion.outputUnit = inputUnit;
+  }
+
+  public onCopyClicked() {
+    // TODO: Copy output to clipboard
   }
 
   public onCategoryItemClicked(selectedUnitType: UnitType) {

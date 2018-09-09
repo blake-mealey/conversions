@@ -36,6 +36,7 @@ $page-padding: 16px;
   }
 
   &:active {
+    @apply bg-teal-light;
     @apply .shadow-lg;
   }
 }
