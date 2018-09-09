@@ -1,0 +1,36 @@
+@import 'src/styles/tailwind';
+
+$width: 200px;
+
+.search-menu-component {
+  @apply .relative;
+
+  .menu-list {
+    @apply .absolute .pin-r .z-10 .flex .flex-col;
+    @apply .bg-white .text-black .rounded-lg .shadow-md .py-1;
+
+    width: $width;
+
+    text-field {
+      @apply .mx-2 .mt-1 .mb-2;
+    }
+
+    .menu-item {
+      @apply .select-none .cursor-pointer;
+      @apply .px-4 .py-2;
+      width: auto;
+
+      &:hover {
+        @apply .bg-grey-lighter;
+      }
+
+      &:active {
+        @apply .bg-grey-light;
+      }
+
+      &.selected {
+        @apply .bg-grey-lighter;
+      }
+    }
+  }
+}

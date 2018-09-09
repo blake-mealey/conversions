@@ -2,10 +2,20 @@ doctype html
 
 .conversion-component
   .header
-    icon-button(on-click="onCloseClicked()" icon="close")
+    span.title {{conversion.unitType.displayName}} Converter
+    span.buttons
+      icon-button(on-buttonClick="onCategoryClicked()" icon="category")
+        search-menu(bind-items="unitTypes" bind-open="categoriesOpen" on-itemSelected="onCategoryItemClicked($event)")
+      icon-button(on-buttonClick="onCloseClicked()" icon="close")
   .body
-    text-field(*ngIf="conversion" label="Input")
-      input(#input bindon-ngModel="conversion.input" type="number" step="0.1")
+    .row
+      text-field(label="Input" bind-rightText="conversion.inputUnit.symbol")
+        input(#input bindon-ngModel="conversion.input" type="number")
+      icon-button(on-buttonClick="onInputUnitClicked()" icon="category")
+        search-menu(bind-items="getUnitItems()" bind-open="inputUnitsOpen" on-itemSelected="onInputUnitItemClicked($event)")
 
-    text-field(*ngIf="conversion" label="Output")
-      input(#input bindon-ngModel="conversion.output" type="number" step="0.1")
+    .row
+      text-field(label="Output" bind-rightText="conversion.outputUnit.symbol")
+        input(#input bindon-ngModel="conversion.output" type="number" readonly)
+      icon-button(on-buttonClick="onOutputUnitClicked()" icon="category")
+        search-menu(bind-items="getUnitItems()" bind-open="outputUnitsOpen" on-itemSelected="onOutputUnitItemClicked($event)")

@@ -18,6 +18,7 @@ export class TextFieldComponent implements AfterContentInit {
   filled: boolean;
 
   @Input() label: string;
+  @Input() rightText: string;
 
   @ContentChild('input') input: ElementRef;
 
@@ -35,6 +36,10 @@ export class TextFieldComponent implements AfterContentInit {
     });
 
     this.input.nativeElement.addEventListener('input', () => {
+      this.updateFilled();
+    });
+
+    this.input.nativeElement.addEventListener('change', () => {
       this.updateFilled();
     });
 

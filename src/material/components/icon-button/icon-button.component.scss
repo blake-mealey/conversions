@@ -3,7 +3,7 @@
 $size-default: 36px;
 
 .icon-button-component {
-  @apply .flex .items-center .justify-center;
+  @apply .relative .flex .items-center .justify-center;
   @apply .rounded-full;
   @apply .select-none .cursor-pointer;
 

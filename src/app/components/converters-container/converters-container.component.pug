@@ -1,6 +1,7 @@
 doctype html
 
 .conversions-container
+  span.empty(*ngIf="!conversions || conversions.length == 0") Click the + to add some converters!
   div(*ngFor="let c of conversions")
     converter(on-closed="onClosed($event)" bind-conversion="c")
 

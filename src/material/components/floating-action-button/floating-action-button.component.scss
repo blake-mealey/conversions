@@ -9,7 +9,7 @@ $page-padding: 16px;
 
 .floating-action-button-component {
   @apply .fixed .flex .items-center .justify-center;
-  @apply .bg-teal .text-white .font-bold .rounded-full;
+  @apply .bg-teal-dark .text-white .font-bold .rounded-full;
   @apply .select-none .cursor-pointer;
   @apply .shadow;
 
@@ -31,7 +31,7 @@ $page-padding: 16px;
   }
 
   &:hover {
-    @apply bg-teal-light;
+    @apply bg-teal;
     @apply .shadow-md;
   }
 

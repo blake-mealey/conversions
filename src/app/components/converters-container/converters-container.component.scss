@@ -9,4 +9,8 @@ $conversion-base-width: 300px;
     @apply .flex-auto;
     width: $conversion-base-width;
   }
+
+  .empty {
+    @apply .text-xl .mx-auto .mt-32;
+  }
 }

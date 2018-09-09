@@ -6,11 +6,27 @@ $width: 100px;
   @apply .flex .flex-col .shadow .rounded-lg .bg-white .m-3;
 
   .header {
-    @apply .flex .justify-end .items-center;
-    @apply .rounded-t-lg .h-12 .bg-teal .p-1 .text-white;
+    @apply .flex .justify-between .items-center;
+    @apply .rounded-t-lg .h-12 .bg-teal .pr-1 .pl-2 .text-white;
+
+    .title {
+      @apply .text-lg .font-bold;
+    }
+
+    .buttons {
+      @apply .flex;
+    }
   }
 
   .body {
     @apply .rounded-b-lg .p-2;
+
+    .row {
+      @apply .flex .items-center .mb-3;
+
+      text-field {
+        @apply .flex-1;
+      }
+    }
   }
 }

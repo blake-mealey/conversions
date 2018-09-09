@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Conversion } from '../../models/conversion';
+import { UnitType } from '../../models/unit-type';
 
 @Component({
   selector: 'converters-container',
@@ -15,14 +16,13 @@ export class ConvertersContainerComponent implements OnInit{
   constructor() {}
 
   ngOnInit(): void {
-    this.onAddClicked();
-    this.onAddClicked();
-    this.onAddClicked();
-    this.onAddClicked();
+    for (let i = 0; i < 4; i++) {
+      this.onAddClicked();
+    }
   }
 
   public onAddClicked() {
-    this.conversions.push(new Conversion());
+    this.conversions.push(new Conversion(UnitType.LENGTH));
   }
 
   public onClosed(conversion: Conversion) {
