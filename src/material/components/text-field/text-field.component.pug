@@ -1,4 +1,4 @@
-.text-field-component
+.text-field-component(bind-ngClass="{'dense': dense}")
   ng-content
   span.label(bind-ngClass="{'hovered': filled && hovered, 'filled': filled || focused, 'focused': focused}") {{label}}
   span.right(*ngIf="rightText") {{rightText}}

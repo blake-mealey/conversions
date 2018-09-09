@@ -20,6 +20,7 @@ export class TextFieldComponent implements AfterContentInit {
 
   @Input() label: string;
   @Input() rightText: string;
+  @Input() dense: boolean;
 
   @ContentChild('input') input: ElementRef;
 

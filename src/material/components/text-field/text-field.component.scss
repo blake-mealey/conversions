@@ -3,6 +3,9 @@
 $padding-x: 14px;
 $padding-y: 16px;
 
+$padding-x-dense: 7px;
+$padding-y-dense: 8px;
+
 $padding-label-x: 4px;
 
 .text-field-component {
@@ -63,6 +66,31 @@ $padding-label-x: 4px;
     &[type=number]::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
+    }
+  }
+
+  &.dense {
+    .label {
+      @apply .text-sm;
+
+      left: calc(#{$padding-x-dense} + 1px);
+      bottom: calc(#{$padding-y-dense} + 2px);
+
+      &.filled {
+        @apply .text-xs;
+        padding: 0 $padding-label-x;
+        bottom: calc(100% - 7px);
+      }
+    }
+
+    /deep/ input {
+      @apply .text-sm;
+
+      padding: $padding-y-dense $padding-x-dense;
+
+      &:focus {
+        padding: calc(#{$padding-y-dense} - 1px) calc(#{$padding-x-dense} - 1px);
+      }
     }
   }
 }
