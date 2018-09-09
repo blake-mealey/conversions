@@ -18,16 +18,27 @@ export class IconButtonMenuComponent implements OnInit {
 
   @Output() itemSelected = new EventEmitter<any>();
 
+  openDisabledDebounce: boolean;
+
   constructor() {}
 
   public ngOnInit() {}
 
   onButtonClicked() {
-    this.open = !this.open;
+    if (!this.open && !this.openDisabledDebounce) {
+      this.open = true;
+    }
   }
 
-  onItemClicked(data) {
+  onMenuClosed() {
     this.open = false;
+    this.openDisabledDebounce = true;
+    setTimeout(() => {
+      this.openDisabledDebounce = false;
+    }, 5);
+  }
+
+  onItemSelected(data) {
     this.itemSelected.emit(data);
   }
 

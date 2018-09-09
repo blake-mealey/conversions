@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Conversion } from '../../models/conversion';
 import { UnitType } from '../../models/unit-type';
+import { UserInputService } from '../../../material/services/user-input.service';
 
 @Component({
   selector: 'converters-container',
@@ -13,13 +14,19 @@ export class ConvertersContainerComponent implements OnInit{
 
   public conversions: Array<Conversion> = [];
 
-  constructor() {}
+  constructor(private userInputService: UserInputService) {}
 
   ngOnInit(): void {
     let count = 0;
     for (let i = 0; i < count; i++) {
       this.onAddClicked();
     }
+
+    this.userInputService.keyDown$.subscribe((event) => {
+      if (event.key == 'a') {
+        this.onAddClicked();
+      }
+    });
   }
 
   public onAddClicked() {

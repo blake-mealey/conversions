@@ -10,6 +10,8 @@ import { IconButtonMenuComponent } from './components/icon-button-menu/icon-butt
 import { AppBarComponent } from './components/app-bar/app-bar.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 
+import { UserInputService } from './services/user-input.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +24,9 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
     MenuComponent,
     IconButtonMenuComponent,
     AppBarComponent,
-    SideBarComponent
+    SideBarComponent,
+
+    // UserInputService
   ],
   exports: [
     TextFieldComponent,
@@ -31,7 +35,12 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
     MenuComponent,
     IconButtonMenuComponent,
     AppBarComponent,
-    SideBarComponent
+    SideBarComponent,
+
+    // UserInputService
+  ],
+  providers: [
+    UserInputService
   ]
 })
 export class MaterialModule {}

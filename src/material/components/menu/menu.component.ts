@@ -4,6 +4,7 @@ import {
   ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild,
 } from '@angular/core';
 import { MenuItem } from './menu-item';
+import { UserInputService } from '../../services/user-input.service';
 
 @Component({
   selector: 'menu',
@@ -34,6 +35,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
   }
 
   @Output() itemSelected = new EventEmitter<any>();
+  @Output() closed = new EventEmitter();
 
   selectedIndex: number;
 
@@ -59,7 +61,15 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
   @ViewChild('input') input: ElementRef;
 
-  constructor() {}
+  constructor(private elementRef: ElementRef,
+              private userInputService: UserInputService) {
+
+    userInputService.mouseClick$.subscribe((event) => {
+      if (this.open && !this.elementRef.nativeElement.contains(event.target)) {
+        this.closed.emit();
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.displayedItems = this.items;
@@ -67,6 +77,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
   onItemClick(item: MenuItem) {
     this.itemSelected.emit(item.data);
+    this.closed.emit();
   }
 
   ngAfterViewInit(): void {
