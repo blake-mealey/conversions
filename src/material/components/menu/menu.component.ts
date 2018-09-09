@@ -6,14 +6,15 @@ import {
 import { MenuItem } from '../../../app/models/menu-item';
 
 @Component({
-  selector: 'search-menu',
+  selector: 'menu',
   styleUrls: [
-    './search-menu.component.scss'
+    './menu.component.scss'
   ],
-  templateUrl: './search-menu.component.pug'
+  templateUrl: './menu.component.pug'
 })
-export class SearchMenuComponent implements OnInit, AfterViewInit {
+export class MenuComponent implements OnInit, AfterViewInit {
 
+  @Input() searchEnabled: boolean;
   @Input() items: Array<MenuItem>;
   displayedItems: Array<MenuItem>;
 
