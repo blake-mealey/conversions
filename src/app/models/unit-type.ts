@@ -74,4 +74,8 @@ export class UnitType {
       throw new Error('Default unit must be a member of units.');
     }
   }
+
+  validUnit(unit: Unit) {
+    return this.units.indexOf(unit) > -1;
+  }
 }

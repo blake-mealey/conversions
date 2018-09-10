@@ -3,6 +3,7 @@ import { Conversion } from '../../models/conversion';
 import { MenuItem } from '../../../material/components/menu/menu-item';
 import { UnitType } from '../../models/unit-type';
 import { Unit } from '../../models/unit';
+import { ConversionOutput } from '../../models/conversion-output';
 
 enum MoreMenuItem {
   ADD_OUTPUT,
@@ -49,14 +50,17 @@ export class ConverterComponent implements AfterViewInit {
   onMoreMenuItemSelected(item: MoreMenuItem) {
     switch (item) {
       case MoreMenuItem.ADD_OUTPUT:
-        // TODO: Add output to this.conversion
+        this.conversion.addOutput();
         break;
       case MoreMenuItem.SWAP:
-        this.conversion.input = this.conversion.output;
+        let input = this.conversion.input;
+        let output = this.conversion.outputs[0];
 
-        let inputUnit = this.conversion.inputUnit;
-        this.conversion.inputUnit = this.conversion.outputUnit;
-        this.conversion.outputUnit = inputUnit;
+        input.value = output.value;
+
+        let inputUnit = input.unit;
+        input.unit = output.unit;
+        output.unit = inputUnit;
         break;
     }
   }
@@ -66,10 +70,10 @@ export class ConverterComponent implements AfterViewInit {
   }
 
   onInputUnitSelected(selectedInputUnit: Unit) {
-    this.conversion.inputUnit = selectedInputUnit;
+    this.conversion.input.unit = selectedInputUnit;
   }
 
-  onOutputUnitSelected(selectedOutputUnit: Unit) {
-    this.conversion.outputUnit = selectedOutputUnit;
+  onOutputUnitSelected(output: ConversionOutput, selectedOutputUnit: Unit) {
+    output.unit = selectedOutputUnit;
   }
 }
