@@ -36,9 +36,9 @@ $padding-label-x: 4px;
   }
 
   .right {
-    @apply .absolute .text-grey-darker .pointer-events-none;
+    @apply .absolute .text-grey-darker;
     right: calc(#{$padding-x} + 1px);
-    bottom: calc(#{$padding-y} + 2px);
+    bottom: 10px;
   }
 
   /deep/ input {

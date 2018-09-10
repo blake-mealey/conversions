@@ -1,5 +1,5 @@
 .md-text-field-component(bind-ngClass="{'dense': dense}")
   ng-content
   span.label(bind-ngClass="{'hovered': filled && hovered, 'filled': filled || focused, 'focused': focused}") {{label}}
-  span.right(*ngIf="rightText") {{rightText}}
+  md-icon-button.right(*ngIf="icon" bind-icon="icon" on-buttonClick="onIconClicked()")
   ng-content

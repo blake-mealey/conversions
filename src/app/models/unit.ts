@@ -5,8 +5,8 @@ export class Unit {
   static readonly DECIMETRE = new Unit('Decimetre', 'dm', 0.1);
   static readonly CENTIMETRE = new Unit('Centimetre', 'cm', 0.01);
   static readonly MILLIMETRE = new Unit('Millimetre', 'mm', 0.001);
-  static readonly MICROMETRE = new Unit('Micrometre', 'μm', 1e+6);
-  static readonly NANOMETRE = new Unit('Nanometre', 'nm', 1e+9);
+  static readonly MICROMETRE = new Unit('Micrometre', 'μm', 1e-6);
+  static readonly NANOMETRE = new Unit('Nanometre', 'nm', 1e-9);
   static readonly MILE = new Unit('Mile', 'mi', 1609.34);
   static readonly YARD = new Unit('Yard', 'yd', 0.9144);
   static readonly FOOT = new Unit('Foot', 'ft', 0.3048);

@@ -2,7 +2,7 @@ import {
   AfterContentInit,
   Component,
   ContentChild,
-  ElementRef, Input,
+  ElementRef, EventEmitter, Input, Output,
 } from '@angular/core';
 
 @Component({
@@ -19,8 +19,11 @@ export class MdTextFieldComponent implements AfterContentInit {
   filled: boolean;
 
   @Input() label: string;
-  @Input() rightText: string;
   @Input() dense: boolean;
+
+  @Input() icon: string;
+
+  @Output() iconClicked = new EventEmitter();
 
   @ContentChild('input') input: ElementRef;
 
@@ -51,6 +54,10 @@ export class MdTextFieldComponent implements AfterContentInit {
 
   updateFilled(): void {
     this.filled = this.input.nativeElement.value;
+  }
+
+  onIconClicked() {
+    this.iconClicked.emit();
   }
 
 }

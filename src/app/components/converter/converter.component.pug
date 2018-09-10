@@ -10,13 +10,13 @@ doctype html
   .body
     .row
       .path.next
-      md-text-field(label="Input" bind-rightText="conversion.input.unit.symbol")
+      md-text-field(label="Input" icon="file_copy" on-iconClicked="onCopyInput()")
         input(#input bindon-ngModel="conversion.input.value" type="number")
-      md-icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onInputUnitSelected($event)" searchEnabled="true")
+      md-raised-button-menu(bind-text="conversion.input.unit.symbol" allowLowercase="true" bind-items="getUnitItems()" on-itemSelected="onInputUnitSelected($event)" searchEnabled="true")
 
     .row(*ngFor="let o of conversion.outputs; index as i")
       .path.prev(on-click="onRemoveOutputClicked(o)" bind-ngClass="{'next': i < conversion.outputs.length - 1, 'active': !oneOutput()}")
         span.material-icons close
-      md-text-field(label="{{'Output' + (!oneOutput() ? (' ' + (i+1)) : '')}}" bind-rightText="o.unit.symbol")
+      md-text-field(label="{{'Output' + (!oneOutput() ? (' ' + (i+1)) : '')}}" icon="file_copy" on-iconClicked="onCopyOutput(o)")
         input(#input bindon-ngModel="o.value" type="number" readonly)
-      md-icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onOutputUnitSelected(o, $event)" searchEnabled="true")
+      md-raised-button-menu(bind-text="o.unit.symbol" allowLowercase="true" bind-items="getUnitItems()" on-itemSelected="onOutputUnitSelected(o, $event)" searchEnabled="true")

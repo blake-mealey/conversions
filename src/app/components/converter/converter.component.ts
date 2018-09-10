@@ -96,4 +96,16 @@ export class ConverterComponent implements AfterViewInit {
   onOutputUnitSelected(output: ConversionOutput, selectedOutputUnit: Unit) {
     output.unit = selectedOutputUnit;
   }
+
+  copyText(text: string) {
+    console.log("COPY TO CLIPBOARD: " + text);
+  }
+
+  onCopyInput() {
+    this.copyText(this.conversion.input.value.toString());
+  }
+
+  onCopyOutput(output: ConversionOutput) {
+    this.copyText(output.value.toString());
+  }
 }
