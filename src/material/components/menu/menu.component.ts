@@ -15,7 +15,7 @@ import { UserInputService } from '../../services/user-input.service';
 })
 export class MenuComponent implements OnInit, AfterViewInit {
 
-  @Input() searchEnabled: boolean;
+  @Input() searchEnabled: boolean = false;
   @Input() items: Array<MenuItem>;
   displayedItems: Array<MenuItem>;
 

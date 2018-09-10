@@ -5,4 +5,6 @@ doctype html
     text-field(*ngIf="searchEnabled" label="Search" dense="true")
       input(#input bindon-ngModel="searchValue")
     .menu-items
-      .menu-item(*ngFor="let item of displayedItems; index as i" on-click="onItemClick(item)" bind-ngClass="{'selected':i === selectedIndex}") {{item.displayName}}
+      .menu-item(*ngFor="let item of displayedItems; index as i" on-click="onItemClick(item)" bind-ngClass="{'selected':i === selectedIndex}")
+        span.material-icons(*ngIf="item.icon") {{item.icon}}
+        span {{item.displayName}}

@@ -27,9 +27,13 @@ $max-height: 300px;
       max-height: $max-height;
 
       .menu-item {
+        @apply .flex .items-center;
         @apply .select-none .cursor-pointer;
-        @apply .px-4 .py-2;
-        width: auto;
+        @apply .px-4 .py-2 .w-auto;
+
+        .material-icons {
+          @apply .pr-4;
+        }
 
         &:hover {
           @apply .bg-grey-lighter;

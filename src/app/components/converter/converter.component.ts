@@ -4,6 +4,11 @@ import { MenuItem } from '../../../material/components/menu/menu-item';
 import { UnitType } from '../../models/unit-type';
 import { Unit } from '../../models/unit';
 
+enum MoreMenuItem {
+  ADD_OUTPUT,
+  SWAP
+}
+
 @Component({
   selector: 'converter',
   styleUrls: [
@@ -19,8 +24,15 @@ export class ConverterComponent implements AfterViewInit {
   categoriesOpen: boolean;
 
   unitTypes: Array<MenuItem> = MenuItem.fromArray(UnitType.ALL_UNIT_TYPES);
+  moreMenuItems: Array<MenuItem>;
 
-  constructor() {}
+  constructor() {
+    this.moreMenuItems = [
+      // TODO: Icons
+      new MenuItem(MoreMenuItem.ADD_OUTPUT, 'Add output', 'add'),
+      new MenuItem(MoreMenuItem.SWAP, 'Swap', 'swap_vert'),
+    ];
+  }
 
   ngAfterViewInit(): void {
     this.categoriesOpen = true;
@@ -30,20 +42,23 @@ export class ConverterComponent implements AfterViewInit {
     this.closed.emit(this.conversion);
   }
 
-  onSwapClicked() {
-    this.conversion.input = this.conversion.output;
-
-    let inputUnit = this.conversion.inputUnit;
-    this.conversion.inputUnit = this.conversion.outputUnit;
-    this.conversion.outputUnit = inputUnit;
-  }
-
-  onCopyClicked() {
-    // TODO: Copy output to clipboard
-  }
-
   onCategorySelected(selectedUnitType: UnitType) {
     this.conversion.unitType = selectedUnitType;
+  }
+
+  onMoreMenuItemSelected(item: MoreMenuItem) {
+    switch (item) {
+      case MoreMenuItem.ADD_OUTPUT:
+        // TODO: Add output to this.conversion
+        break;
+      case MoreMenuItem.SWAP:
+        this.conversion.input = this.conversion.output;
+
+        let inputUnit = this.conversion.inputUnit;
+        this.conversion.inputUnit = this.conversion.outputUnit;
+        this.conversion.outputUnit = inputUnit;
+        break;
+    }
   }
 
   getUnitItems(): Array<MenuItem> {

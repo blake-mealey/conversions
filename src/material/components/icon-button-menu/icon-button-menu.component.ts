@@ -12,9 +12,9 @@ export class IconButtonMenuComponent implements OnInit {
 
   @Input() icon: string;
 
-  @Input() open: boolean;
+  @Input() open: boolean = false;
   @Input() items: Array<MenuItem>;
-  @Input() searchEnabled: boolean;
+  @Input() searchEnabled: boolean = false;
 
   @Output() itemSelected = new EventEmitter<any>();
 
