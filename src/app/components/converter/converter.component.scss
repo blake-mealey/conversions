@@ -1,5 +1,21 @@
 @import 'src/styles/tailwind';
 
+$path-size: 12px;
+$small-path-size: 12px / 2;
+$path-gap: 14px;
+
+@mixin path-circle($top) {
+  @apply .bg-grey-light .rounded-full .absolute;
+
+  content: '';
+
+  top: $top;
+  left: ($path-size / 2) - ($small-path-size / 2);
+
+  width: $small-path-size;
+  height: $small-path-size;
+}
+
 .conversion-component {
   @apply .flex .flex-col .shadow .rounded-lg .bg-white .m-3;
 
@@ -17,10 +33,51 @@
   }
 
   .body {
-    @apply .rounded-b-lg .p-2;
+    @apply .rounded-b-lg .p-2 .pt-5;
 
     .row {
       @apply .flex .items-center .mb-3;
+
+      .path {
+        @apply .flex .items-center .justify-center;
+        @apply .bg-grey .rounded-full .mr-2 .relative .select-none;
+
+        width: $path-size;
+        height: $path-size;
+
+        .material-icons {
+          @apply .font-bold .text-grey .hidden;
+          font-size: $path-size + 4px;
+
+          &:hover {
+            @apply .text-grey-dark;
+          }
+
+          &:active {
+            @apply .text-grey-darker;
+          }
+        }
+
+        &.active {
+          @apply .cursor-pointer .bg-transparent;
+
+          .material-icons {
+            display: initial;
+          }
+        }
+
+        &.prev {
+          &:before {
+            @include path-circle(-$small-path-size - $path-gap)
+          }
+        }
+
+        &.next {
+          &:after {
+            @include path-circle($path-size + $path-gap)
+          }
+        }
+      }
 
       text-field {
         @apply .flex-1;

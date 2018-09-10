@@ -9,11 +9,14 @@ doctype html
       icon-button(on-buttonClick="onCloseClicked()" icon="close")
   .body
     .row
+      .path.next
       text-field(label="Input" bind-rightText="conversion.input.unit.symbol")
         input(#input bindon-ngModel="conversion.input.value" type="number")
       icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onInputUnitSelected($event)" searchEnabled="true")
 
     .row(*ngFor="let o of conversion.outputs; index as i")
-      text-field(label="{{'Output' + conversion.outputs.length > 1 ? (' ' + (i+1)) : ''}}" bind-rightText="o.unit.symbol")
+      .path.prev(on-click="onRemoveOutputClicked(o)" bind-ngClass="{'next': i < conversion.outputs.length - 1, 'active': !oneOutput()}")
+        span.material-icons close
+      text-field(label="{{'Output' + !oneOutput() ? (' ' + (i+1)) : ''}}" bind-rightText="o.unit.symbol")
         input(#input bindon-ngModel="o.value" type="number" readonly)
       icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onOutputUnitSelected(o, $event)" searchEnabled="true")

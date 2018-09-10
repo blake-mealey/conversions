@@ -31,12 +31,18 @@ export class ConverterComponent implements AfterViewInit {
     this.moreMenuItems = [
       // TODO: Icons
       new MenuItem(MoreMenuItem.ADD_OUTPUT, 'Add output', 'add'),
-      new MenuItem(MoreMenuItem.SWAP, 'Swap', 'swap_vert'),
+      new MenuItem(MoreMenuItem.SWAP, 'Swap', 'swap_vert', this.oneOutput, this),
     ];
   }
 
   ngAfterViewInit(): void {
     this.categoriesOpen = true;
+  }
+
+  oneOutput(): boolean {
+    if (this.conversion) {
+      return this.conversion.outputs.length == 1;
+    }
   }
 
   onCloseClicked() {
@@ -50,18 +56,28 @@ export class ConverterComponent implements AfterViewInit {
   onMoreMenuItemSelected(item: MoreMenuItem) {
     switch (item) {
       case MoreMenuItem.ADD_OUTPUT:
-        this.conversion.addOutput();
+        this.onAdd();
         break;
       case MoreMenuItem.SWAP:
-        let input = this.conversion.input;
-        let output = this.conversion.outputs[0];
-
-        input.value = output.value;
-
-        let inputUnit = input.unit;
-        input.unit = output.unit;
-        output.unit = inputUnit;
+        this.onSwap();
         break;
+    }
+  }
+
+  onAdd() {
+    this.conversion.addOutput();
+  }
+
+  onSwap() {
+    if (this.oneOutput()) {
+      let input = this.conversion.input;
+      let output = this.conversion.outputs[0];
+
+      input.value = output.value;
+
+      let inputUnit = input.unit;
+      input.unit = output.unit;
+      output.unit = inputUnit;
     }
   }
 
@@ -71,6 +87,10 @@ export class ConverterComponent implements AfterViewInit {
 
   onInputUnitSelected(selectedInputUnit: Unit) {
     this.conversion.input.unit = selectedInputUnit;
+  }
+
+  onRemoveOutputClicked(output: ConversionOutput) {
+    this.conversion.removeOutput(output);
   }
 
   onOutputUnitSelected(output: ConversionOutput, selectedOutputUnit: Unit) {

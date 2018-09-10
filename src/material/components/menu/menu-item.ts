@@ -1,22 +1,23 @@
+type IsEnabledCallback = () => boolean;
+
 export class MenuItem {
-  displayName: string;
-  icon: string;
 
-  data: any;
+  constructor(public data: any,
+              public displayName: string,
+              public icon: string = undefined,
+              protected isEnabled: IsEnabledCallback = () => true,
+              protected callbackContext: any = null) {}
 
-  constructor(data: any, displayName: string, icon: string = undefined) {
-    this.displayName = displayName;
-    this.icon = icon;
-
-    this.data = data;
+  get enabled(): boolean {
+    return this.isEnabled.call(this.callbackContext);
   }
 
   static fromArray(array: Array<any>, displayNameProp: string = 'displayName',
-                   iconNameProp: string = 'icon'): Array<MenuItem> {
+                   iconProp: string = 'icon', isEnabledProp: string = 'isEnabled'): Array<MenuItem> {
 
     let menuItems = [];
     for (let item of array) {
-      menuItems.push(new MenuItem(item, item[displayNameProp], item[iconNameProp]))
+      menuItems.push(new MenuItem(item, item[displayNameProp], item[iconProp], item[isEnabledProp], item))
     }
     return menuItems;
   }

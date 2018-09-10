@@ -76,8 +76,10 @@ export class MenuComponent implements OnInit, AfterViewInit {
   }
 
   onItemClick(item: MenuItem) {
-    this.itemSelected.emit(item.data);
-    this.closed.emit();
+    if (item.enabled) {
+      this.itemSelected.emit(item.data);
+      this.closed.emit();
+    }
   }
 
   ngAfterViewInit(): void {
