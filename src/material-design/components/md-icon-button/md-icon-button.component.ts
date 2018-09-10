@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'icon-button',
+  selector: 'md-icon-button',
   styleUrls: [
-    './icon-button.component.scss'
+    './md-icon-button.component.scss'
   ],
-  templateUrl: './icon-button.component.pug'
+  templateUrl: './md-icon-button.component.pug'
 })
-export class IconButtonComponent implements OnInit {
+export class MdIconButtonComponent implements OnInit {
 
   @Input() icon: string;
   @Output() buttonClick = new EventEmitter();

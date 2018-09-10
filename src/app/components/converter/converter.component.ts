@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Conversion } from '../../models/conversion';
-import { MenuItem } from '../../../material/components/menu/menu-item';
+import { MenuItem } from '../../../material-design/components/md-menu/menu-item';
 import { UnitType } from '../../models/unit-type';
 import { Unit } from '../../models/unit';
 import { ConversionOutput } from '../../models/conversion-output';

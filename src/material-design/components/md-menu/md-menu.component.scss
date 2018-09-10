@@ -3,7 +3,7 @@
 $width: 200px;
 $max-height: 300px;
 
-.menu-component {
+.md-menu-component {
   @apply .relative .opacity-0 .z-10 .pointer-events-none;
 
   transition: 0.2s;
@@ -18,7 +18,7 @@ $max-height: 300px;
 
     width: $width;
 
-    text-field {
+    md-text-field {
       @apply .mx-2 .mt-1 .mb-2;
     }
 

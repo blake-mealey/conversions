@@ -6,13 +6,13 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'text-field',
+  selector: 'md-text-field',
   styleUrls: [
-    './text-field.component.scss'
+    './md-text-field.component.scss'
   ],
-  templateUrl: './text-field.component.pug'
+  templateUrl: './md-text-field.component.pug'
 })
-export class TextFieldComponent implements AfterContentInit {
+export class MdTextFieldComponent implements AfterContentInit {
 
   hovered: boolean;
   focused: boolean;
@@ -39,7 +39,7 @@ export class TextFieldComponent implements AfterContentInit {
     setTimeout(() => this.updateFilled(), 5); // Wait for bound data to load
   }
 
-  bindBoolToEvents(prop: keyof TextFieldComponent, enableEvent: string, disableEvent: string) {
+  bindBoolToEvents(prop: keyof MdTextFieldComponent, enableEvent: string, disableEvent: string) {
     this.input.nativeElement.addEventListener(enableEvent, () => {
       this[prop] = true;
     });

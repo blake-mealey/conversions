@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '../material/material.module';
+import { MaterialDesignModule } from '../material-design/material-design.module';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -44,7 +44,7 @@ const APP_PROVIDERS = [
     }),
 
     // My modules
-    MaterialModule
+    MaterialDesignModule
   ],
   declarations: [
     AppComponent,

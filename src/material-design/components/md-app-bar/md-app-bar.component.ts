@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-bar',
+  selector: 'md-app-bar',
   styleUrls: [
-    './app-bar.component.scss'
+    './md-app-bar.component.scss'
   ],
-  templateUrl: './app-bar.component.pug'
+  templateUrl: './md-app-bar.component.pug'
 })
-export class AppBarComponent implements OnInit {
+export class MdAppBarComponent implements OnInit {
 
   @Input() title: string;
 

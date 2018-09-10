@@ -5,4 +5,4 @@ doctype html
   div(*ngFor="let c of conversions")
     converter(on-closed="onClosed($event)" bind-conversion="c")
 
-floating-action-button(on-click="onAddClicked()" icon="add")
+md-floating-action-button(on-click="onAddClicked()" icon="add")

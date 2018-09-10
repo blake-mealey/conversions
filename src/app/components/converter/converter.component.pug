@@ -4,19 +4,19 @@ doctype html
   .header
     span.title {{conversion.unitType.displayName}} Converter
     span.buttons
-      icon-button-menu(icon="more_vert" bind-items="moreMenuItems" on-itemSelected="onMoreMenuItemSelected($event)")
-      icon-button-menu(icon="category" bind-items="unitTypes" bind-open="categoriesOpen" on-itemSelected="onCategorySelected($event)" searchEnabled="true")
-      icon-button(on-buttonClick="onCloseClicked()" icon="close")
+      md-icon-button-menu(icon="more_vert" bind-items="moreMenuItems" on-itemSelected="onMoreMenuItemSelected($event)")
+      md-icon-button-menu(icon="category" bind-items="unitTypes" bind-open="categoriesOpen" on-itemSelected="onCategorySelected($event)" searchEnabled="true")
+      md-icon-button(on-buttonClick="onCloseClicked()" icon="close")
   .body
     .row
       .path.next
-      text-field(label="Input" bind-rightText="conversion.input.unit.symbol")
+      md-text-field(label="Input" bind-rightText="conversion.input.unit.symbol")
         input(#input bindon-ngModel="conversion.input.value" type="number")
-      icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onInputUnitSelected($event)" searchEnabled="true")
+      md-icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onInputUnitSelected($event)" searchEnabled="true")
 
     .row(*ngFor="let o of conversion.outputs; index as i")
       .path.prev(on-click="onRemoveOutputClicked(o)" bind-ngClass="{'next': i < conversion.outputs.length - 1, 'active': !oneOutput()}")
         span.material-icons close
-      text-field(label="{{'Output' + (!oneOutput() ? (' ' + (i+1)) : '')}}" bind-rightText="o.unit.symbol")
+      md-text-field(label="{{'Output' + (!oneOutput() ? (' ' + (i+1)) : '')}}" bind-rightText="o.unit.symbol")
         input(#input bindon-ngModel="o.value" type="number" readonly)
-      icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onOutputUnitSelected(o, $event)" searchEnabled="true")
+      md-icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onOutputUnitSelected(o, $event)" searchEnabled="true")

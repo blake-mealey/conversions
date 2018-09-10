@@ -7,13 +7,13 @@ import { MenuItem } from './menu-item';
 import { UserInputService } from '../../services/user-input.service';
 
 @Component({
-  selector: 'menu',
+  selector: 'md-menu',
   styleUrls: [
-    './menu.component.scss'
+    './md-menu.component.scss'
   ],
-  templateUrl: './menu.component.pug'
+  templateUrl: './md-menu.component.pug'
 })
-export class MenuComponent implements OnInit, AfterViewInit {
+export class MdMenuComponent implements OnInit, AfterViewInit {
 
   @Input() searchEnabled: boolean = false;
   @Input() items: Array<MenuItem>;

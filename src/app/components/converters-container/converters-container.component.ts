@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Conversion } from '../../models/conversion';
 import { UnitType } from '../../models/unit-type';
-import { UserInputService } from '../../../material/services/user-input.service';
+import { UserInputService } from '../../../material-design/services/user-input.service';
 
 @Component({
   selector: 'converters-container',

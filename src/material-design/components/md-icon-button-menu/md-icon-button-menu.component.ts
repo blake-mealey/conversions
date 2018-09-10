@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MenuItem } from '../menu/menu-item';
+import { MenuItem } from '../md-menu/menu-item';
 
 @Component({
-  selector: 'icon-button-menu',
+  selector: 'md-icon-button-menu',
   styleUrls: [
-    './icon-button-menu.component.scss'
+    './md-icon-button-menu.component.scss'
   ],
-  templateUrl: './icon-button-menu.component.pug'
+  templateUrl: './md-icon-button-menu.component.pug'
 })
-export class IconButtonMenuComponent implements OnInit {
+export class MdIconButtonMenuComponent implements OnInit {
 
   @Input() icon: string;
 
