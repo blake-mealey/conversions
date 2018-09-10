@@ -17,6 +17,6 @@ doctype html
     .row(*ngFor="let o of conversion.outputs; index as i")
       .path.prev(on-click="onRemoveOutputClicked(o)" bind-ngClass="{'next': i < conversion.outputs.length - 1, 'active': !oneOutput()}")
         span.material-icons close
-      text-field(label="{{'Output' + !oneOutput() ? (' ' + (i+1)) : ''}}" bind-rightText="o.unit.symbol")
+      text-field(label="{{'Output' + (!oneOutput() ? (' ' + (i+1)) : '')}}" bind-rightText="o.unit.symbol")
         input(#input bindon-ngModel="o.value" type="number" readonly)
       icon-button-menu(icon="arrow_drop_down" bind-items="getUnitItems()" on-itemSelected="onOutputUnitSelected(o, $event)" searchEnabled="true")
