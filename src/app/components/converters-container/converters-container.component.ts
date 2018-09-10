@@ -22,11 +22,7 @@ export class ConvertersContainerComponent implements OnInit{
       this.onAddClicked();
     }
 
-    this.userInputService.keyDown$.subscribe((event) => {
-      if (event.key == 'a') {
-        this.onAddClicked();
-      }
-    });
+    this.userInputService.registerHotkey('a', () => this.onAddClicked());
   }
 
   onAddClicked() {

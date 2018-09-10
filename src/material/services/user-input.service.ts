@@ -18,11 +18,21 @@ export class UserInputService {
     this.keyDown$ = this.keyDown.asObservable();
 
     window.addEventListener('keydown', (event: KeyboardEvent) => {
-      this.keyDown.next(event);
+      if (event.target == window.document.body) {
+        this.keyDown.next(event);
+      }
     });
 
     window.addEventListener('mouseup', (event: MouseEvent) => {
       this.mouseClick.next(event);
+    });
+  }
+
+  registerHotkey(key: string, callback: (event: KeyboardEvent) => void) {
+    this.keyDown$.subscribe((event) => {
+      if (event.key == key) {
+        callback(event);
+      }
     });
   }
 
