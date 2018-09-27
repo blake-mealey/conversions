@@ -4,6 +4,7 @@ import { MenuItem } from '../../../material-design/components/md-menu/menu-item'
 import { UnitType } from '../../models/unit-type';
 import { Unit } from '../../models/unit';
 import { ConversionOutput } from '../../models/conversion-output';
+import { UnitsService } from '../../services/units.service';
 
 enum MoreMenuItem {
   ADD_OUTPUT,
@@ -24,10 +25,10 @@ export class ConverterComponent implements AfterViewInit {
 
   categoriesOpen: boolean;
 
-  unitTypes: Array<MenuItem> = MenuItem.fromArray(UnitType.ALL_UNIT_TYPES);
+  unitTypes: Array<MenuItem> = MenuItem.fromArray(this.unitsService.unitTypes);
   moreMenuItems: Array<MenuItem>;
 
-  constructor() {
+  constructor(private unitsService: UnitsService) {
     this.moreMenuItems = [
       // TODO: Icons
       new MenuItem(MoreMenuItem.ADD_OUTPUT, 'Add output', 'add'),

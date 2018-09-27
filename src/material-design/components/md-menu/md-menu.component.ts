@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild,
+  ElementRef, EventEmitter, Input, OnInit, Output, ViewChild,
 } from '@angular/core';
 import { MenuItem } from './menu-item';
 import { UserInputService } from '../../services/user-input.service';
@@ -14,6 +14,9 @@ import { UserInputService } from '../../services/user-input.service';
   templateUrl: './md-menu.component.pug'
 })
 export class MdMenuComponent implements OnInit, AfterViewInit {
+
+  private static readonly SEARCH_ICON = 'search';
+  private static readonly CANCEL_ICON = 'cancel';
 
   @Input() searchEnabled: boolean = false;
   @Input() items: Array<MenuItem>;
@@ -38,6 +41,7 @@ export class MdMenuComponent implements OnInit, AfterViewInit {
   @Output() closed = new EventEmitter();
 
   selectedIndex: number;
+  searchIcon: string = MdMenuComponent.SEARCH_ICON;
 
   _searchValue: string;
   get searchValue(): string {
@@ -46,10 +50,12 @@ export class MdMenuComponent implements OnInit, AfterViewInit {
   set searchValue(searchValue: string) {
     this._searchValue = searchValue.toLowerCase();
     if (this.searchValue) {
+      this.searchIcon = MdMenuComponent.CANCEL_ICON;
       this.displayedItems = this.items.filter((item: MenuItem) => {
         return item.displayName.toLowerCase().indexOf(this.searchValue) > -1;
       });
     } else {
+      this.searchIcon = MdMenuComponent.SEARCH_ICON;
       this.displayedItems = this.items;
     }
     if (this.displayedItems.length == 0) {
@@ -73,6 +79,10 @@ export class MdMenuComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.displayedItems = this.items;
+  }
+
+  onSearchIconClick() {
+    this.searchValue = '';
   }
 
   onItemClick(item: MenuItem) {

@@ -1,17 +1,18 @@
 @import "src/styles/tailwind";
 
-$height: 36px;
+$height: 55px;
+$width: 80px;
 $padding-x: 16px;
 
-$icon-margin-inner: 8px;
 $icon-margin-outer: -4px;
 
 .md-raised-button-component {
   @apply .select-none .cursor-pointer;
   @apply .bg-teal-dark .text-white .font-bold .rounded-sm .shadow;
-  @apply .flex .items-center;
+  @apply .flex .items-center .justify-between;
 
   height: $height;
+  width: $width;
   padding: 0 $padding-x;
 
   transition: 0.2s;
@@ -21,11 +22,9 @@ $icon-margin-outer: -4px;
 
     &.left {
       margin-left: $icon-margin-outer;
-      margin-right: $icon-margin-inner;
     }
 
     &.right {
-      margin-left: $icon-margin-inner;
       margin-right: $icon-margin-outer;
     }
   }

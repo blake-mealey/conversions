@@ -1,9 +1,11 @@
 @import "src/styles/tailwind";
 
 $padding-x: 14px;
+$padding-r: ($padding-x * 2) + 36px;
 $padding-y: 16px;
 
 $padding-x-dense: 7px;
+$padding-r-dense: 36px;
 $padding-y-dense: 8px;
 
 $padding-label-x: 4px;
@@ -15,8 +17,8 @@ $padding-label-x: 4px;
   .label {
     @apply .absolute .bg-white .pointer-events-none .font-normal;
 
-    left: calc(#{$padding-x} + 1px);
-    bottom: calc(#{$padding-y} + 2px);
+    left: $padding-x + 1px;
+    bottom: $padding-y + 2px;
 
     transition: 0.2s;
 
@@ -37,7 +39,7 @@ $padding-label-x: 4px;
 
   .right {
     @apply .absolute .text-grey-darker;
-    right: calc(#{$padding-x} + 1px);
+    right: $padding-x;
     bottom: 10px;
   }
 
@@ -47,8 +49,9 @@ $padding-label-x: 4px;
     @apply .cursor-pointer;
 
     margin: 0;
+    min-width: 0;
 
-    padding: $padding-y $padding-x;
+    padding: $padding-y $padding-r $padding-y $padding-x;
 
     transition: 0.2s;
 
@@ -58,7 +61,7 @@ $padding-label-x: 4px;
 
     &:focus {
       outline: none;
-      padding: calc(#{$padding-y} - 1px) calc(#{$padding-x} - 1px);
+      padding: $padding-y - 1px $padding-r - 1px $padding-y - 1px $padding-x - 1px;
       @apply .border-2 .border-teal;
     }
 
@@ -73,8 +76,8 @@ $padding-label-x: 4px;
     .label {
       @apply .text-sm;
 
-      left: calc(#{$padding-x-dense} + 1px);
-      bottom: calc(#{$padding-y-dense} + 2px);
+      left: $padding-x-dense + 1px;
+      bottom: $padding-y-dense + 2px;
 
       &.filled {
         @apply .text-xs;
@@ -83,13 +86,22 @@ $padding-label-x: 4px;
       }
     }
 
+    .right {
+      @apply .absolute .text-grey-darker .pin-r;
+      bottom: 1px;
+
+      .material-icons {
+        font-size: 18px;
+      }
+    }
+
     /deep/ input {
       @apply .text-sm;
 
-      padding: $padding-y-dense $padding-x-dense;
+      padding: $padding-y-dense $padding-r-dense $padding-y-dense $padding-x-dense;
 
       &:focus {
-        padding: calc(#{$padding-y-dense} - 1px) calc(#{$padding-x-dense} - 1px);
+        padding: $padding-y-dense - 1px $padding-r-dense - 1px $padding-y-dense - 1px $padding-x-dense - 1px;
       }
     }
   }

@@ -17,6 +17,8 @@ import { AppComponent } from './components/app/app.component';
 import { ConvertersContainerComponent } from './components/converters-container/converters-container.component';
 import { ConverterComponent } from './components/converter/converter.component';
 
+import { UnitsService } from './services/units.service';
+
 /*
  * Load styles root
  */
@@ -47,12 +49,16 @@ const APP_PROVIDERS = [
     MaterialDesignModule
   ],
   declarations: [
+    // Components
     AppComponent,
     ConvertersContainerComponent,
     ConverterComponent
   ],
   providers: [
     environment.ENV_PROVIDERS,
+
+    UnitsService,
+
     APP_PROVIDERS
   ]
 })

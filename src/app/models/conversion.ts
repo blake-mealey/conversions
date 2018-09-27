@@ -16,10 +16,10 @@ export class Conversion {
     if (unitType && unitType != this._unitType) {
       this._unitType = unitType;
       if (this.input) {
-        this.input.unit = unitType.defaultUnit;
+        this.input.unit = unitType.baseUnit;
       }
       for (let output of this.outputs) {
-        output.unit = unitType.defaultUnit;
+        output.unit = unitType.baseUnit;
       }
     }
   }

@@ -1,81 +1,36 @@
 import { Unit } from './unit';
+import { BaseModel } from './base-model';
 
-export class UnitType {
-  static readonly AREA = new UnitType('Area', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly DATA_TRANSFER_RATE = new UnitType('Data Transfer Rate', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly DIGITAL_STORAGE = new UnitType('Digital Storage', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly ENERGY = new UnitType('Energy', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly FREQUENCY = new UnitType('Frequency', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly FUEL_ECONOMY = new UnitType('Fuel Economy', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly LENGTH = new UnitType('Distance', [
-    Unit.KILOMETRE,
-    Unit.METRE,
-    Unit.DECIMETRE,
-    Unit.CENTIMETRE,
-    Unit.MILLIMETRE,
-    Unit.MICROMETRE,
-    Unit.NANOMETRE,
-    Unit.MILE,
-    Unit.YARD,
-    Unit.FOOT,
-    Unit.INCH,
-    Unit.NAUTICAL_MILE
-  ], Unit.METRE);
-  static readonly MASS = new UnitType('Mass', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly PLANE_ANGLE = new UnitType('Plane Angle', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly PRESSURE = new UnitType('Pressure', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly SPEED = new UnitType('Speed', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly TEMPERATURE = new UnitType('Temperature', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly TIME = new UnitType('Time', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly VOLUME = new UnitType('Volume', [
-    Unit.METRE
-  ], Unit.METRE);
-  static readonly ALL_UNIT_TYPES = [
-    UnitType.AREA, UnitType.DATA_TRANSFER_RATE, UnitType.DIGITAL_STORAGE, UnitType.ENERGY,
-    UnitType.FREQUENCY, UnitType.FUEL_ECONOMY, UnitType.LENGTH, UnitType.MASS, UnitType.PLANE_ANGLE,
-    UnitType.PRESSURE, UnitType.SPEED, UnitType.TEMPERATURE, UnitType.TIME, UnitType.VOLUME
-  ];
+export class UnitType extends BaseModel {
+  public readonly displayName: string;
+  public readonly baseUnit: Unit;
+  public readonly units: Array<Unit>;
+  private readonly unitsMap: { [ unitId: number ]: Unit };
+  public readonly conversionGraph: { [ fromUnitId: number ]: { [ toUnitId: number ]: number } };
 
-  public displayName: string;
-  public units: Array<Unit>;
+  constructor(model: Object, conversionsGraphModel: any) {
+    super(model);
 
-  public readonly defaultUnit: Unit;
+    this.displayName = this.getRequiredStringProperty('displayName');
+    this.baseUnit = this.getRequiredModelProperty(Unit, 'baseUnit');
+    this.units = this.getRequiredModelArrayProperty(Unit, 'units');
 
-  constructor(displayName: string, units: Array<Unit>, defaultUnit: Unit) {
-    this.displayName = displayName;
-    this.units = units;
-    this.defaultUnit = defaultUnit;
-
-    if (this.units.indexOf(this.defaultUnit) < 0) {
-      throw new Error('Default unit must be a member of units.');
+    this.unitsMap = {};
+    for (let unit of this.units) {
+      this.unitsMap[unit.id] = unit;
     }
+
+    // TODO: Type check?
+    this.conversionGraph = conversionsGraphModel;
+
+    this.finishBuilding();
   }
 
   validUnit(unit: Unit) {
-    return this.units.indexOf(unit) > -1;
+    return !!this.getUnit(unit.id);
+  }
+
+  getUnit(id: number) {
+    return this.unitsMap[id];
   }
 }

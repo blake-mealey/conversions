@@ -4,7 +4,7 @@ import { Unit } from './unit';
 export class ConversionIo {
 
   constructor(protected conversion: Conversion) {
-    this.unit = this.conversion.unitType.defaultUnit;
+    this.unit = this.conversion.unitType.baseUnit;
   }
 
   protected _unit: Unit;

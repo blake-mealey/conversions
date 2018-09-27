@@ -1,7 +1,8 @@
 /**
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { UnitsService } from '../../services/units.service';
 
 export const ROOT_SELECTOR = 'app';
 
@@ -17,8 +18,12 @@ export const ROOT_SELECTOR = 'app';
   ],
   templateUrl: './app.component.pug'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor() {}
+  constructor(private unitsService: UnitsService) {}
+
+  ngOnInit(): void {
+    this.unitsService.init();
+  }
 
 }

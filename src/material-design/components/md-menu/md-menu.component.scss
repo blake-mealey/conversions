@@ -15,7 +15,9 @@ $max-height: 300px;
   .menu {
     @apply .absolute .pin-r .z-10 .flex .flex-col;
     @apply .bg-white .text-black .rounded-lg .shadow-md .py-1;
+    @apply .overflow-y-auto;
 
+    max-height: $max-height;
     width: $width;
 
     md-text-field {
@@ -23,9 +25,6 @@ $max-height: 300px;
     }
 
     .menu-items {
-      @apply .overflow-y-auto;
-      max-height: $max-height;
-
       .menu-item {
         @apply .flex .items-center;
         @apply .select-none;

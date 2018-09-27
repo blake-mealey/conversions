@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Conversion } from '../../models/conversion';
 import { UnitType } from '../../models/unit-type';
 import { UserInputService } from '../../../material-design/services/user-input.service';
+import { UnitsService } from '../../services/units.service';
 
 @Component({
   selector: 'converters-container',
@@ -14,7 +15,8 @@ export class ConvertersContainerComponent implements OnInit{
 
   public conversions: Array<Conversion> = [];
 
-  constructor(private userInputService: UserInputService) {}
+  constructor(private userInputService: UserInputService,
+              private unitsService: UnitsService) {}
 
   ngOnInit(): void {
     let count = 0;
@@ -26,7 +28,7 @@ export class ConvertersContainerComponent implements OnInit{
   }
 
   onAddClicked() {
-    this.conversions.push(new Conversion(UnitType.LENGTH));
+    this.conversions.push(new Conversion(this.unitsService.unitTypes[0]));
   }
 
   onClosed(conversion: Conversion) {

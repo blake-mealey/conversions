@@ -4,19 +4,13 @@ import { Observable, Subject } from 'rxjs';
 @Injectable()
 export class UserInputService {
 
-  private mouseClick: Subject<MouseEvent>;
-  public mouseClick$: Observable<MouseEvent>;
+  private mouseClick = new Subject<MouseEvent>();
+  public mouseClick$ = this.mouseClick.asObservable();
 
-  private keyDown: Subject<KeyboardEvent>;
-  public keyDown$: Observable<KeyboardEvent>;
+  private keyDown = new Subject<KeyboardEvent>();
+  public keyDown$ = this.keyDown.asObservable();
 
   constructor() {
-    this.mouseClick = new Subject();
-    this.mouseClick$ = this.mouseClick.asObservable();
-
-    this.keyDown = new Subject();
-    this.keyDown$ = this.keyDown.asObservable();
-
     window.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.target == window.document.body) {
         this.keyDown.next(event);
