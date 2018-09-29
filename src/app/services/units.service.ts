@@ -3,11 +3,10 @@ import { UnitType } from '../models/unit-type';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
+import { CONVERSIONS_SERVER } from '../../../config/appsettings'
 
 @Injectable()
 export class UnitsService {
-  static readonly SERVER_URL: string = 'https://localhost:44300';
-
   public unitTypes: Array<UnitType>;
 
   private ready = new Subject<boolean>();
@@ -16,7 +15,7 @@ export class UnitsService {
   constructor(private httpClient: HttpClient) {}
 
   private getUnitTypesFromServer(): Observable<Array<UnitType>> {
-    return this.httpClient.get(UnitsService.SERVER_URL + '/api/Conversions/Types/ConversionGraphs')
+    return this.httpClient.get(CONVERSIONS_SERVER + '/api/Conversions/Types/ConversionGraphs')
       .pipe(
         map<any, Array<UnitType>>(data => {
           return data.map(function (unitTypeConversionGraphModel) {
