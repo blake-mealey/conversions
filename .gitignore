@@ -51,6 +51,7 @@ npm-debug.log
 /tsd_typings/
 
 # Dist #
+dist.zip
 /dist
 /public/__build__/
 /src/*/__build__/

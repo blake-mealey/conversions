@@ -4,6 +4,8 @@ import { ConversionOutput } from './conversion-output';
 
 export class Conversion {
 
+  private changingUnitType: boolean;
+
   /**
    * unit type cannot be null
    * when unit type changes, use default units for new unit type
@@ -14,6 +16,7 @@ export class Conversion {
   }
   set unitType(unitType: UnitType) {
     if (unitType && unitType != this._unitType) {
+      this.changingUnitType = true;
       this._unitType = unitType;
       if (this.input) {
         this.input.unit = unitType.baseUnit;
@@ -21,6 +24,8 @@ export class Conversion {
       for (let output of this.outputs) {
         output.unit = unitType.baseUnit;
       }
+      this.changingUnitType = false;
+      this.update();
     }
   }
 
@@ -46,6 +51,8 @@ export class Conversion {
    * convert the input to the output, given the current input and output units
    */
   public update() {
+    if (this.changingUnitType) return;
+
     for (let output of this.outputs) {
       output.update(this.input);
     }
