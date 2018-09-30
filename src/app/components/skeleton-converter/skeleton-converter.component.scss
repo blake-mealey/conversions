@@ -4,8 +4,11 @@ $path-size: 12px;
 $small-path-size: 12px / 2;
 $path-gap: 14px;
 
+$skeleton-row-height: 55px;
+$skeleton-raised-button-width: 80px;
+
 @mixin path-circle($top) {
-  @apply .bg-grey-light .rounded-full .absolute;
+  @apply .bg-grey-lightest .rounded-full .absolute;
 
   content: '';
 
@@ -16,12 +19,25 @@ $path-gap: 14px;
   height: $small-path-size;
 }
 
-.converter-component {
-  @apply .flex .flex-col .shadow .rounded-lg .bg-white .m-3;
+@keyframes loading {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-converter-component {
+  @apply .flex .flex-col .shadow .rounded-lg .bg-white .m-3 .relative;
+
+  .overlay {
+    @apply .absolute .w-full .h-full z-10;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)) no-repeat -100% 0;
+    background-size: 50%;
+    animation: loading 1.5s infinite;
+  }
 
   .header {
     @apply .flex .justify-between .items-center;
-    @apply .rounded-t-lg .h-12 .bg-teal .pr-1 .pl-2 .text-white;
+    @apply .rounded-t-lg .h-12 .bg-grey-light .pr-1 .pl-2 .text-white;
 
     .title {
       @apply .text-lg .font-bold;
@@ -37,10 +53,11 @@ $path-gap: 14px;
 
     .row {
       @apply .flex .items-center .mb-3;
+      height: 55px;
 
       .path {
         @apply .flex .items-center .justify-center;
-        @apply .bg-grey .rounded-full .mr-2 .relative .select-none;
+        @apply .bg-grey-lighter .rounded-full .mr-2 .relative .select-none;
 
         width: $path-size;
         height: $path-size;
@@ -79,8 +96,13 @@ $path-gap: 14px;
         }
       }
 
-      md-text-field {
-        @apply .flex-1 .mr-2;
+      .skeleton-text-box {
+        @apply .flex-1 .mr-2 .rounded .bg-grey-lighter .h-full;
+      }
+
+      .skeleton-raised-button {
+        @apply .rounded .h-full .bg-grey-lighter;
+        width: $skeleton-raised-button-width;
       }
     }
   }

@@ -32,7 +32,9 @@ export class UnitsService {
     this.getUnitTypesFromServer()
       .subscribe(unitTypes => {
         this.unitTypes = unitTypes;
-        this.ready.next(true);
+        setTimeout(() => {
+          this.ready.next(true);
+        }, 500);
       });
   }
 }

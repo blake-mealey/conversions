@@ -15,10 +15,20 @@ export class ConvertersContainerComponent implements OnInit{
 
   public conversions: Array<Conversion> = [];
 
+  private ready: boolean;
+
   constructor(private userInputService: UserInputService,
               private unitsService: UnitsService) {}
 
   ngOnInit(): void {
+    this.unitsService.ready$.subscribe(() => {
+      this.init();
+    });
+  }
+  
+  init(): void {
+    this.ready = true;
+    
     let count = 0;
     for (let i = 0; i < count; i++) {
       this.onAddClicked();

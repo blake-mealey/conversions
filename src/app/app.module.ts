@@ -16,6 +16,7 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './components/app/app.component';
 import { ConvertersContainerComponent } from './components/converters-container/converters-container.component';
 import { ConverterComponent } from './components/converter/converter.component';
+import { SkeletonConverterComponent } from './components/skeleton-converter/skeleton-converter.component';
 
 import { UnitsService } from './services/units.service';
 
@@ -52,7 +53,8 @@ const APP_PROVIDERS = [
     // Components
     AppComponent,
     ConvertersContainerComponent,
-    ConverterComponent
+    ConverterComponent,
+    SkeletonConverterComponent
   ],
   providers: [
     environment.ENV_PROVIDERS,
