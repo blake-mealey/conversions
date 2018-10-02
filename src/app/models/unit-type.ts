@@ -17,7 +17,7 @@ export class UnitType extends BaseModel {
 
     this.unitsMap = {};
     for (let unit of this.units) {
-      this.unitsMap[unit.id] = unit;
+      this.unitsMap[unit.symbol] = unit;
     }
 
     // TODO: Type check?
@@ -27,7 +27,7 @@ export class UnitType extends BaseModel {
   }
 
   validUnit(unit: Unit) {
-    return !!this.getUnit(unit.id);
+    return !!this.getUnit(unit.symbol);
   }
 
   getUnit(id: number) {

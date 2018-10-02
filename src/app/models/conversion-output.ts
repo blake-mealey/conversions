@@ -23,33 +23,32 @@ export class ConversionOutput extends ConversionIo {
       let conversionGraph = unitType.conversionGraph;
 
       // Search the conversion graph for the conversion
-      let path: { [ id: number ]: number } = {};
-      let queue: Array<number> = [input.unit.id];
+      let path: { [ symbol: string ]: string } = {};
+      let queue: Array<string> = [input.unit.symbol];
       while (queue.length > 0) {
-        let fromUnitId = queue.shift();
+        let fromUnitSymbol = queue.shift();
 
-        if (fromUnitId == this.unit.id) {
+        if (fromUnitSymbol == this.unit.symbol) {
           break;
         }
 
-        for (let id in conversionGraph[fromUnitId]) {
-          let toUnitId = Number(id);
-          if (path[toUnitId]) continue;
-          path[toUnitId] = fromUnitId;
-          queue.push(toUnitId);
+        for (let toUnitSymbol in conversionGraph[fromUnitSymbol]) {
+          if (path[toUnitSymbol]) continue;
+          path[toUnitSymbol] = fromUnitSymbol;
+          queue.push(toUnitSymbol);
         }
       }
 
       // Construct the multiplier from the path
       let multiplier = 1;
-      let toUnitId: number = this.unit.id;
+      let toUnitSymbol: string = this.unit.symbol;
       let multipliers = [];
-      while (toUnitId != input.unit.id) {
-        let fromUnitId = path[toUnitId];
-        let thisMultiplier = conversionGraph[fromUnitId][toUnitId];
+      while (toUnitSymbol != input.unit.symbol) {
+        let fromUnitId = path[toUnitSymbol];
+        let thisMultiplier = conversionGraph[fromUnitId][toUnitSymbol];
         multipliers.push(thisMultiplier);
         multiplier *= thisMultiplier;
-        toUnitId = fromUnitId;
+        toUnitSymbol = fromUnitId;
       }
 
       // Multiply the input by the conversion multiplier
