@@ -8,6 +8,7 @@ steps:
   displayName: 'Build app'
 - task: CopyFiles@2
   inputs:
+    sourceFolder: '$(Build.SourcesDirectory)/dist'
     targetFolder: $(Build.ArtifactStagingDirectory)
     cleanTargetFolder: true
 - task: PublishBuildArtifacts@1
