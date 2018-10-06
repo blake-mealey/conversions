@@ -1,0 +1,108 @@
+@import "src/styles/tailwind";
+
+$padding-x: 14px;
+$padding-r: ($padding-x * 2) + 36px;
+$padding-y: 16px;
+
+$padding-x-dense: 7px;
+$padding-r-dense: 36px;
+$padding-y-dense: 8px;
+
+$padding-label-x: 4px;
+
+.md-text-field-component {
+  @apply .relative;
+  @apply .select-none .cursor-pointer;
+
+  .label {
+    @apply .absolute .bg-white .pointer-events-none .font-normal;
+
+    left: $padding-x + 1px;
+    bottom: $padding-y + 2px;
+
+    transition: 0.2s;
+
+    &.filled {
+      @apply .text-xs .text-grey-dark;
+      padding: 0 $padding-label-x;
+      bottom: calc(100% - 7px);
+    }
+
+    &.hovered {
+      @apply .text-grey-darkest;
+    }
+
+    &.focused {
+      @apply .text-teal .font-medium;
+    }
+  }
+
+  .right {
+    @apply .absolute .text-grey-darker;
+    right: $padding-x;
+    bottom: 10px;
+  }
+
+  /deep/ input {
+    @apply .w-full .h-full;
+    @apply .rounded .border .border-grey-dark;
+    @apply .cursor-pointer;
+
+    margin: 0;
+    min-width: 0;
+
+    padding: $padding-y $padding-r $padding-y $padding-x;
+
+    transition: 0.2s;
+
+    &:hover {
+      @apply .border-grey-darkest;
+    }
+
+    &:focus {
+      outline: none;
+      padding: $padding-y - 1px $padding-r - 1px $padding-y - 1px $padding-x - 1px;
+      @apply .border-2 .border-teal;
+    }
+
+    &[type=number]::-webkit-inner-spin-button,
+    &[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &.dense {
+    .label {
+      @apply .text-sm;
+
+      left: $padding-x-dense + 1px;
+      bottom: $padding-y-dense + 2px;
+
+      &.filled {
+        @apply .text-xs;
+        padding: 0 $padding-label-x;
+        bottom: calc(100% - 7px);
+      }
+    }
+
+    .right {
+      @apply .absolute .text-grey-darker .pin-r;
+      bottom: 1px;
+
+      .material-icons {
+        font-size: 18px;
+      }
+    }
+
+    /deep/ input {
+      @apply .text-sm;
+
+      padding: $padding-y-dense $padding-r-dense $padding-y-dense $padding-x-dense;
+
+      &:focus {
+        padding: $padding-y-dense - 1px $padding-r-dense - 1px $padding-y-dense - 1px $padding-x-dense - 1px;
+      }
+    }
+  }
+}

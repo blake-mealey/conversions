@@ -1,0 +1,18 @@
+doctype html
+
+.skeleton-converter-component
+  .overlay
+
+  .header
+  .body
+    .row
+      .path.next
+      .skeleton-text-box
+      .skeleton-raised-button
+
+    each v,i in [0,0]
+      .row
+        .path.prev(class=(i < 1 ? "next" : ""))
+          span.material-icons close
+        .skeleton-text-box
+        .skeleton-raised-button

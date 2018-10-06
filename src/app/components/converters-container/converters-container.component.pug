@@ -1,8 +1,16 @@
 doctype html
 
 .conversions-container
-  span.empty(*ngIf="!conversions || conversions.length == 0") Click the + to add some converters!
+  // Skeleton screen
+  each i in [0,0,0]
+    div(*ngIf="!ready")
+      skeleton-converter
+
+  // Empty text
+  span.empty(*ngIf="ready && (!conversions || conversions.length == 0)") Click the + to add some converters!
+
+  // Converters
   div(*ngFor="let c of conversions")
     converter(on-closed="onClosed($event)" bind-conversion="c")
 
-floating-action-button(on-click="onAddClicked()" icon="add")
+md-floating-action-button(*ngIf="ready" on-click="onAddClicked()" icon="add")

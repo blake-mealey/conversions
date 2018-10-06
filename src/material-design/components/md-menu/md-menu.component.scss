@@ -1,0 +1,56 @@
+@import 'src/styles/tailwind';
+
+$width: 200px;
+$max-height: 300px;
+
+.md-menu-component {
+  @apply .relative .opacity-0 .z-10 .pointer-events-none;
+
+  transition: 0.2s;
+
+  &.open {
+    @apply .opacity-100 .pointer-events-auto;
+  }
+
+  .menu {
+    @apply .absolute .pin-r .z-10 .flex .flex-col;
+    @apply .bg-white .text-black .rounded-lg .shadow-md .py-1;
+    @apply .overflow-y-auto;
+
+    max-height: $max-height;
+    width: $width;
+
+    md-text-field {
+      @apply .mx-2 .mt-1 .mb-2;
+    }
+
+    .menu-items {
+      .menu-item {
+        @apply .flex .items-center;
+        @apply .select-none;
+        @apply .px-4 .py-2 .w-auto;
+        @apply .text-grey;
+
+        .material-icons {
+          @apply .pr-4;
+        }
+
+        &.enabled {
+          @apply .cursor-pointer .text-black;
+
+          &:hover {
+            @apply .bg-grey-lighter;
+          }
+
+          &:active {
+            @apply .bg-grey-light;
+          }
+
+          &.selected {
+            @apply .bg-grey-lighter;
+          }
+        }
+      }
+    }
+  }
+}

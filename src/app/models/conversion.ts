@@ -1,7 +1,10 @@
 import { UnitType } from './unit-type';
-import { Unit } from './unit';
+import { ConversionInput } from './conversion-input';
+import { ConversionOutput } from './conversion-output';
 
 export class Conversion {
+
+  private changingUnitType: boolean;
 
   /**
    * unit type cannot be null
@@ -13,64 +16,45 @@ export class Conversion {
   }
   set unitType(unitType: UnitType) {
     if (unitType && unitType != this._unitType) {
+      this.changingUnitType = true;
       this._unitType = unitType;
-      this.inputUnit = unitType.defaultUnit;
-      this.outputUnit = unitType.defaultUnit;
+      if (this.input) {
+        this.input.unit = unitType.baseUnit;
+      }
+      for (let output of this.outputs) {
+        output.unit = unitType.baseUnit;
+      }
+      this.changingUnitType = false;
+      this.update();
     }
   }
 
-  /**
-   * when input unit changes, update input
-   */
-  private _inputUnit: Unit;
-  get inputUnit(): Unit {
-    return this._inputUnit;
-  }
-  set inputUnit(inputUnit: Unit) {
-    this._inputUnit = inputUnit;
-    this.convertInputToOutput();
+  public input: ConversionInput;
+
+  public outputs: Array<ConversionOutput> = [];
+
+  public addOutput() {
+    this.outputs.push(new ConversionOutput(this));
   }
 
-  /**
-   * when output unit changes, update output
-   */
-  private _outputUnit: Unit;
-  get outputUnit(): Unit {
-    return this._outputUnit;
-  }
-  set outputUnit(outputUnit: Unit) {
-    this._outputUnit = outputUnit;
-    this.convertInputToOutput();
-  }
+  public removeOutput(output: ConversionOutput) {
+    // Cannot remove the last output
+    if (this.outputs.length == 1) { return; }
 
-  /**
-   * when input changes, update output
-   */
-  private _input: number;
-  get input(): number {
-    return this._input;
-  }
-  set input(input: number) {
-    this._input = input;
-    this.convertInputToOutput();
-  }
-
-  /**
-   * output can only be modified in `convertInputToOutput`
-   */
-  private _output: number;
-  get output(): number {
-    return this._output;
+    let index = this.outputs.indexOf(output);
+    if (index > -1) {
+      this.outputs.splice(index, 1);
+    }
   }
 
   /**
    * convert the input to the output, given the current input and output units
    */
-  private convertInputToOutput() {
-    if (this.input != null && this.input != undefined) {
-      this._output = this.input * this.inputUnit.relativeToDefault * this.outputUnit.inverseRelativeToDefault;
-    } else {
-      this._output = null;
+  public update() {
+    if (this.changingUnitType) return;
+
+    for (let output of this.outputs) {
+      output.update(this.input);
     }
   }
 
@@ -80,7 +64,10 @@ export class Conversion {
    */
   constructor(unitType: UnitType) {
     this.unitType = unitType;
-    this.input = 1;
+    this.input = new ConversionInput(this);
+    this.outputs = [
+      new ConversionOutput(this)
+    ];
   }
 
 }

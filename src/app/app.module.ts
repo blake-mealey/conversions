@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from '../material/material.module';
+import { MaterialDesignModule } from '../material-design/material-design.module';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -16,6 +16,9 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppComponent } from './components/app/app.component';
 import { ConvertersContainerComponent } from './components/converters-container/converters-container.component';
 import { ConverterComponent } from './components/converter/converter.component';
+import { SkeletonConverterComponent } from './components/skeleton-converter/skeleton-converter.component';
+
+import { UnitsService } from './services/units.service';
 
 /*
  * Load styles root
@@ -44,15 +47,20 @@ const APP_PROVIDERS = [
     }),
 
     // My modules
-    MaterialModule
+    MaterialDesignModule
   ],
   declarations: [
+    // Components
     AppComponent,
     ConvertersContainerComponent,
-    ConverterComponent
+    ConverterComponent,
+    SkeletonConverterComponent
   ],
   providers: [
     environment.ENV_PROVIDERS,
+
+    UnitsService,
+
     APP_PROVIDERS
   ]
 })

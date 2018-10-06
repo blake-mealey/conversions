@@ -1,8 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Conversion } from '../../models/conversion';
-import { MenuItem } from '../../models/menu-item';
+import { MenuItem } from '../../../material-design/components/md-menu/menu-item';
 import { UnitType } from '../../models/unit-type';
 import { Unit } from '../../models/unit';
+import { ConversionOutput } from '../../models/conversion-output';
+import { UnitsService } from '../../services/units.service';
+
+enum MoreMenuItem {
+  ADD_OUTPUT,
+  SWAP
+}
 
 @Component({
   selector: 'converter',
@@ -11,65 +18,94 @@ import { Unit } from '../../models/unit';
   ],
   templateUrl: './converter.component.pug'
 })
-export class ConverterComponent implements OnInit {
+export class ConverterComponent implements AfterViewInit {
 
   @Input() conversion: Conversion;
   @Output() closed = new EventEmitter<Conversion>();
 
-  unitTypes: Array<MenuItem> = MenuItem.fromArray(UnitType.ALL_UNIT_TYPES);
+  categoriesOpen: boolean;
 
-  categoriesOpen: boolean = true;
-  inputUnitsOpen: boolean = false;
-  outputUnitsOpen: boolean = false;
+  unitTypes: Array<MenuItem> = MenuItem.fromArray(this.unitsService.unitTypes);
+  moreMenuItems: Array<MenuItem>;
 
-  constructor() {}
+  constructor(private unitsService: UnitsService) {
+    this.moreMenuItems = [
+      new MenuItem(MoreMenuItem.ADD_OUTPUT, 'Add output', 'add'),
+      new MenuItem(MoreMenuItem.SWAP, 'Swap', 'swap_vert', this.oneOutput, this),
+    ];
+  }
 
-  public ngOnInit() {}
+  ngAfterViewInit(): void {
+    this.categoriesOpen = true;
+  }
 
-  public onCloseClicked() {
+  oneOutput(): boolean {
+    if (this.conversion) {
+      return this.conversion.outputs.length == 1;
+    }
+  }
+
+  onCloseClicked() {
     this.closed.emit(this.conversion);
   }
 
-  public onCategoryClicked() {
-    this.categoriesOpen = !this.categoriesOpen;
-  }
-
-  public onSwapClicked() {
-    this.conversion.input = this.conversion.output;
-
-    let inputUnit = this.conversion.inputUnit;
-    this.conversion.inputUnit = this.conversion.outputUnit;
-    this.conversion.outputUnit = inputUnit;
-  }
-
-  public onCopyClicked() {
-    // TODO: Copy output to clipboard
-  }
-
-  public onCategoryItemClicked(selectedUnitType: UnitType) {
+  onCategorySelected(selectedUnitType: UnitType) {
     this.conversion.unitType = selectedUnitType;
-    this.categoriesOpen = false;
   }
 
-  public getUnitItems(): Array<MenuItem> {
+  onMoreMenuItemSelected(item: MoreMenuItem) {
+    switch (item) {
+      case MoreMenuItem.ADD_OUTPUT:
+        this.onAdd();
+        break;
+      case MoreMenuItem.SWAP:
+        this.onSwap();
+        break;
+    }
+  }
+
+  onAdd() {
+    this.conversion.addOutput();
+  }
+
+  onSwap() {
+    if (this.oneOutput()) {
+      let input = this.conversion.input;
+      let output = this.conversion.outputs[0];
+
+      input.value = output.value;
+
+      let inputUnit = input.unit;
+      input.unit = output.unit;
+      output.unit = inputUnit;
+    }
+  }
+
+  getUnitItems(): Array<MenuItem> {
     return MenuItem.fromArray(this.conversion.unitType.units);
   }
 
-  public onInputUnitClicked() {
-    this.inputUnitsOpen = !this.inputUnitsOpen;
+  onInputUnitSelected(selectedInputUnit: Unit) {
+    this.conversion.input.unit = selectedInputUnit;
   }
 
-  public onInputUnitItemClicked(selectedInputUnit: Unit) {
-    this.conversion.inputUnit = selectedInputUnit;
-    this.inputUnitsOpen = false;
+  onRemoveOutputClicked(output: ConversionOutput) {
+    this.conversion.removeOutput(output);
   }
 
-  public onOutputUnitClicked() {
-    this.outputUnitsOpen = !this.outputUnitsOpen;
+  onOutputUnitSelected(output: ConversionOutput, selectedOutputUnit: Unit) {
+    output.unit = selectedOutputUnit;
   }
 
-  public onOutputUnitItemClicked(selectedOutputUnit: Unit) {
-    this.conversion.outputUnit = selectedOutputUnit;
-    this.outputUnitsOpen = false;
+  copyText(text: string) {
+    console.log("COPY TO CLIPBOARD: " + text);
+  }
+
+  onCopyInput() {
+    this.copyText(this.conversion.input.value.toString());
+  }
+
+  onCopyOutput(output: ConversionOutput) {
+    this.copyText(output.value.toString());
   }
 }
