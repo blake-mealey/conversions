@@ -30,7 +30,6 @@ export class ConverterComponent implements AfterViewInit {
 
   constructor(private unitsService: UnitsService) {
     this.moreMenuItems = [
-      // TODO: Icons
       new MenuItem(MoreMenuItem.ADD_OUTPUT, 'Add output', 'add'),
       new MenuItem(MoreMenuItem.SWAP, 'Swap', 'swap_vert', this.oneOutput, this),
     ];

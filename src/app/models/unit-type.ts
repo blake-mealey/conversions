@@ -5,8 +5,8 @@ export class UnitType extends BaseModel {
   public readonly displayName: string;
   public readonly baseUnit: Unit;
   public readonly units: Array<Unit>;
-  private readonly unitsMap: { [ unitId: number ]: Unit };
-  public readonly conversionGraph: { [ fromUnitId: number ]: { [ toUnitId: number ]: number } };
+  private readonly unitsMap: { [ unitId: string ]: Unit };
+  public readonly conversionGraph: { [ fromUnitId: string ]: { [ toUnitId: string ]: number } };
 
   constructor(model: Object, conversionsGraphModel: any) {
     super(model);
@@ -30,7 +30,7 @@ export class UnitType extends BaseModel {
     return !!this.getUnit(unit.symbol);
   }
 
-  getUnit(id: number) {
+  getUnit(id: string) {
     return this.unitsMap[id];
   }
 }
