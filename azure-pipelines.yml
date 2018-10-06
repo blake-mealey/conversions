@@ -1,0 +1,6 @@
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+steps:
+- script: npm run build:prod
+  displayName: 'Build app'
