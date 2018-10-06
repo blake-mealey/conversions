@@ -9,7 +9,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     contents: |
-      ./dist/**
+      dist/**
     targetFolder: $(Build.ArtifactStagingDirectory)
     cleanTargetFolder: true
 - task: PublishBuildArtifacts@1
