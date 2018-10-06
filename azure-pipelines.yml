@@ -10,8 +10,6 @@ steps:
   inputs:
     contents: |
       **/dist/**
-      run.sh
-      node_modules/http-server/**
     targetFolder: $(Build.ArtifactStagingDirectory)
 - task: PublishBuildArtifacts@1
   inputs:
