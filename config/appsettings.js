@@ -1,3 +1,3 @@
 module.exports = {
-  CONVERSIONS_SERVER: 'https://localhost:44300'
+  CONVERSIONS_SERVER: 'https://conversions-api.chimerical.ca'
 };
