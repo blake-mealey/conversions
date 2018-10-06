@@ -16,7 +16,7 @@ A web app for converting things.
 2. Run `npm install`
 3. Run `npm run server:dev`
 4. Open [http://localhost:8989](http://localhost:8989) in your browser
-5. Setup [ConversionsServer](https://github.com/blake-mealey/ConversionsServer)
+5. [Setup ConversionsServer](https://github.com/blake-mealey/ConversionsServer#setup)
 6. Update the API URL config/appsettings.json to point to your localhost server
 
 # Feature to-do list
