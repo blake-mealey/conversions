@@ -6,3 +6,13 @@ steps:
   displayName: 'Install packages'
 - script: npm run build:prod
   displayName: 'Build app'
+- task: CopyFiles@2
+  inputs:
+    contents: |
+      **/dist/**
+      run.sh
+      node_modules/http-server/**
+    targetFolder: $(Build.ArtifactStagingDirectory)
+- task: PublishBuildArtifacts@1
+  inputs:
+    artifactName: 'conversions-app'
