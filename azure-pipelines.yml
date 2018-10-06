@@ -6,8 +6,9 @@ steps:
   displayName: 'Install packages'
 - script: npm run build:prod
   displayName: 'Build app'
-- task: PublishBuildArtifacts@1
+- task: CopyFiles@2
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: 'conversions-app'
-    publishLocation: 'Azure Artifacts'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+    cleanTargetFolder: true
+- task: PublishBuildArtifacts@1
+
