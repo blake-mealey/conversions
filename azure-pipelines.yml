@@ -11,6 +11,7 @@ steps:
     contents: |
       **/dist/**
     targetFolder: $(Build.ArtifactStagingDirectory)
+    cleanTargetFolder: true
 - task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'conversions-app'
