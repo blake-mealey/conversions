@@ -2,5 +2,7 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 steps:
+- script: npm install
+  displayName: 'Install packages'
 - script: npm run build:prod
   displayName: 'Build app'
