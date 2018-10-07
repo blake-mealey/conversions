@@ -1,3 +1,4 @@
+@import 'src/styles/fonts';
 @import 'src/styles/tailwind';
 
 $path-size: 12px;
@@ -40,7 +41,7 @@ $skeleton-raised-button-width: 80px;
     @apply .rounded-t-lg .h-12 .bg-grey-light .pr-1 .pl-2 .text-white;
 
     .title {
-      @apply .text-lg .font-bold;
+      @apply .typeface-h5 .font-bold;
     }
 
     .buttons {

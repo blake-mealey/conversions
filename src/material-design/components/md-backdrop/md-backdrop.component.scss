@@ -1,0 +1,28 @@
+@import "src/styles/fonts";
+@import "src/styles/tailwind";
+
+$border-radius: 16px;
+
+.md-backdrop-component {
+  @apply .h-full .flex .flex-col;
+  @apply .bg-teal;
+
+  .back-layer {
+    @apply .p-4;
+  }
+
+  .front-layer {
+    @apply .bg-white .h-full .flex-1;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+
+    .header {
+      @apply .mx-4 .mt-4 .pb-4 .border-b .border-grey-light;
+      @extend .typeface-s1;
+    }
+
+    .content {
+      @apply overflow-y-auto .h-full;
+    }
+  }
+}

@@ -1,3 +1,4 @@
+@import "src/styles/fonts";
 @import "src/styles/tailwind";
 
 $padding-x: 14px;
@@ -15,7 +16,7 @@ $padding-label-x: 4px;
   @apply .select-none .cursor-pointer;
 
   .label {
-    @apply .absolute .bg-white .pointer-events-none .font-normal;
+    @apply .absolute .bg-white .pointer-events-none .font-regular;
 
     left: $padding-x + 1px;
     bottom: $padding-y + 2px;
@@ -23,7 +24,8 @@ $padding-label-x: 4px;
     transition: 0.2s;
 
     &.filled {
-      @apply .text-xs .text-grey-dark;
+      @extend .typeface-b2;
+      @apply .text-grey-dark;
       padding: 0 $padding-label-x;
       bottom: calc(100% - 7px);
     }
@@ -74,13 +76,13 @@ $padding-label-x: 4px;
 
   &.dense {
     .label {
-      @apply .text-sm;
+      @extend .typeface-b2;
 
       left: $padding-x-dense + 1px;
       bottom: $padding-y-dense + 2px;
 
       &.filled {
-        @apply .text-xs;
+        @extend .typeface-b2;
         padding: 0 $padding-label-x;
         bottom: calc(100% - 7px);
       }
@@ -96,7 +98,7 @@ $padding-label-x: 4px;
     }
 
     /deep/ input {
-      @apply .text-sm;
+      @extend .typeface-b2;
 
       padding: $padding-y-dense $padding-r-dense $padding-y-dense $padding-x-dense;
 

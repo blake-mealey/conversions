@@ -1,10 +1,11 @@
+@import "src/styles/fonts";
 @import "src/styles/tailwind";
 
 $height: 56px;
 
 .md-app-bar-component {
   @apply .flex .items-center .px-3;
-  @apply .bg-teal .shadow-md .text-white .z-10;
+  @apply .bg-teal-dark .shadow-md .text-white .z-10;
 
   height: $height;
 
@@ -12,8 +13,7 @@ $height: 56px;
     @apply .flex;
 
     .title {
-      @apply .text-2xl .pl-4;
-      line-height: 2rem;
+      @apply .pl-4;
     }
   }
 }

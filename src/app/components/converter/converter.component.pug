@@ -2,7 +2,7 @@ doctype html
 
 .converter-component
   .header
-    span.title {{conversion.unitType.displayName}} Converter
+    .title {{conversion.unitType.displayName}} Converter
     span.buttons
       md-icon-button-menu(icon="more_vert" bind-items="moreMenuItems" on-itemSelected="onMoreMenuItemSelected($event)")
       md-icon-button-menu(icon="category" bind-items="unitTypes" bind-open="categoriesOpen" on-itemSelected="onCategorySelected($event)" searchEnabled="true")

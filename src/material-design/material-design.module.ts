@@ -11,6 +11,7 @@ import { MdRaisedButtonMenuComponent } from './components/md-raised-button-menu/
 import { MdIconButtonMenuComponent } from './components/md-icon-button-menu/md-icon-button-menu.component';
 import { MdAppBarComponent } from './components/md-app-bar/md-app-bar.component';
 import { MdSideBarComponent } from './components/md-side-bar/md-side-bar.component';
+import { MdBackdropComponent } from './components/md-backdrop/md-backdrop.component';
 
 import { UserInputService } from './services/user-input.service';
 
@@ -28,7 +29,8 @@ import { UserInputService } from './services/user-input.service';
     MdRaisedButtonMenuComponent,
     MdIconButtonMenuComponent,
     MdAppBarComponent,
-    MdSideBarComponent
+    MdSideBarComponent,
+    MdBackdropComponent
   ],
   exports: [
     MdTextFieldComponent,
@@ -39,7 +41,8 @@ import { UserInputService } from './services/user-input.service';
     MdRaisedButtonMenuComponent,
     MdIconButtonMenuComponent,
     MdAppBarComponent,
-    MdSideBarComponent
+    MdSideBarComponent,
+    MdBackdropComponent
   ],
   providers: [
     UserInputService

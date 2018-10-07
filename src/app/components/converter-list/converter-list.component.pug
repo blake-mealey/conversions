@@ -1,16 +1,22 @@
 doctype html
 
 .converter-list
-  // Skeleton screen
-  each i in [0,0,0]
-    div(*ngIf="!ready")
-      skeleton-converter
+  md-backdrop-component(header="Converters")
+    .options
+    .list
+      // Skeleton screen
+      each i in [0,0,0]
+        div(*ngIf="!ready")
+          skeleton-converter
 
-  // Empty text
-  span.empty(*ngIf="ready && (!conversions || conversions.length == 0)") Click the + to add some converters!
+      // Empty text
+      .empty(*ngIf="ready && (!conversions || conversions.length == 0)")
+        span Click the
+        span.material-icons add_circle
+        span to add some converters!
 
-  // Converters
-  div(*ngFor="let c of conversions")
-    converter(on-closed="onClosed($event)" bind-conversion="c")
+      // Converters
+      div(*ngFor="let c of conversions")
+        converter(on-closed="onClosed($event)" bind-conversion="c")
 
 md-floating-action-button(*ngIf="ready" on-click="onAddClicked()" icon="add")

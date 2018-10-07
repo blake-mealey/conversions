@@ -5,13 +5,13 @@ import { UserInputService } from '../../../material-design/services/user-input.s
 import { UnitsService } from '../../services/units.service';
 
 @Component({
-  selector: 'converters-container',
+  selector: 'converter-list',
   styleUrls: [
-    './converters-container.component.scss'
+    './converter-list.component.scss'
   ],
-  templateUrl: './converters-container.component.pug'
+  templateUrl: './converter-list.component.pug'
 })
-export class ConvertersContainerComponent implements OnInit{
+export class ConverterListComponent implements OnInit{
 
   public conversions: Array<Conversion> = [];
 

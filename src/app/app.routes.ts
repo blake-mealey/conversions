@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { ConvertersContainerComponent } from './components/converters-container/converters-container.component';
+import { ConverterListComponent } from './components/converter-list/converter-list.component';
 
 export const ROUTES: Routes = [
-  { path: '',      component: ConvertersContainerComponent },
+  { path: '',      component: ConverterListComponent },
 ];

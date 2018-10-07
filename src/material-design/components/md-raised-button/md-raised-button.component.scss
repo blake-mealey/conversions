@@ -1,3 +1,4 @@
+@import "src/styles/fonts";
 @import "src/styles/tailwind";
 
 $height: 55px;
@@ -8,8 +9,9 @@ $icon-margin-outer: -4px;
 
 .md-raised-button-component {
   @apply .select-none .cursor-pointer;
-  @apply .bg-teal-dark .text-white .font-bold .rounded-sm .shadow;
+  @apply .bg-teal-dark .text-white .rounded-sm .shadow;
   @apply .flex .items-center .justify-between;
+  @extend .typeface-btn;
 
   height: $height;
   width: $width;

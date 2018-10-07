@@ -1,16 +1,25 @@
+@import "src/styles/fonts";
 @import "src/styles/tailwind";
 
 $converter-min-width: 285px;
 
-.conversions-container {
-  @apply .flex .flex-wrap;
+.converter-list {
+  @apply .h-full;
 
-  div {
-    flex: 1 0 auto;
-    min-width: $converter-min-width;
-  }
+  .list {
+    @apply .flex .flex-wrap;
 
-  .empty {
-    @apply .text-xl .mx-auto .mt-32;
+    div {
+      flex: 1 0 auto;
+      min-width: $converter-min-width;
+    }
+
+    .empty {
+      @apply .mt-32 .flex .justify-center .items-center;
+
+      .material-icons {
+        @apply .mx-1 .text-teal;
+      }
+    }
   }
 }

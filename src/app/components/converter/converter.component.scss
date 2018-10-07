@@ -1,3 +1,4 @@
+@import 'src/styles/fonts';
 @import 'src/styles/tailwind';
 
 $path-size: 12px;
@@ -24,7 +25,7 @@ $path-gap: 14px;
     @apply .rounded-t-lg .h-12 .bg-teal .pr-1 .pl-2 .text-white;
 
     .title {
-      @apply .text-lg .font-bold;
+      @extend .typeface-s2;
     }
 
     .buttons {

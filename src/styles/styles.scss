@@ -1,10 +1,47 @@
 @import 'tailwind';
+@import 'fonts';
 
 html,
 body {
-  @apply .bg-grey-lighter .text-black .m-0 .font-sans .h-full .overflow-x-hidden;
+  @apply .bg-white .text-black .m-0 .font-sans .h-full .overflow-hidden;
+  @extend .typeface-b1;
 }
 
 menu {
-  margin: 0;
+  @apply .m-0;
+}
+
+h1 {
+  @apply .m-0;
+  @extend .typeface-h1;
+}
+
+h2 {
+  @apply .m-0;
+  @extend .typeface-h2;
+}
+
+h3 {
+  @apply .m-0;
+  @extend .typeface-h3;
+}
+
+h4 {
+  @apply .m-0;
+  @extend .typeface-h4;
+}
+
+h5 {
+  @apply .m-0;
+  @extend .typeface-h5;
+}
+
+h6 {
+  @apply .m-0;
+  @extend .typeface-h6;
+}
+
+p {
+  @apply .m-0;
+  @extend .typeface-b1;
 }

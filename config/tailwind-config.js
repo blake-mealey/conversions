@@ -127,7 +127,7 @@ let colors = {
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
-}
+};
 
 module.exports = {
 
@@ -194,17 +194,7 @@ module.exports = {
 
   fonts: {
     'sans': [
-      'system-ui',
-      'BlinkMacSystemFont',
-      '-apple-system',
-      'Segoe UI',
       'Roboto',
-      'Oxygen',
-      'Ubuntu',
-      'Cantarell',
-      'Fira Sans',
-      'Droid Sans',
-      'Helvetica Neue',
       'sans-serif',
     ],
     'serif': [
@@ -250,15 +240,19 @@ module.exports = {
   */
 
   textSizes: {
-    'xs': '.75rem',     // 12px
-    'sm': '.875rem',    // 14px
-    'base': '1rem',     // 16px
-    'lg': '1.125rem',   // 18px
-    'xl': '1.25rem',    // 20px
-    '2xl': '1.5rem',    // 24px
-    '3xl': '1.875rem',  // 30px
-    '4xl': '2.25rem',   // 36px
-    '5xl': '3rem',      // 48px
+    'h1': '96px',
+    'h2': '60px',
+    'h3': '48px',
+    'h4': '34px',
+    'h5': '24px',
+    'h6': '20px',
+    's1': '16px',
+    's2': '14px',
+    'b1': '16px',
+    'b2': '14px',
+    'btn': '14px',
+    'cap': '12px',
+    'ovr': '10px'
   },
 
 
@@ -277,14 +271,11 @@ module.exports = {
   */
 
   fontWeights: {
-    'hairline': 100,
-    'thin': 200,
+    'thin': 100,
     'light': 300,
-    'normal': 400,
+    'regular': 400,
     'medium': 500,
-    'semibold': 600,
     'bold': 700,
-    'extrabold': 800,
     'black': 900,
   },
 
@@ -322,9 +313,19 @@ module.exports = {
   */
 
   tracking: {
-    'tight': '-0.05em',
-    'normal': '0',
-    'wide': '0.05em',
+    'h1': '-1.5',
+    'h2': '-0.5',
+    'h3': '0',
+    'h4': '0.25',
+    'h5': '0',
+    'h6': '0.15',
+    's1': '0.15',
+    's2': '0.15',
+    'b1': '0.5',
+    'b2': '0.25',
+    'btn': '0.75',
+    'cap': '0.4',
+    'ovr': '1.5'
   },
 
 
@@ -747,7 +748,7 @@ module.exports = {
   */
 
   shadows: {
-    default: '0 2px 4px 0 rgba(0,0,0,0.10)',
+    default: '0 2px 4px 1px rgba(0,0,0,0.10)',
     'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
     'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',

@@ -14,7 +14,7 @@ import { ROUTES } from './app.routes';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 
 import { AppComponent } from './components/app/app.component';
-import { ConvertersContainerComponent } from './components/converters-container/converters-container.component';
+import { ConverterListComponent } from './components/converter-list/converter-list.component';
 import { ConverterComponent } from './components/converter/converter.component';
 import { SkeletonConverterComponent } from './components/skeleton-converter/skeleton-converter.component';
 
@@ -52,7 +52,7 @@ const APP_PROVIDERS = [
   declarations: [
     // Components
     AppComponent,
-    ConvertersContainerComponent,
+    ConverterListComponent,
     ConverterComponent,
     SkeletonConverterComponent
   ],
