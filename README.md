@@ -52,17 +52,21 @@ A web app for converting things.
 
 - [x] Users can create lists of converters
 - [ ] Users can save lists of converters with type, input unit, output units, and input value
+  - [ ] Saved lists are associated with the user's account if they are logged in
 - [ ] Users can share lists of converters
 
 ## User settings
 
 - [ ] Users can view their settings in a popup menu
-- [ ] Users can save their settings
+- [ ] Users can save their settings if logged in
+- [ ] Support settings:
   - [ ] Decimal precision
     - [ ] Scientific notation (default)
     - [ ] Decimal points
     - [ ] Max
+  - [ ] Theme (light or dark)
 
 ## UX
 
 - [ ] Clicking a Material Design button should have a ripple effect
+- [ ] Support theming
