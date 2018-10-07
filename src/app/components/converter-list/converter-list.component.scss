@@ -1,8 +1,6 @@
 @import "src/styles/fonts";
 @import "src/styles/tailwind";
 
-$converter-min-width: 285px;
-
 .converter-list {
   @apply .h-full;
 
@@ -10,8 +8,7 @@ $converter-min-width: 285px;
     @apply .flex .flex-wrap;
 
     div {
-      flex: 1 0 auto;
-      min-width: $converter-min-width;
+      flex: 1 1 auto;
     }
 
     .empty {
