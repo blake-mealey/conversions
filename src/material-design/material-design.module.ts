@@ -10,8 +10,9 @@ import { MdMenuComponent } from './components/md-menu/md-menu.component';
 import { MdRaisedButtonMenuComponent } from './components/md-raised-button-menu/md-raised-button-menu.component';
 import { MdIconButtonMenuComponent } from './components/md-icon-button-menu/md-icon-button-menu.component';
 import { MdAppBarComponent } from './components/md-app-bar/md-app-bar.component';
-import { MdSideBarComponent } from './components/md-side-bar/md-side-bar.component';
+import { MdRailComponent } from './components/md-rail/md-rail.component';
 import { MdBackdropComponent } from './components/md-backdrop/md-backdrop.component';
+import { MdChipComponent } from './components/md-chip/md-chip.component';
 
 import { UserInputService } from './services/user-input.service';
 
@@ -29,8 +30,9 @@ import { UserInputService } from './services/user-input.service';
     MdRaisedButtonMenuComponent,
     MdIconButtonMenuComponent,
     MdAppBarComponent,
-    MdSideBarComponent,
-    MdBackdropComponent
+    MdRailComponent,
+    MdBackdropComponent,
+    MdChipComponent
   ],
   exports: [
     MdTextFieldComponent,
@@ -41,8 +43,9 @@ import { UserInputService } from './services/user-input.service';
     MdRaisedButtonMenuComponent,
     MdIconButtonMenuComponent,
     MdAppBarComponent,
-    MdSideBarComponent,
-    MdBackdropComponent
+    MdRailComponent,
+    MdBackdropComponent,
+    MdChipComponent
   ],
   providers: [
     UserInputService

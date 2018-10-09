@@ -6,7 +6,7 @@
   main {
     @apply .flex .flex-1;
 
-    converter-list {
+    & > :not(router-outlet):not(md-rail) {
       @apply .flex-1;
     }
   }

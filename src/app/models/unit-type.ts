@@ -2,6 +2,7 @@ import { Unit } from './unit';
 import { BaseModel } from './base-model';
 
 export class UnitType extends BaseModel {
+  public readonly id: number;
   public readonly displayName: string;
   public readonly baseUnit: Unit;
   public readonly units: Array<Unit>;
@@ -11,6 +12,7 @@ export class UnitType extends BaseModel {
   constructor(model: Object, conversionsGraphModel: any) {
     super(model);
 
+    this.id = this.getRequiredNumberProperty('id');
     this.displayName = this.getRequiredStringProperty('displayName');
     this.baseUnit = this.getRequiredModelProperty(Unit, 'baseUnit');
     this.units = this.getRequiredModelArrayProperty(Unit, 'units');

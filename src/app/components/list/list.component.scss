@@ -1,0 +1,27 @@
+@import "src/styles/tailwind";
+
+.list-component {
+  @apply .rounded-lg .shadow .bg-white .m-3 .p-2 .cursor-pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    @apply .bg-grey-lighter .shadow-md;
+  }
+
+  &:active {
+    @apply .bg-grey-light .shadow-lg;
+  }
+
+  .converters {
+    @apply .mt-2;
+
+    .converter {
+      @apply .flex .items-center;
+
+      .outputs {
+        @apply .flex .flex-wrap;
+      }
+    }
+  }
+}

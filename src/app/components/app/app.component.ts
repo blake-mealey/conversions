@@ -3,6 +3,8 @@
  */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UnitsService } from '../../services/units.service';
+import { ListsService } from '../../services/lists.service';
+import { NavigationItem } from '../../../material-design/components/md-rail/navigation-item';
 
 export const ROOT_SELECTOR = 'app';
 
@@ -20,10 +22,19 @@ export const ROOT_SELECTOR = 'app';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private unitsService: UnitsService) {}
+  public navigationItems: Array<NavigationItem> = [
+    // new NavigationItem('Account', 'person', ['/account'], /^\/account$/),
+    new NavigationItem('Conversions', 'compare_arrows', ['/'], /^\/(lists\/[\w\-]{22})?$/),
+    new NavigationItem('Lists', 'list', ['/lists'], /^\/lists$/),
+    // new NavigationItem('Settings', 'settings', ['/settings'], /^\/settings$/)
+  ];
+
+  constructor(private unitsService: UnitsService,
+              private listsService: ListsService) {}
 
   ngOnInit(): void {
     this.unitsService.init();
+    this.listsService.init();
   }
 
 }

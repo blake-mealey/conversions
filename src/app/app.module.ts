@@ -17,8 +17,11 @@ import { AppComponent } from './components/app/app.component';
 import { ConverterListComponent } from './components/converter-list/converter-list.component';
 import { ConverterComponent } from './components/converter/converter.component';
 import { SkeletonConverterComponent } from './components/skeleton-converter/skeleton-converter.component';
+import { PublicListsComponent } from './components/public-lists/public-lists.component';
+import { ListComponent } from './components/list/list.component';
 
 import { UnitsService } from './services/units.service';
+import { ListsService } from './services/lists.service';
 
 /*
  * Load styles root
@@ -54,12 +57,15 @@ const APP_PROVIDERS = [
     AppComponent,
     ConverterListComponent,
     ConverterComponent,
-    SkeletonConverterComponent
+    SkeletonConverterComponent,
+    PublicListsComponent,
+    ListComponent
   ],
   providers: [
     environment.ENV_PROVIDERS,
 
     UnitsService,
+    ListsService,
 
     APP_PROVIDERS
   ]

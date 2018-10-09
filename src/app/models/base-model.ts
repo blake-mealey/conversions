@@ -27,63 +27,63 @@ export class BaseModel {
     return value;
   }
 
-  public getRequiredStringProperty(name: string) {
+  protected getRequiredStringProperty(name: keyof this) {
     return this.getRequiredProperty(name, 'string');
   }
 
-  public getRequiredNumberProperty(name: string) {
+  protected getRequiredNumberProperty(name: keyof this) {
     return this.getRequiredProperty(name, 'number');
   }
 
-  public getRequiredBooleanProperty(name: string) {
+  protected getRequiredBooleanProperty(name: keyof this) {
     return this.getRequiredProperty(name, 'boolean');
   }
 
-  public getRequiredArrayProperty(name: string) {
+  protected getRequiredArrayProperty(name: keyof this) {
     return this.getRequiredProperty(name, 'array');
   }
 
-  public getRequiredModelArrayProperty(classRef: { new (model: Object) }, name: string) {
+  protected getRequiredModelArrayProperty(classRef: { new (model: Object) }, name: keyof this) {
     return this.getRequiredArrayProperty(name).map(function (model) {
       return new classRef(model);
     });
   }
 
-  public getRequiredObjectProperty(name: string) {
+  protected getRequiredObjectProperty(name: keyof this) {
     return this.getRequiredProperty(name, 'object');
   }
 
-  public getRequiredModelProperty(classRef: { new (model: Object) }, name: string) {
+  protected getRequiredModelProperty(classRef: { new (model: Object) }, name: keyof this) {
     return new classRef(this.getRequiredObjectProperty(name));
   }
 
-  public getOptionalStringProperty(name: string, defaultValue?: string) {
+  protected getOptionalStringProperty(name: keyof this, defaultValue?: string) {
     return this.getOptionalProperty(name, 'string');
   }
 
-  public getOptionalNumberProperty(name: string, defaultValue?: number) {
+  protected getOptionalNumberProperty(name: keyof this, defaultValue?: number) {
     return this.getOptionalProperty(name, 'number');
   }
 
-  public getOptionalBooleanProperty(name: string, defaultValue?: boolean) {
+  protected getOptionalBooleanProperty(name: keyof this, defaultValue?: boolean) {
     return this.getOptionalProperty(name, 'boolean');
   }
 
-  public getOptionalArrayProperty(name: string, defaultValue?: Array<any>) {
+  protected getOptionalArrayProperty(name: keyof this, defaultValue?: Array<any>) {
     return this.getOptionalProperty(name, 'array');
   }
 
-  public getOptionalObjectProperty(name: string, defaultValue?: Object) {
+  protected getOptionalObjectProperty(name: keyof this, defaultValue?: Object) {
     return this.getOptionalProperty(name, 'object', defaultValue);
   }
 
-  public getOptionalModelProperty(classRef: { new (model: Object) }, name: string, defaultValue?: BaseModel) {
+  protected getOptionalModelProperty(classRef: { new (model: Object) }, name: keyof this, defaultValue?: BaseModel) {
     let object = this.getOptionalObjectProperty(name, defaultValue);
     if (!object) return defaultValue;
     return new classRef(object);
   }
 
-  public finishBuilding() {
+  protected finishBuilding() {
     delete this.model;
   }
 }

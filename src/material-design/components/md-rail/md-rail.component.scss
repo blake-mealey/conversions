@@ -1,0 +1,53 @@
+@import "src/styles/fonts";
+@import "src/styles/tailwind";
+
+$width: 100px;
+$items-spacing: 25px;
+$title-spacing: 10px;
+
+.md-rail-component {
+  @apply .bg-teal .shadow .relative .z-10 .flex .flex-col .items-center;
+
+  width: $width;
+  height: 100%;
+
+  .navigation-item {
+    @apply .text-white .flex .flex-col .items-center .cursor-pointer .select-none;
+    margin: $items-spacing 0;
+
+    .material-icons {
+      @apply .opacity-60;
+
+      transition: 0.25s;
+    }
+
+    .title {
+      @apply .opacity-0;
+      @extend .typeface-ovr;
+      margin-top: $title-spacing;
+      text-transform: uppercase;
+
+      transition: 0.25s;
+    }
+
+    &.active {
+      .material-icons {
+        @apply .opacity-100;
+      }
+
+      .title {
+        @apply .opacity-100;
+      }
+    }
+
+    &:hover {
+      .material-icons {
+        @apply .opacity-75;
+      }
+
+      .title {
+        @apply .opacity-75;
+      }
+    }
+  }
+}

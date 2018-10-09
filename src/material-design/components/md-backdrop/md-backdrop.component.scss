@@ -12,7 +12,7 @@ $border-radius: 16px;
   }
 
   .front-layer {
-    @apply .bg-white .h-full .flex-1;
+    @apply .bg-white .h-full .flex-1 .flex .flex-col;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
 
@@ -22,7 +22,7 @@ $border-radius: 16px;
     }
 
     .content {
-      @apply overflow-y-auto .h-full;
+      @apply overflow-y-auto .flex-1;
     }
   }
 }

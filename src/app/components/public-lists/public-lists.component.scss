@@ -1,0 +1,9 @@
+@import "src/styles/tailwind";
+
+.public-lists-component {
+  @apply .h-full;
+
+  .list {
+    @apply .flex .flex-col;
+  }
+}

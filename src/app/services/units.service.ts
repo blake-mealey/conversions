@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UnitType } from '../models/unit-type';
-import { EMPTY, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { CONVERSIONS_SERVER } from '../../../config/appsettings'
@@ -8,8 +8,9 @@ import { CONVERSIONS_SERVER } from '../../../config/appsettings'
 @Injectable()
 export class UnitsService {
   public unitTypes: Array<UnitType>;
+  public unitTypesMap: { [ unitTypeId: number ]: UnitType };
 
-  private ready = new Subject<boolean>();
+  private ready = new BehaviorSubject(false);
   public ready$ = this.ready.asObservable();
 
   constructor(private httpClient: HttpClient) {}
@@ -32,9 +33,21 @@ export class UnitsService {
     this.getUnitTypesFromServer()
       .subscribe(unitTypes => {
         this.unitTypes = unitTypes;
+
+        this.unitTypesMap = {};
+        for (let unitType of this.unitTypes) {
+          this.unitTypesMap[unitType.id] = unitType;
+        }
+
         setTimeout(() => {
           this.ready.next(true);
         }, 500);
       });
+  }
+
+  getUnitType(unitTypeId: number) {
+    return this.unitTypes.find((unitType: UnitType) => {
+      return unitType.id == unitTypeId;
+    });
   }
 }

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'md-app-bar',
@@ -9,10 +10,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MdAppBarComponent implements OnInit {
 
-  @Input() title: string;
+  title: string;
 
-  constructor() {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.title = 'Conversions';//this.activatedRoute.snapshot.data[0]['title'];
+  }
 
 }
