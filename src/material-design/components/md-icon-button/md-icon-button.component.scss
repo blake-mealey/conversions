@@ -1,3 +1,4 @@
+@import 'src/styles/animations';
 @import "src/styles/tailwind";
 
 $size-default: 36px;
@@ -10,7 +11,7 @@ $size-default: 36px;
   width: $size-default;
   height: $size-default;
 
-  transition: 0.2s;
+  @include transition();
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);

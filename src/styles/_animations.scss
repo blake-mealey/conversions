@@ -1,0 +1,26 @@
+$default-transition-duration: 0.2s;
+
+//@mixin animation ($name) {
+//  @keyframes #{$name} {
+//    @content;
+//  }
+//}
+
+//@mixin fade-direction($from-opacity, $to-opacity, $from-x, $from-y, $to-x, $to-y, $duration: $default-transition-duration) {
+//  $name: unique_id();
+//  @include animation($name) {
+//    from {
+//      opacity: $from-opacity;
+//      transform: translate3d($from-x, $from-y, 0);
+//    }
+//    to {
+//      opacity: $to-opacity;
+//      transform: translate3d($to-x, $to-y, 0);
+//    }
+//  }
+//  animation: $name $duration ease-in both;
+//}
+
+@mixin transition($duration: $default-transition-duration) {
+  transition: $duration;
+}

@@ -1,3 +1,4 @@
+@import 'src/styles/animations';
 @import "src/styles/tailwind";
 
 $size-default: 56px;
@@ -24,7 +25,7 @@ $page-padding: 16px;
     height: $size-mini;
   }
 
-  transition: 0.2s;
+  @include transition();
 
   span {
     font-size: $icon-size;

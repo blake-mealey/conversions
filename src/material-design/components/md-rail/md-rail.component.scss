@@ -1,3 +1,4 @@
+@import 'src/styles/animations';
 @import "src/styles/fonts";
 @import "src/styles/tailwind";
 
@@ -18,7 +19,7 @@ $title-spacing: 10px;
     .material-icons {
       @apply .opacity-60;
 
-      transition: 0.25s;
+      @include transition(0.25s);
     }
 
     .title {
@@ -27,7 +28,7 @@ $title-spacing: 10px;
       margin-top: $title-spacing;
       text-transform: uppercase;
 
-      transition: 0.25s;
+      @include transition(0.25s);
     }
 
     &.active {
@@ -40,7 +41,7 @@ $title-spacing: 10px;
       }
     }
 
-    &:hover {
+    &:not(.active):hover {
       .material-icons {
         @apply .opacity-75;
       }

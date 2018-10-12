@@ -1,3 +1,4 @@
+@import 'src/styles/animations';
 @import "src/styles/fonts";
 @import "src/styles/tailwind";
 
@@ -21,7 +22,7 @@ $padding-label-x: 4px;
     left: $padding-x + 1px;
     bottom: $padding-y + 2px;
 
-    transition: 0.2s;
+    @include transition();
 
     &.filled {
       @extend .typeface-b2;
@@ -55,7 +56,7 @@ $padding-label-x: 4px;
 
     padding: $padding-y $padding-r $padding-y $padding-x;
 
-    transition: 0.2s;
+    @include transition();
 
     &:hover {
       @apply .border-grey-darkest;
