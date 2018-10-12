@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ConverterList } from '../models/converter-list';
-import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CONVERSIONS_SERVER } from '../../../config/appsettings'
+import { ApiService } from './api.service';
 
 @Injectable()
 export class ListsService {
@@ -13,24 +12,10 @@ export class ListsService {
   private ready = new BehaviorSubject(false);
   public ready$ = this.ready.asObservable();
 
-  constructor(private httpClient: HttpClient) {}
-
-  private getPublicListsFromServer(): Observable<Array<ConverterList>> {
-    return this.httpClient.get(CONVERSIONS_SERVER + '/api/Lists/?pageIndex=0&pageLength=10')
-      .pipe(
-        map<any, Array<ConverterList>>(data => {
-          return data.map(function (list) {
-            return new ConverterList(list);
-          });
-        }),
-        catchError(err => {
-          console.log(err);
-          return EMPTY;
-        }));
-  }
+  constructor(private apiService: ApiService) {}
 
   public init(): void {
-    this.getPublicListsFromServer()
+    this.apiService.getLists(0, 10)
       .subscribe(lists => {
         this.publicLists = lists;
 
@@ -45,24 +30,12 @@ export class ListsService {
       });
   }
 
-  private getPublicListFromServer(id: string): Observable<ConverterList> {
-    return this.httpClient.get(CONVERSIONS_SERVER + '/api/Lists/' + id)
-      .pipe(
-        map<any, ConverterList>(data => {
-          return new ConverterList(data);
-        }),
-        catchError(err => {
-          console.log(err);
-          return EMPTY;
-        }));
-  }
-
   getConverterList(id: string): Observable<ConverterList> {
     let list = this.publicListsMap[id];
     if (list) {
       return new BehaviorSubject(list).asObservable();
     }
 
-    return this.getPublicListFromServer(id);
+    return this.apiService.getList(id);
   }
 }

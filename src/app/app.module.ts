@@ -20,6 +20,7 @@ import { SkeletonConverterComponent } from './components/skeleton-converter/skel
 import { PublicListsComponent } from './components/public-lists/public-lists.component';
 import { ListComponent } from './components/list/list.component';
 
+import { ApiService } from './services/api.service';
 import { UnitsService } from './services/units.service';
 import { ListsService } from './services/lists.service';
 
@@ -64,6 +65,7 @@ const APP_PROVIDERS = [
   providers: [
     environment.ENV_PROVIDERS,
 
+    ApiService,
     UnitsService,
     ListsService,
 

@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UnitType } from '../models/unit-type';
-import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators';
-import { CONVERSIONS_SERVER } from '../../../config/appsettings'
+import { BehaviorSubject } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable()
 export class UnitsService {
@@ -13,24 +11,10 @@ export class UnitsService {
   private ready = new BehaviorSubject(false);
   public ready$ = this.ready.asObservable();
 
-  constructor(private httpClient: HttpClient) {}
-
-  private getUnitTypesFromServer(): Observable<Array<UnitType>> {
-    return this.httpClient.get(CONVERSIONS_SERVER + '/api/Conversions/Types/ConversionGraphs')
-      .pipe(
-        map<any, Array<UnitType>>(data => {
-          return data.map(function (unitTypeConversionGraphModel) {
-            return new UnitType(unitTypeConversionGraphModel.unitType, unitTypeConversionGraphModel.conversionGraph);
-          });
-        }),
-        catchError(err => {
-          console.log(err);
-          return EMPTY;
-        }));
-  }
+  constructor(private apiService: ApiService) {}
 
   public init(): void {
-    this.getUnitTypesFromServer()
+    this.apiService.getUnitTypes()
       .subscribe(unitTypes => {
         this.unitTypes = unitTypes;
 
