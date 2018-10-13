@@ -1,5 +1,5 @@
 import { Conversion } from './conversion';
-import { Unit } from './unit';
+import { Unit } from '../models/unit';
 
 export class ConversionIo {
 

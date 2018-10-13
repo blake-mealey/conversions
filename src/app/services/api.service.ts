@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { CONVERSIONS_SERVER } from '../../../config/appsettings'
 import { ConverterList } from '../models/converter-list';
 import { HttpRequest } from './http-request';
+import { SimpleConverterList } from '../models/simple-converter-list';
 
 /**
  * Handles all requests to the API, including converting raw data to models
@@ -23,16 +24,16 @@ export class ApiService {
   //endregion
 
   //region Lists API
-  public getLists(pageIndex: number, pageLength: number): Observable<Array<ConverterList>> {
+  public getLists(pageIndex: number, pageLength: number): Observable<Array<SimpleConverterList>> {
     return new HttpRequest(this.httpClient, CONVERSIONS_SERVER)
       .path('api', 'Lists')
       .parameter('pageIndex', pageIndex)
       .parameter('pageLength', pageLength)
       .get()
       .pipe(
-        map<any, Array<ConverterList>>(data => {
+        map<any, Array<SimpleConverterList>>(data => {
           return data.map(function (list) {
-            return new ConverterList(list);
+            return new SimpleConverterList(list);
           });
         }),
         catchError(ApiService.handleError));

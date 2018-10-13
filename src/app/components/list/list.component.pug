@@ -2,7 +2,7 @@
   h5 {{ list.displayName }}
   .converters
     .converter(*ngFor="let c of list.converters")
-      md-chip(text="{{getUnitName(c, c.input.unitSymbol)}}")
+      md-chip(text="{{c.inputUnitDisplayName}}")
       .material-icons arrow_right_alt
       .outputs
-        md-chip(*ngFor="let o of c.outputs" text="{{getUnitName(c, o.unitSymbol)}}")
+        md-chip(*ngFor="let n of c.outputUnitDisplayNames" text="{{n}}")

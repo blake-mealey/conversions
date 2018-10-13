@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConverterList } from '../../models/converter-list';
 import { ListsService } from '../../services/lists.service';
+import { SimpleConverterList } from '../../models/simple-converter-list';
 
 @Component({
   selector: 'public-lists',
@@ -11,24 +12,17 @@ import { ListsService } from '../../services/lists.service';
 })
 export class PublicListsComponent implements OnInit {
 
-  public lists: Array<ConverterList> = [];
-
   private ready: boolean;
+  private lists: Array<SimpleConverterList>;
 
   constructor(private listsService: ListsService) {}
 
   public ngOnInit() {
-    this.listsService.ready$.subscribe(value => {
-      if (value) {
-        this.init();
-      }
-    });
-  }
-
-  init(): void {
-    this.lists = this.listsService.publicLists;
-
-    this.ready = true;
+    this.listsService.getConverterLists()
+      .subscribe(lists => {
+        this.lists = lists;
+        this.ready = true;
+      });
   }
 
 }

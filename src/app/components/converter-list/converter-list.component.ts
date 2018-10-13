@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Conversion } from '../../models/conversion';
+import { Conversion } from '../../logic/conversion';
 import { UserInputService } from '../../../material-design/services/user-input.service';
 import { UnitsService } from '../../services/units.service';
 import { switchMap } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ListsService } from '../../services/lists.service';
 import { ConverterList } from '../../models/converter-list';
 import { EMPTY, Observable } from 'rxjs';
-import { ConversionOutput } from '../../models/conversion-output';
+import { ConversionOutput } from '../../logic/conversion-output';
 
 @Component({
   selector: 'converter-list',

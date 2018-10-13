@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Conversion } from '../../models/conversion';
+import { Conversion } from '../../logic/conversion';
 import { MenuItem } from '../../../material-design/components/md-menu/menu-item';
 import { UnitType } from '../../models/unit-type';
 import { Unit } from '../../models/unit';
-import { ConversionOutput } from '../../models/conversion-output';
+import { ConversionOutput } from '../../logic/conversion-output';
 import { UnitsService } from '../../services/units.service';
 
 enum MoreMenuItem {

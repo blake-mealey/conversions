@@ -3,6 +3,8 @@ import { ConverterList } from '../../models/converter-list';
 import { UnitsService } from '../../services/units.service';
 import { Converter } from '../../models/converter';
 import { Router } from '@angular/router';
+import { SimpleConverterList } from '../../models/simple-converter-list';
+import { SimpleConverter } from '../../models/simple-converter';
 
 @Component({
   selector: 'list',
@@ -13,20 +15,12 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  @Input() list: ConverterList;
+  @Input() list: SimpleConverterList;
 
   constructor(private unitsService: UnitsService,
               private router: Router) {}
 
   public ngOnInit() {}
-
-  getUnitTypeName(converter: Converter) {
-    return this.unitsService.getUnitType(converter.unitTypeId).displayName;
-  }
-
-  getUnitName(converter: Converter, unitSymbol: string) {
-    return this.unitsService.getUnitType(converter.unitTypeId).getUnit(unitSymbol).displayName;
-  }
 
   onClicked() {
     this.router.navigate(['/lists', this.list.id]);

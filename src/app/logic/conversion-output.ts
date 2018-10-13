@@ -1,7 +1,7 @@
 import { Conversion } from './conversion';
 import { ConversionIo } from './conversion-io';
 import { ConversionInput } from './conversion-input';
-import { Unit } from './unit';
+import { Unit } from '../models/unit';
 
 export class ConversionOutput extends ConversionIo {
 

@@ -1,4 +1,4 @@
-import { UnitType } from './unit-type';
+import { UnitType } from '../models/unit-type';
 import { ConversionInput } from './conversion-input';
 import { ConversionOutput } from './conversion-output';
 
