@@ -1,12 +1,14 @@
+doctype html
+
 .public-lists-component
   md-backdrop-component(header="Public Converter Lists")
     .options
-    .list
-      // Skeleton screen
-      // each i in [0,0,0]
-      //  div(*ngIf="!ready")
-      //    skeleton-list
-
+    ul.list(#list)
       // Converters
-      div(*ngFor="let l of lists")
+      li(*ngFor="let l of lists")
         list(bind-list="l")
+
+      // Skeleton screen
+      each i in [0]
+        li(*ngIf="loading")
+          skeleton-list

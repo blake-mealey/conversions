@@ -28,11 +28,11 @@ export class MdMenuComponent implements OnInit, AfterViewInit {
   }
   @Input() set open(open: boolean) {
     this._open = open;
-    if (open && this.input) {
+    if (open && this.inputElement) {
       this.searchValue = '';
       this.selectedIndex = 0;
       setTimeout(() => {
-        this.input.nativeElement.focus();
+        this.inputElement.nativeElement.focus();
       }, 5);
     }
   }
@@ -65,7 +65,7 @@ export class MdMenuComponent implements OnInit, AfterViewInit {
     }
   }
 
-  @ViewChild('input') input: ElementRef;
+  @ViewChild('input') inputElement: ElementRef;
 
   constructor(private elementRef: ElementRef,
               private userInputService: UserInputService) {
@@ -93,9 +93,9 @@ export class MdMenuComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (!this.input) { return; }
+    if (!this.inputElement) { return; }
 
-    this.input.nativeElement.addEventListener('keydown', (event) => {
+    this.inputElement.nativeElement.addEventListener('keydown', (event) => {
       switch (event.key) {
         case 'ArrowDown':
           this.selectedIndex = (this.selectedIndex + 1) % this.displayedItems.length;

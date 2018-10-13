@@ -5,6 +5,12 @@ html,
 body {
   @apply .bg-white .text-black .m-0 .font-sans .h-full .overflow-hidden;
   @extend .typeface-b1;
+
+  ul, ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 menu {
@@ -44,4 +50,10 @@ h6 {
 p {
   @apply .m-0;
   @extend .typeface-b1;
+}
+
+@keyframes skeleton-shimmer {
+  to {
+    background-position: 200% 0;
+  }
 }

@@ -2,7 +2,7 @@
 @import "src/styles/tailwind";
 
 .list-component {
-  @apply .rounded-lg .shadow .bg-white .m-3 .p-2 .cursor-pointer;
+  @apply .rounded-lg .shadow .bg-white .m-3 .p-2 .cursor-pointer .select-none;
 
   @include transition();
 

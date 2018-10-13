@@ -1,0 +1,44 @@
+@import "src/styles/tailwind";
+
+$chip-height: 32px;
+$chip-width: 120px;
+$chip-spacing: 4px;
+
+.skeleton-list-component {
+  @apply .rounded-lg .shadow .bg-white .m-3 .p-2 .select-none;
+
+  .auto-box {
+    @apply .w-auto .inline-block;
+
+    .skeleton-header {
+      @apply .bg-grey-lighter .rounded-sm;
+
+      height: 20px;
+      width: 200px;
+    }
+
+    .converters {
+      @apply .mt-2;
+
+      .skeleton-converter {
+        @apply .flex .items-center;
+
+        .skeleton-chip {
+          @apply .bg-grey-light .rounded-full;
+          height: $chip-height;
+          width: $chip-width;
+          margin: $chip-spacing;
+        }
+
+        .material-icons {
+          @apply .text-grey;
+        }
+
+        .outputs {
+          @apply .flex .flex-wrap;
+        }
+      }
+    }
+  }
+}
+

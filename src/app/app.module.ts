@@ -17,8 +17,11 @@ import { AppComponent } from './components/app/app.component';
 import { ConverterListComponent } from './components/converter-list/converter-list.component';
 import { ConverterComponent } from './components/converter/converter.component';
 import { SkeletonConverterComponent } from './components/skeleton-converter/skeleton-converter.component';
+import { SkeletonListComponent } from './components/skeleton-list/skeleton-list.component';
 import { PublicListsComponent } from './components/public-lists/public-lists.component';
 import { ListComponent } from './components/list/list.component';
+
+import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton-shimmer.directive';
 
 import { ApiService } from './services/api.service';
 import { UnitsService } from './services/units.service';
@@ -59,8 +62,12 @@ const APP_PROVIDERS = [
     ConverterListComponent,
     ConverterComponent,
     SkeletonConverterComponent,
+    SkeletonListComponent,
     PublicListsComponent,
-    ListComponent
+    ListComponent,
+
+    // Directives
+    SkeletonShimmerDirective
   ],
   providers: [
     environment.ENV_PROVIDERS,
