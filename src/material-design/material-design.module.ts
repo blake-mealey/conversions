@@ -14,6 +14,8 @@ import { MdRailComponent } from './components/md-rail/md-rail.component';
 import { MdBackdropComponent } from './components/md-backdrop/md-backdrop.component';
 import { MdChipComponent } from './components/md-chip/md-chip.component';
 
+import { MdRippleDirective } from './directives/md-ripple/md-ripple.directive';
+
 import { UserInputService } from './services/user-input.service';
 
 @NgModule({
@@ -22,6 +24,7 @@ import { UserInputService } from './services/user-input.service';
     FormsModule
   ],
   declarations: [
+    // Components
     MdTextFieldComponent,
     MdFloatingActionButtonComponent,
     MdRaisedButtonComponent,
@@ -32,9 +35,13 @@ import { UserInputService } from './services/user-input.service';
     MdAppBarComponent,
     MdRailComponent,
     MdBackdropComponent,
-    MdChipComponent
+    MdChipComponent,
+
+    // Directives
+    MdRippleDirective
   ],
   exports: [
+    // Components
     MdTextFieldComponent,
     MdFloatingActionButtonComponent,
     MdRaisedButtonComponent,
@@ -45,7 +52,10 @@ import { UserInputService } from './services/user-input.service';
     MdAppBarComponent,
     MdRailComponent,
     MdBackdropComponent,
-    MdChipComponent
+    MdChipComponent,
+
+    // Directives
+    MdRippleDirective
   ],
   providers: [
     UserInputService

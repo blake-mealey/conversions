@@ -43,10 +43,6 @@ $max-height: 300px;
             @apply .bg-grey-lighter;
           }
 
-          &:active {
-            @apply .bg-grey-light;
-          }
-
           &.selected {
             @apply .bg-grey-lighter;
           }

@@ -5,6 +5,6 @@ doctype html
     md-text-field(*ngIf="searchEnabled" label="Search" dense="true" bind-icon="searchIcon" on-iconClicked="onSearchIconClick()")
       input(#input bindon-ngModel="searchValue")
     .menu-items
-      .menu-item(*ngFor="let item of displayedItems; index as i" on-click="onItemClick(item)" bind-ngClass="{'selected':i === selectedIndex, 'enabled':item.enabled}")
+      .menu-item(*ngFor="let item of displayedItems; index as i" on-click="onItemClick(item)" bind-ngClass="{'selected':i === selectedIndex, 'enabled':item.enabled}" mdRipple)
         span.material-icons(*ngIf="item.icon") {{item.icon}}
         span {{item.displayName}}

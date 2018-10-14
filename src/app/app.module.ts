@@ -31,6 +31,7 @@ import { ListsService } from './services/lists.service';
  * Load styles root
  */
 import '../styles/styles.scss';
+import { CommonModule } from '@angular/common';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -44,6 +45,7 @@ const APP_PROVIDERS = [
   bootstrap: [ AppComponent ],
   imports: [
     // Angular modules
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
