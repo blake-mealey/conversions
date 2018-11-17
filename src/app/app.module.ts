@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialDesignModule } from '../material-design/material-design.module';
+import { AppCommonModule } from '../app-common/app-common.module';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -56,7 +57,8 @@ const APP_PROVIDERS = [
     }),
 
     // My modules
-    MaterialDesignModule
+    MaterialDesignModule,
+    AppCommonModule
   ],
   declarations: [
     // Components

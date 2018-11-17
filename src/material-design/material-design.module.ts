@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AppCommonModule } from '../app-common/app-common.module';
 
 import { MdTextFieldComponent } from './components/md-text-field/md-text-field.component';
 import { MdFloatingActionButtonComponent } from './components/md-floating-action-button/md-floating-action-button.component';
@@ -16,12 +17,11 @@ import { MdChipComponent } from './components/md-chip/md-chip.component';
 
 import { MdRippleDirective } from './directives/md-ripple/md-ripple.directive';
 
-import { UserInputService } from './services/user-input.service';
-
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    AppCommonModule
   ],
   declarations: [
     // Components
@@ -58,7 +58,6 @@ import { UserInputService } from './services/user-input.service';
     MdRippleDirective
   ],
   providers: [
-    UserInputService
   ]
 })
 export class MaterialDesignModule {}
