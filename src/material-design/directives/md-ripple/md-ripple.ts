@@ -32,8 +32,8 @@ export class MdRipple {
     });
 
     const rippleSize = Math.ceil(2 * Math.sqrt(
-      Math.pow(this.parentElement.offsetWidth, 2) +
-      Math.pow(this.parentElement.offsetHeight, 2)));
+      this.parentElement.offsetWidth*this.parentElement.offsetWidth +
+      this.parentElement.offsetHeight*this.parentElement.offsetHeight));
     const factory = this.animationBuilder.build(this.rippleIn(x, y, rippleSize));
     const player = factory.create(this.rippleElement);
 
@@ -42,6 +42,7 @@ export class MdRipple {
   }
 
   private rippleIn(x: number, y: number, size: number): AnimationMetadata[] {
+    let halfSize = size * 0.5;
     return [
       style({
         width: 0,
@@ -52,8 +53,8 @@ export class MdRipple {
       animate(`${MdRipple.RIPPLE_DURATION_MS}ms ease-in`, style({
         width: size,
         height: size,
-        left: `${x - (size/2)}px`,
-        top: `${y - (size/2)}px`
+        left: `${x - halfSize}px`,
+        top: `${y - halfSize}px`
       }))
     ];
   }

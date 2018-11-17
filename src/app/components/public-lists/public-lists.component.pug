@@ -5,7 +5,7 @@ doctype html
     .options
     ul.list(#list)
       // Converters
-      li(*ngFor="let l of lists")
+      li(*ngFor="let l of listsService.publicLists")
         list(bind-list="l")
 
       // Skeleton screen
