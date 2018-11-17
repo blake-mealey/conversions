@@ -55,7 +55,7 @@ export class ConversionOutput extends ConversionIo {
       this._value = input.value * multiplier;
 
       // Log the multiplier path
-      console.log(`${this._value} = ${input.value} * (${multipliers.reverse().join(' * ')})`);
+      // console.log(`${this._value} = ${input.value} * (${multipliers.reverse().join(' * ')})`);
     } else {
       this._value = null;
     }

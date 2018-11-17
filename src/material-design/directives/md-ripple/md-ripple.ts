@@ -21,7 +21,6 @@ export class MdRipple {
     this.renderer.setStyle(this.parentElement, 'overflow', 'hidden');
 
     this.rippleElement = this.renderer.createElement('md-ripple');
-    console.log(this.rippleElement);
     this.setStyles(this.rippleElement, {
       position: 'absolute',
       borderRadius: '9999px',

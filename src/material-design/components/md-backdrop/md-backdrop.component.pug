@@ -1,7 +1,7 @@
 .md-backdrop-component
   .back-layer
     ng-content(select=".options")
-  .front-layer
+  .front-layer('[@simpleFadeAnimation]'="'open'")
     .header {{header}}
     .content
       ng-content(select=".list")

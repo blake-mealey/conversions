@@ -15,7 +15,6 @@ export class MdRippleDirective {
   }
 
   @HostListener('mousedown', ['$event', '$event.target', '$event.offsetX', '$event.offsetY']) onMouseDown(event, target, x, y) {
-    console.log(event);
     this.onMouseUp();
 
     while (target && target != this.element.nativeElement && !isNaN(target.offsetLeft) && !isNaN(target.offsetTop)) {

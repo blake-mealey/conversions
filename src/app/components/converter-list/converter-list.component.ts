@@ -37,20 +37,21 @@ export class ConverterListComponent implements OnInit{
   }
   
   init(): void {
-    this.ready = true;
-
     this.converterList$ = this.activatedRoute.paramMap.pipe(
       switchMap((params: ParamMap) => {
         let id = params.get('id');
         if (id) {
           return this.listsService.getConverterList(params.get('id'));
         } else {
+          this.ready = true;
           return EMPTY;
         }
       })
     );
 
     this.converterList$.subscribe(list => {
+      this.ready = true;
+
       for (let converter of list.converters) {
         let unitType = this.unitsService.getUnitType(converter.unitTypeId);
 
