@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Injectable()
 export class UserInputService {
@@ -22,8 +22,8 @@ export class UserInputService {
     });
   }
 
-  registerHotkey(key: string, callback: (event: KeyboardEvent) => void) {
-    this.keyDown$.subscribe((event) => {
+  registerHotkey(key: string, callback: (event: KeyboardEvent) => void): Subscription {
+    return this.keyDown$.subscribe((event) => {
       if (event.key == key) {
         callback(event);
       }

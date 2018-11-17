@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Conversion } from '../../logic/conversion';
 import { UserInputService } from '../../../material-design/services/user-input.service';
 import { UnitsService } from '../../services/units.service';
@@ -6,7 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ListsService } from '../../services/lists.service';
 import { ConverterList } from '../../models/converter-list';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, Observable, Subscription } from 'rxjs';
 import { ConversionOutput } from '../../logic/conversion-output';
 
 @Component({
@@ -16,24 +16,28 @@ import { ConversionOutput } from '../../logic/conversion-output';
   ],
   templateUrl: './converter-list.component.pug'
 })
-export class ConverterListComponent implements OnInit{
+export class ConverterListComponent implements OnInit, OnDestroy {
 
   public conversions: Array<Conversion> = [];
   public converterList$: Observable<ConverterList>;
+
+  private subscriptions: Array<Subscription>;
 
   private ready: boolean;
 
   constructor(private userInputService: UserInputService,
               private unitsService: UnitsService,
               private listsService: ListsService,
-              private activatedRoute: ActivatedRoute) {}
+              private activatedRoute: ActivatedRoute) {
+    this.subscriptions = [];
+  }
 
   ngOnInit(): void {
-    this.unitsService.ready$.subscribe(value => {
+    this.subscriptions.push(this.unitsService.ready$.subscribe(value => {
       if (value) {
         this.init();
       }
-    });
+    }));
   }
   
   init(): void {
@@ -49,7 +53,7 @@ export class ConverterListComponent implements OnInit{
       })
     );
 
-    this.converterList$.subscribe(list => {
+    this.subscriptions.push(this.converterList$.subscribe(list => {
       this.ready = true;
 
       for (let converter of list.converters) {
@@ -69,9 +73,15 @@ export class ConverterListComponent implements OnInit{
 
         this.conversions.push(conversion);
       }
-    });
+    }));
 
-    this.userInputService.registerHotkey('a', () => this.onAddClicked());
+    this.subscriptions.push(this.userInputService.registerHotkey('a', () => this.onAddClicked()));
+  }
+
+  ngOnDestroy(): void {
+    for (let subscription of this.subscriptions) {
+      subscription.unsubscribe();
+    }
   }
 
   onAddClicked() {

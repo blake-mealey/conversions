@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ListsService } from '../../services/lists.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'public-lists',
@@ -8,17 +9,27 @@ import { ListsService } from '../../services/lists.service';
   ],
   templateUrl: './public-lists.component.pug'
 })
-export class PublicListsComponent implements OnInit, AfterViewInit {
+export class PublicListsComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  private subscriptions: Array<Subscription>;
 
   private loading: boolean;
 
   @ViewChild('list') listElement: ElementRef;
 
-  constructor(private listsService: ListsService) {}
+  constructor(private listsService: ListsService) {
+    this.subscriptions = [];
+  }
 
   public ngOnInit() {
-    this.listsService.loading$.subscribe(loading => this.loading = loading);
+    this.subscriptions.push(this.listsService.loading$.subscribe(loading => this.loading = loading));
     this.listsService.loadNextPage();
+  }
+
+  public ngOnDestroy(): void {
+    for (let subscription of this.subscriptions) {
+      subscription.unsubscribe();
+    }
   }
 
   ngAfterViewInit(): void {

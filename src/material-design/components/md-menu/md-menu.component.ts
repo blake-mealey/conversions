@@ -1,10 +1,11 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef, EventEmitter, Input, OnInit, Output, ViewChild,
+  ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild,
 } from '@angular/core';
 import { MenuItem } from './menu-item';
 import { UserInputService } from '../../services/user-input.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'md-menu',
@@ -13,10 +14,12 @@ import { UserInputService } from '../../services/user-input.service';
   ],
   templateUrl: './md-menu.component.pug'
 })
-export class MdMenuComponent implements OnInit, AfterViewInit {
+export class MdMenuComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private static readonly SEARCH_ICON = 'search';
   private static readonly CANCEL_ICON = 'cancel';
+
+  private subscriptions: Array<Subscription>;
 
   @Input() searchEnabled: boolean = false;
   @Input() items: Array<MenuItem>;
@@ -70,11 +73,19 @@ export class MdMenuComponent implements OnInit, AfterViewInit {
   constructor(private elementRef: ElementRef,
               private userInputService: UserInputService) {
 
-    userInputService.mouseClick$.subscribe((event) => {
+    this.subscriptions = [];
+
+    this.subscriptions.push(userInputService.mouseClick$.subscribe((event) => {
       if (this.open && !this.elementRef.nativeElement.contains(event.target)) {
         this.closed.emit();
       }
-    });
+    }));
+  }
+
+  ngOnDestroy(): void {
+    for (let subscription of this.subscriptions) {
+      subscription.unsubscribe();
+    }
   }
 
   ngOnInit(): void {
