@@ -6,13 +6,28 @@ import {
 import { MenuItem } from './menu-item';
 import { UserInputService } from '../../../app-common/services/user-input.service';
 import { SubscriberComponent } from '../../../app-common/components/subscriber-component';
+import { state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { popIn, popOut } from '../../../app-common/animations';
 
 @Component({
   selector: 'md-menu',
   styleUrls: [
     './md-menu.component.scss'
   ],
-  templateUrl: './md-menu.component.pug'
+  templateUrl: './md-menu.component.pug',
+  animations: [
+    trigger('popIn', [
+      state('open', style({})),
+
+      transition(':enter', [
+        useAnimation(popIn)
+      ]),
+
+      transition(':leave', [
+        useAnimation(popOut)
+      ])
+    ])
+  ]
 })
 export class MdMenuComponent extends SubscriberComponent implements OnInit, AfterViewInit {
 

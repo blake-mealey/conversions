@@ -1,17 +1,29 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ConverterList } from '../../models/converter-list';
 import { UnitsService } from '../../services/units.service';
-import { Converter } from '../../models/converter';
 import { Router } from '@angular/router';
 import { SimpleConverterList } from '../../models/simple-converter-list';
-import { SimpleConverter } from '../../models/simple-converter';
+import { state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { slideIn, slideOut } from '../../../app-common/animations';
 
 @Component({
   selector: 'list',
   styleUrls: [
     './list.component.scss'
   ],
-  templateUrl: './list.component.pug'
+  templateUrl: './list.component.pug',
+  animations: [
+    trigger('slideIn', [
+      state('open', style({})),
+
+      transition(':enter', [
+        useAnimation(slideIn)
+      ]),
+
+      transition(':leave', [
+        useAnimation(slideOut)
+      ])
+    ])
+  ]
 })
 export class ListComponent implements OnInit {
 

@@ -23,30 +23,19 @@ $title-spacing: 10px;
     }
 
     .title {
-      @apply .opacity-0;
       @extend .typeface-ovr;
       margin-top: $title-spacing;
       text-transform: uppercase;
-
-      @include transition(0.25s);
     }
 
     &.active {
       .material-icons {
         @apply .opacity-100;
       }
-
-      .title {
-        @apply .opacity-100;
-      }
     }
 
     &:not(.active):hover {
       .material-icons {
-        @apply .opacity-75;
-      }
-
-      .title {
         @apply .opacity-75;
       }
     }

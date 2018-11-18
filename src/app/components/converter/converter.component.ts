@@ -5,6 +5,8 @@ import { UnitType } from '../../models/unit-type';
 import { Unit } from '../../models/unit';
 import { ConversionOutput } from '../../logic/conversion-output';
 import { UnitsService } from '../../services/units.service';
+import { state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { slideIn, slideOut } from '../../../app-common/animations';
 
 enum MoreMenuItem {
   ADD_OUTPUT,
@@ -16,7 +18,20 @@ enum MoreMenuItem {
   styleUrls: [
     './converter.component.scss'
   ],
-  templateUrl: './converter.component.pug'
+  templateUrl: './converter.component.pug',
+  animations: [
+    trigger('slideIn', [
+      state('open', style({})),
+
+      transition(':enter', [
+        useAnimation(slideIn)
+      ]),
+
+      transition(':leave', [
+        useAnimation(slideOut)
+      ])
+    ])
+  ]
 })
 export class ConverterComponent implements AfterViewInit {
 
@@ -36,7 +51,7 @@ export class ConverterComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.categoriesOpen = true;
+    // this.categoriesOpen = true;
   }
 
   oneOutput(): boolean {

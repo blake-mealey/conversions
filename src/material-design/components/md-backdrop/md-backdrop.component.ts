@@ -1,5 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  state,
+  style,
+  transition,
+  trigger,
+  useAnimation
+} from '@angular/animations';
+import { slideIn } from '../../../app-common/animations';
+
+const slideParams = {
+  duration: '0.3s ease',
+  translateY: '100px'
+};
 
 @Component({
   selector: 'md-backdrop-component',
@@ -8,16 +20,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ],
   templateUrl: './md-backdrop.component.pug',
   animations: [
-    trigger('simpleFadeAnimation', [
-      state('open', style({
-        opacity: 1,
-      })),
-      state('void', style({
-        opacity: 0.5,
-        transform: 'perspective(1000px) rotateX(45deg)'
-      })),
-      transition('void => *', [
-        animate('0.3s ease')
+    trigger('slideIn', [
+      state('open', style({})),
+      transition(':enter', [
+        useAnimation(slideIn, {params: slideParams})
       ])
     ])
   ]

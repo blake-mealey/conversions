@@ -1,4 +1,6 @@
-.list-component(on-click="onClicked()" mdRipple)
+doctype html
+
+.list-component(on-click="onClicked()" mdRipple '[@slideIn]'="'open'")
   h5 {{ list.displayName }}
   .converters
     .converter(*ngFor="let c of list.converters")

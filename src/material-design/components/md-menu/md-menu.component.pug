@@ -1,6 +1,6 @@
 doctype html
 
-.md-menu-component(bind-ngClass="{'open': open}")
+.md-menu-component(*ngIf="open" '[@popIn]'="'open'")
   .menu
     md-text-field(*ngIf="searchEnabled" label="Search" dense="true" bind-icon="searchIcon" on-iconClicked="onSearchIconClick()")
       input(#input bindon-ngModel="searchValue")
