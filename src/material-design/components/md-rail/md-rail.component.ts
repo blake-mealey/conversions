@@ -71,13 +71,11 @@ export class MdRailComponent implements AfterViewInit {
     this.itemViews.forEach((viewElement, i) => {
       let itemViewElement = viewElement.nativeElement;
 
-      itemViewElement.addEventListener('mouseenter', (event) => {
-        console.log(event);
+      itemViewElement.addEventListener('mouseenter', () => {
         this.hoveredNavigationItem = this.navigationItems[i];
       });
 
-      itemViewElement.addEventListener('mouseleave', (event) => {
-        console.log(event);
+      itemViewElement.addEventListener('mouseleave', () => {
         this.hoveredNavigationItem = null;
       });
     });
