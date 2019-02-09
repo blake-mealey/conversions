@@ -1,6 +1,6 @@
 doctype html
 
-.md-rail-component
+.md-rail-component(mdGradient)
   .navigation-item(#item *ngFor="let i of navigationItems" bind-ngClass="{'active': isActive(i)}" on-click="onNavigationItemClicked(i)")
     .material-icons {{ i.iconName }}
     .title('[@stateTransitions]'="getTitleState(i)" data-) {{ i.displayName }}

@@ -1,7 +1,7 @@
 doctype html
 
 .converter-component('[@slideIn]'="'open'")
-  .header
+  .header(mdGradient)
     .title {{conversion.unitType.displayName}} Converter
     span.buttons
       md-icon-button-menu(icon="more_vert" bind-items="moreMenuItems" on-itemSelected="onMoreMenuItemSelected($event)")

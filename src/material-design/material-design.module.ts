@@ -16,6 +16,7 @@ import { MdBackdropComponent } from './components/md-backdrop/md-backdrop.compon
 import { MdChipComponent } from './components/md-chip/md-chip.component';
 
 import { MdRippleDirective } from './directives/md-ripple/md-ripple.directive';
+import { MdGradientDirective } from './directives/md-gradient/md-gradient.directive';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { MdRippleDirective } from './directives/md-ripple/md-ripple.directive';
     MdChipComponent,
 
     // Directives
-    MdRippleDirective
+    MdRippleDirective,
+    MdGradientDirective
   ],
   exports: [
     // Components
