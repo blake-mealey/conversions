@@ -1,42 +1,60 @@
 @import 'src/styles/animations';
 @import "src/styles/fonts";
+@import "src/styles/breakpoints";
 @import "src/styles/tailwind";
 
-$width: 100px;
+$side-bar-width: 100px;
+$bottom-bar-height: 56px;
 $items-spacing: 25px;
 $title-spacing: 10px;
 
 .md-rail-component {
   @apply .bg-teal .shadow .relative .z-10 .flex .flex-col .items-center;
 
-  width: $width;
+  width: $side-bar-width;
   height: 100%;
 
+  @include bp-small {
+    @apply .fixed .pin-b .flex-row .justify-around;
+    width: 100%;
+    height: $bottom-bar-height;
+  }
+
   .navigation-item {
-    @apply .text-white .flex .flex-col .items-center .cursor-pointer .select-none;
+    @apply .select-none .cursor-pointer .text-white .relative .overflow-visible;
+    @apply .flex .flex-col .items-center .justify-center;
+
     margin: $items-spacing 0;
+    width: $bottom-bar-height;
+    height: $bottom-bar-height;
+
+    .ripple-target {
+      @apply .absolute .w-full .h-full .rounded-full .z-10;
+    }
 
     .material-icons {
       @apply .opacity-60;
-
       @include transition(0.25s);
     }
 
     .title {
       @extend .typeface-ovr;
-      margin-top: $title-spacing;
+      @apply .absolute;
+      bottom: $title-spacing;
       text-transform: uppercase;
     }
 
     &.active {
       .material-icons {
         @apply .opacity-100;
+        transform: translateY(-$title-spacing);
       }
     }
 
     &:not(.active):hover {
       .material-icons {
         @apply .opacity-75;
+        transform: translateY(-$title-spacing);
       }
     }
   }

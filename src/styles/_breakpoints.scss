@@ -1,0 +1,27 @@
+$bp-small-width: 576px;
+$bp-medium-width: 992px;
+$bp-large-width: 1200px;
+
+@mixin bp($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin bp-small() {
+  @include bp($bp-small-width) {
+    @content;
+  }
+}
+
+@mixin bp-medium() {
+  @include bp($bp-medium-width) {
+    @content;
+  }
+}
+
+@mixin bp-large() {
+  @include bp($bp-large-width) {
+    @content;
+  }
+}
