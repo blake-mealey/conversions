@@ -9,7 +9,7 @@ $icon-size: 24px;
 $page-padding: 16px;
 
 .md-floating-action-button-component {
-  @apply .fixed .flex .items-center .justify-center;
+  @apply .absolute .flex .items-center .justify-center;
   @apply .bg-teal-dark .text-white .font-bold .rounded-full;
   @apply .select-none .cursor-pointer;
   @apply .shadow;
