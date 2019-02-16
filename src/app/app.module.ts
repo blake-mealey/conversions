@@ -20,7 +20,7 @@ import { ConverterComponent } from './components/converter/converter.component';
 import { SkeletonConverterComponent } from './components/skeleton-converter/skeleton-converter.component';
 import { SkeletonListComponent } from './components/skeleton-list/skeleton-list.component';
 import { PublicListsComponent } from './components/public-lists/public-lists.component';
-import { ListComponent } from './components/list/list.component';
+import { ConverterListCardComponent } from './components/converter-list-card/converter-list-card.component';
 
 import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton-shimmer.directive';
 
@@ -68,7 +68,7 @@ const APP_PROVIDERS = [
     SkeletonConverterComponent,
     SkeletonListComponent,
     PublicListsComponent,
-    ListComponent,
+    ConverterListCardComponent,
 
     // Directives
     SkeletonShimmerDirective

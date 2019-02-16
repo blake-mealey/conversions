@@ -6,6 +6,8 @@
 
   @include transition();
 
+  overflow-x: auto;
+
   &:hover {
     @apply .bg-grey-lighter .shadow-md;
   }

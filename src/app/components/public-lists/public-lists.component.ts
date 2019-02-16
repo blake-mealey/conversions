@@ -13,7 +13,7 @@ export class PublicListsComponent extends SubscriberComponent implements OnInit,
 
   private loading: boolean;
 
-  @ViewChild('list') listElement: ElementRef;
+  @ViewChild('converter-list-card') listElement: ElementRef;
 
   constructor(private listsService: ListsService) {
     super();

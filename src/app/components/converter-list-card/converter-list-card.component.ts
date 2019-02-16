@@ -8,9 +8,9 @@ import { slideIn, slideOut } from '../../../app-common/animations';
 @Component({
   selector: 'list',
   styleUrls: [
-    './list.component.scss'
+    './converter-list-card.component.scss'
   ],
-  templateUrl: './list.component.pug',
+  templateUrl: './converter-list-card.component.pug',
   animations: [
     trigger('slideIn', [
       state('open', style({})),
@@ -25,7 +25,7 @@ import { slideIn, slideOut } from '../../../app-common/animations';
     ])
   ]
 })
-export class ListComponent implements OnInit {
+export class ConverterListCardComponent implements OnInit {
 
   @Input() list: SimpleConverterList;
 
