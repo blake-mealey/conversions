@@ -15,7 +15,7 @@ export class MdAppBarComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    this.title = 'Conversions';//this.activatedRoute.snapshot.data[0]['title'];
+    this.title = 'Chimerical Conversions';//this.activatedRoute.snapshot.data[0]['title'];
   }
 
 }
