@@ -1,0 +1,37 @@
+@import 'src/styles/animations';
+@import "src/styles/fonts";
+@import "src/styles/tailwind";
+
+$icon-size: 24px;
+$icon-spacing: 32px;
+
+$height: 40px;
+$spacing: (56px - $height) / 2;
+
+.md-list-button-component {
+  @apply .select-none .cursor-pointer;
+  @apply .bg-teal .text-grey-light .rounded;
+  @apply .flex .items-center .w-full;
+  @extend .typeface-btn;
+
+  height: $height;
+  margin: $spacing;
+  padding: 0 $spacing / 2;
+
+  @include transition();
+
+  .material-icons {
+    font-size: $icon-size;
+    margin-right: $icon-spacing;
+  }
+
+  //&:hover {
+  //  @apply bg-teal;
+  //  @apply .shadow-md;
+  //}
+  //
+  //&:active {
+  //  @apply bg-teal-light;
+  //  @apply .shadow-lg;
+  //}
+}

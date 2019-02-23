@@ -2,13 +2,32 @@
 @import "src/styles/tailwind";
 
 $border-radius: 16px;
+$backdrop-padding: 16px;
+
+$app-bar-height: 56px;
+$app-bar-menu-button-spacing: 24px;
 
 .md-backdrop-component {
   @apply .h-full .flex .flex-col;
   @apply .bg-teal;
 
   .back-layer {
-    @apply .p-4;
+    @apply .text-white;
+    padding: 0 $backdrop-padding;
+
+    .app-bar {
+      @apply .flex .items-center;
+
+      height: $app-bar-height;
+
+      .menu-button {
+        margin-right: $app-bar-menu-button-spacing;
+      }
+
+      .actions {
+        margin-left: auto;
+      }
+    }
   }
 
   .front-layer {

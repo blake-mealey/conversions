@@ -1,7 +1,15 @@
 .md-backdrop-component
   .back-layer
-    ng-content(select=".options")
+    .app-bar
+      md-icon-button.menu-button(*ngIf="navigationItems" on-buttonClick="onMenuButtonClicked()" icon="menu")
+      h6 {{title}}
+      .actions
+        ng-content(*ngIf="!menuOpen" select=".actions")
+    .navigation-menu(*ngIf="menuOpen")
+      md-list-button(*ngFor="let i of navigationItems" bind-ngClass="{'active': i.isActive(router)}"
+                      on-click="i.navigate(router)" bind-text="i.displayName" bind-icon="i.iconName")
+    ng-content(*ngIf="!menuOpen" select=".options")
   .front-layer('[@slideIn]'="'open'")
-    .header {{header}}
+    .header {{subtitle}}
     .content
       ng-content(select=".list")

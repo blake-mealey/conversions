@@ -9,6 +9,7 @@ import { ConverterList } from '../../models/converter-list';
 import { EMPTY, Observable } from 'rxjs';
 import { ConversionOutput } from '../../logic/conversion-output';
 import { SubscriberComponent } from '../../../app-common/components/subscriber-component';
+import { Pages } from '../../pages';
 
 @Component({
   selector: 'converter-list',
@@ -18,6 +19,8 @@ import { SubscriberComponent } from '../../../app-common/components/subscriber-c
   templateUrl: './converter-list.component.pug'
 })
 export class ConverterListComponent extends SubscriberComponent implements OnInit {
+
+  public readonly navigationItems = Pages.All;
 
   public conversions: Array<Conversion> = [];
   public converterList$: Observable<ConverterList>;

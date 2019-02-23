@@ -1,7 +1,7 @@
 doctype html
 
 .md-rail-component
-  .navigation-item(#item *ngFor="let i of navigationItems" bind-ngClass="{'active': isActive(i)}" on-click="onNavigationItemClicked(i)")
+  .navigation-item(#item *ngFor="let i of navigationItems" bind-ngClass="{'active': i.isActive(router)}" on-click="i.navigate(router)")
     .ripple-target(mdRipple)
     .material-icons {{ i.iconName }}
     .title('[@stateTransitions]'="getTitleState(i)") {{ i.displayName }}

@@ -46,18 +46,8 @@ export class MdRailComponent implements AfterViewInit {
 
   constructor(private router: Router) {}
 
-  isActive(navigationItem: NavigationItem) {
-    return navigationItem.routeMatch.test(this.router.url);
-  }
-
-  onNavigationItemClicked(navigationItem: NavigationItem) {
-    if (!this.isActive(navigationItem)) {
-      this.router.navigate(navigationItem.route);
-    }
-  }
-
   getTitleState(navigationItem: NavigationItem) {
-    if (this.isActive(navigationItem)) {
+    if (navigationItem.isActive(this.router)) {
       return 'active';
     } else if (this.hoveredNavigationItem == navigationItem) {
       return 'hover';

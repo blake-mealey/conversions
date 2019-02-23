@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   state,
   style,
@@ -7,6 +7,8 @@ import {
   useAnimation
 } from '@angular/animations';
 import { slideIn } from '../../../app-common/animations';
+import { NavigationItem } from '../md-rail/navigation-item';
+import { Router } from '@angular/router';
 
 const slideParams = {
   duration: '0.3s ease',
@@ -28,12 +30,19 @@ const slideParams = {
     ])
   ]
 })
-export class MdBackdropComponent implements OnInit {
+export class MdBackdropComponent {
 
-  @Input() header: string;
+  @Input() navigationItems: Array<NavigationItem>;
 
-  constructor() {}
+  @Input() title: string;
+  @Input() subtitle: string;
 
-  public ngOnInit() {}
+  menuOpen: boolean;
+
+  constructor(private router: Router) {}
+
+  onMenuButtonClicked(): void {
+    this.menuOpen = !this.menuOpen;
+  }
 
 }

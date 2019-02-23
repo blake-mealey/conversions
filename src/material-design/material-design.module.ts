@@ -6,6 +6,7 @@ import { AppCommonModule } from '../app-common/app-common.module';
 import { MdTextFieldComponent } from './components/md-text-field/md-text-field.component';
 import { MdFloatingActionButtonComponent } from './components/md-floating-action-button/md-floating-action-button.component';
 import { MdRaisedButtonComponent } from './components/md-raised-button/md-raised-button.component';
+import { MdListButtonComponent } from './components/md-list-button/md-list-button.component';
 import { MdIconButtonComponent } from './components/md-icon-button/md-icon-button.component';
 import { MdMenuComponent } from './components/md-menu/md-menu.component';
 import { MdRaisedButtonMenuComponent } from './components/md-raised-button-menu/md-raised-button-menu.component';
@@ -28,6 +29,7 @@ import { MdRippleDirective } from './directives/md-ripple/md-ripple.directive';
     MdTextFieldComponent,
     MdFloatingActionButtonComponent,
     MdRaisedButtonComponent,
+    MdListButtonComponent,
     MdIconButtonComponent,
     MdMenuComponent,
     MdRaisedButtonMenuComponent,
@@ -45,6 +47,7 @@ import { MdRippleDirective } from './directives/md-ripple/md-ripple.directive';
     MdTextFieldComponent,
     MdFloatingActionButtonComponent,
     MdRaisedButtonComponent,
+    MdListButtonComponent,
     MdIconButtonComponent,
     MdMenuComponent,
     MdRaisedButtonMenuComponent,
