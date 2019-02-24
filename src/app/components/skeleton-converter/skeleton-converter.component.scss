@@ -21,11 +21,11 @@ $skeleton-raised-button-width: 80px;
 }
 
 .skeleton-converter-component {
-  @apply .flex .flex-col .shadow .rounded-lg .bg-white .m-3 .relative .select-none;
+  @apply .flex .flex-col .shadow .rounded .bg-white .m-3 .relative .select-none;
 
   .header {
     @apply .flex .justify-between .items-center;
-    @apply .rounded-t-lg .h-12 .bg-grey-light .pr-1 .pl-2 .text-white;
+    @apply .rounded-t .h-12 .bg-grey-light .pr-1 .pl-2 .text-white;
 
     .title {
       @apply .typeface-h5 .font-bold;
@@ -37,7 +37,7 @@ $skeleton-raised-button-width: 80px;
   }
 
   .body {
-    @apply .rounded-b-lg .p-2 .pt-5;
+    @apply .rounded-b .p-2 .pt-5;
 
     .row {
       @apply .flex .items-center .mb-3;

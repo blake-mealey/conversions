@@ -18,11 +18,11 @@ $path-gap: 14px;
 }
 
 .converter-component {
-  @apply .flex .flex-col .shadow .rounded-lg .bg-white .m-3;
+  @apply .flex .flex-col .shadow .rounded .bg-white .m-3;
 
   .header {
     @apply .flex .justify-between .items-center;
-    @apply .rounded-t-lg .h-12 .bg-teal .pr-1 .pl-2 .text-white;
+    @apply .rounded-t .h-12 .bg-teal .pr-1 .pl-2 .text-white;
 
     .title {
       @extend .typeface-h5;
@@ -34,7 +34,7 @@ $path-gap: 14px;
   }
 
   .body {
-    @apply .rounded-b-lg .p-2 .pt-5;
+    @apply .rounded-b .p-2 .pt-5;
 
     .row {
       @apply .flex .items-center .mb-3;

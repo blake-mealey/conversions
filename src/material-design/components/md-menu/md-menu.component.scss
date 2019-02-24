@@ -15,7 +15,7 @@ $max-height: 300px;
 
   .menu {
     @apply .absolute .pin-r .z-10 .flex .flex-col;
-    @apply .bg-white .text-black .rounded-lg .shadow-md .py-1;
+    @apply .bg-white .text-black .rounded .shadow-md .py-1;
     @apply .overflow-y-auto;
 
     max-height: $max-height;

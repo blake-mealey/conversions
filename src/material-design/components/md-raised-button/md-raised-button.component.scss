@@ -10,7 +10,7 @@ $icon-margin-outer: -4px;
 
 .md-raised-button-component {
   @apply .select-none .cursor-pointer;
-  @apply .bg-teal-dark .text-white .rounded-sm .shadow;
+  @apply .bg-teal-dark .text-white .rounded .shadow;
   @apply .flex .items-center .justify-between;
   @extend .typeface-btn;
 

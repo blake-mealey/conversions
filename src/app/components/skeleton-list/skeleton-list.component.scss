@@ -5,13 +5,13 @@ $chip-width: 120px;
 $chip-spacing: 4px;
 
 .skeleton-list-component {
-  @apply .rounded-lg .shadow .bg-white .m-3 .p-2 .select-none;
+  @apply .rounded .shadow .bg-white .m-3 .p-2 .select-none;
 
   .auto-box {
     @apply .w-auto .inline-block;
 
     .skeleton-header {
-      @apply .bg-grey-lighter .rounded-sm;
+      @apply .bg-grey-lighter .rounded;
 
       height: 20px;
       width: 200px;
