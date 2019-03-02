@@ -9,7 +9,7 @@ $items-spacing: 25px;
 $title-spacing: 10px;
 
 .md-rail-component {
-  @apply .bg-teal .shadow .relative .z-10 .flex .flex-col .items-center;
+  @apply .bg-primary .shadow .relative .z-10 .flex .flex-col .items-center;
 
   width: $side-bar-width;
   height: 100%;
@@ -22,7 +22,7 @@ $title-spacing: 10px;
   }
 
   .navigation-item {
-    @apply .select-none .cursor-pointer .text-white .relative .overflow-visible;
+    @apply .select-none .cursor-pointer .text-light .relative .overflow-visible;
     @apply .flex .flex-col .items-center .justify-center;
 
     margin: $items-spacing 0;

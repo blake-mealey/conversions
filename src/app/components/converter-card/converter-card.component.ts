@@ -14,11 +14,11 @@ enum MoreMenuItem {
 }
 
 @Component({
-  selector: 'converter',
+  selector: 'converter-card',
   styleUrls: [
-    './converter.component.scss'
+    './converter-card.component.scss'
   ],
-  templateUrl: './converter.component.pug',
+  templateUrl: './converter-card.component.pug',
   animations: [
     trigger('slideIn', [
       state('open', style({})),
@@ -33,7 +33,7 @@ enum MoreMenuItem {
     ])
   ]
 })
-export class ConverterComponent implements AfterViewInit {
+export class ConverterCardComponent implements AfterViewInit {
 
   @Input() conversion: Conversion;
   @Output() closed = new EventEmitter<Conversion>();

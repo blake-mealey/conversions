@@ -5,7 +5,7 @@ $height: 56px;
 
 .md-app-bar-component {
   @apply .flex .items-center .px-3;
-  @apply .bg-teal-dark .shadow .text-white .relative .z-20;
+  @apply .bg-primary-dark .shadow .text-light .relative .z-20;
 
   height: $height;
 

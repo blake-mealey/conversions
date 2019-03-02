@@ -1,53 +1,53 @@
 @import 'src/styles/tailwind';
 
 .typeface-h1 {
-  @apply .text-h1 .tracking-h1 .font-light;
+  @apply .text-h1 .tracking-h1 .leading-h1 .font-light;
 }
 
 .typeface-h2 {
-  @apply .text-h2 .tracking-h2 .font-light;
+  @apply .text-h2 .tracking-h2 .leading-h2 .font-light;
 }
 
 .typeface-h3 {
-  @apply .text-h3 .tracking-h3 .font-regular;
+  @apply .text-h3 .tracking-h3 .leading-h3 .font-regular;
 }
 
 .typeface-h4 {
-  @apply .text-h4 .tracking-h4 .font-regular;
+  @apply .text-h4 .tracking-h4 .leading-h4 .font-regular;
 }
 
 .typeface-h5 {
-  @apply .text-h5 .tracking-h5 .font-regular;
+  @apply .text-h5 .tracking-h5 .leading-h5 .font-regular;
 }
 
 .typeface-h6 {
-  @apply .text-h6 .tracking-h6 .font-medium;
+  @apply .text-h6 .tracking-h6 .leading-h6 .font-medium;
 }
 
 .typeface-s1 {
-  @apply .text-s1 .tracking-s1 .font-regular;
+  @apply .text-s1 .tracking-s1 .leading-s1 .font-regular;
 }
 
 .typeface-s2 {
-  @apply .text-s2 .tracking-s2 .font-medium;
+  @apply .text-s2 .tracking-s2 .leading-s2 .font-medium;
 }
 
 .typeface-b1 {
-  @apply .text-b1 .tracking-b1 .font-regular;
+  @apply .text-b1 .tracking-b1 .leading-b1 .font-regular;
 }
 
 .typeface-b2 {
-  @apply .text-b2 .tracking-b2 .font-regular;
+  @apply .text-b2 .tracking-b2 .leading-b2 .font-regular;
 }
 
 .typeface-btn {
-  @apply .text-btn .tracking-btn .font-medium;
+  @apply .text-btn .tracking-btn .leading-btn .font-medium;
 }
 
 .typeface-cap {
-  @apply .text-cap .tracking-cap .font-regular;
+  @apply .text-cap .tracking-cap .leading-cap .font-regular;
 }
 
 .typeface-ovr {
-  @apply .text-ovr .tracking-ovr .font-regular;
+  @apply .text-ovr .tracking-ovr .leading-ovr .font-regular;
 }

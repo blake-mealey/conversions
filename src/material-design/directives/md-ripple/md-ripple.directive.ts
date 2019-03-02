@@ -1,5 +1,5 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
-import { MdRipple } from './md-ripple';
+import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { MdRipple, MdRippleColor } from './md-ripple';
 import { AnimationBuilder } from '@angular/animations';
 import { UserInputService } from '../../../app-common/services/user-input.service';
 import { SubscriberComponent } from '../../../app-common/components/subscriber-component';
@@ -8,6 +8,8 @@ import { SubscriberComponent } from '../../../app-common/components/subscriber-c
   selector: '[mdRipple]'
 })
 export class MdRippleDirective extends SubscriberComponent {
+
+  @Input('mdRipple') mdRippleColor: string;
 
   private ripple: MdRipple;
 
@@ -31,7 +33,8 @@ export class MdRippleDirective extends SubscriberComponent {
       target = target.offsetParent;
     }
 
-    this.ripple = new MdRipple(this.renderer, this.animationBuilder, this.element.nativeElement, x, y);
+    let mdRippleColor = MdRippleColor[this.mdRippleColor || 'Light'];
+    this.ripple = new MdRipple(this.renderer, this.animationBuilder, this.element.nativeElement, x, y, mdRippleColor);
   }
 
   onMouseUp(): void {

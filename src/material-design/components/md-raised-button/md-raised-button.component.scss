@@ -10,7 +10,7 @@ $icon-margin-outer: -4px;
 
 .md-raised-button-component {
   @apply .select-none .cursor-pointer;
-  @apply .bg-teal-dark .text-white .rounded-sm .shadow;
+  @apply .bg-primary .text-light .rounded .shadow;
   @apply .flex .items-center .justify-between;
   @extend .typeface-btn;
 
@@ -33,12 +33,12 @@ $icon-margin-outer: -4px;
   }
 
   &:hover {
-    @apply bg-teal;
+    @apply bg-primary;
     @apply .shadow-md;
   }
 
   &:active {
-    @apply bg-teal-light;
+    @apply bg-primary-light;
     @apply .shadow-lg;
   }
 }
