@@ -10,7 +10,7 @@ $spacing: (56px - $height) / 2;
 
 .md-list-button-component {
   @apply .select-none .cursor-pointer;
-  @apply .bg-black-0 .text-light-md .rounded;
+  @apply .bg-white-0 .text-light-md .rounded;
   @apply .flex .items-center .w-full;
   @extend .typeface-btn;
 
@@ -26,10 +26,10 @@ $spacing: (56px - $height) / 2;
   }
 
   &:hover {
-    @apply .bg-black-5 text-light;
+    @apply .bg-white-10 text-light;
   }
 
   &.active {
-    @apply .bg-black-10 text-light;
+    @apply .bg-white-20 text-light;
   }
 }
