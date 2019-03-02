@@ -10,7 +10,7 @@ $spacing: (56px - $height) / 2;
 
 .md-list-button-component {
   @apply .select-none .cursor-pointer;
-  @apply .bg-primary .text-grey-light .rounded;
+  @apply .bg-primary .text-light .rounded;
   @apply .flex .items-center .w-full;
   @extend .typeface-btn;
 

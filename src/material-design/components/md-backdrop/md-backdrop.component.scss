@@ -12,7 +12,7 @@ $app-bar-menu-button-spacing: 24px;
   @apply .bg-primary;
 
   .back-layer {
-    @apply .text-white;
+    @apply .text-light;
     padding: 0 $backdrop-padding;
 
     .app-bar {

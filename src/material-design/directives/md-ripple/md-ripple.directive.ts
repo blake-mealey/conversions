@@ -20,27 +20,37 @@ export class MdRippleDirective extends SubscriberComponent {
     super();
 
     this.subscriptions.push(userInputService.mouseClick$.subscribe(() => {
-      this.onMouseUp();
+      this.stopRipple();
+    }));
+
+    this.subscriptions.push(userInputService.touchEnd$.subscribe(() => {
+      this.stopRipple();
     }));
   }
 
-  @HostListener('mousedown', ['$event.target', '$event.offsetX', '$event.offsetY']) onMouseDown(target, x, y) {
-    this.onMouseUp();
-
-    while (target && target != this.element.nativeElement && !isNaN(target.offsetLeft) && !isNaN(target.offsetTop)) {
-      x += target.offsetLeft - target.scrollLeft;
-      y += target.offsetTop - target.scrollTop;
-      target = target.offsetParent;
+  private stopRipple(): void {
+    if (this.ripple) {
+      this.ripple.destroy();
+      this.ripple = null;
     }
+  }
+
+  private startRipple(x, y): void {
+    this.stopRipple();
+
+    let elementPosition = this.element.nativeElement.getBoundingClientRect();
+    x -= elementPosition.left;
+    y -= elementPosition.top;
 
     let mdRippleColor = MdRippleColor[this.mdRippleColor || 'Light'];
     this.ripple = new MdRipple(this.renderer, this.animationBuilder, this.element.nativeElement, x, y, mdRippleColor);
   }
 
-  onMouseUp(): void {
-    if (this.ripple) {
-      this.ripple.destroy();
-      this.ripple = null;
-    }
+  @HostListener('mousedown', ['$event.pageX', '$event.pageY']) onMouseDown(x, y) {
+    this.startRipple(x, y);
+  }
+
+  @HostListener('touchstart', ['$event.touches[0].pageX', '$event.touches[0].pageY']) onTouchStart(x, y) {
+    this.startRipple(x, y);
   }
 }

@@ -1,7 +1,7 @@
 .md-backdrop-component
   .back-layer
     .app-bar
-      md-icon-button.menu-button(*ngIf="navigationItems" on-buttonClick="onMenuButtonClicked()" icon="menu")
+      md-icon-button.menu-button(*ngIf="navigationItems" on-buttonClick="onMenuButtonClicked()" icon="menu" rippleColor="Light")
       h6 {{title}}
       .actions
         ng-content(*ngIf="!menuOpen" select=".actions")

@@ -7,6 +7,9 @@ export class UserInputService {
   private mouseClick = new Subject<MouseEvent>();
   public mouseClick$ = this.mouseClick.asObservable();
 
+  private touchEnd = new Subject<TouchEvent>();
+  public touchEnd$ = this.touchEnd.asObservable();
+
   private keyDown = new Subject<KeyboardEvent>();
   public keyDown$ = this.keyDown.asObservable();
 
@@ -19,6 +22,10 @@ export class UserInputService {
 
     window.addEventListener('mouseup', (event: MouseEvent) => {
       this.mouseClick.next(event);
+    });
+
+    window.addEventListener('touchend', (event: TouchEvent) => {
+      this.touchEnd.next(event);
     });
   }
 
