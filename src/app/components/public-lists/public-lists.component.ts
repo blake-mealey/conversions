@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ListsService } from '../../services/lists.service';
 import { SubscriberComponent } from '../../../app-common/components/subscriber-component';
+import { Routes } from '../../routes';
 
 @Component({
   selector: 'public-lists',
@@ -12,6 +13,8 @@ import { SubscriberComponent } from '../../../app-common/components/subscriber-c
 export class PublicListsComponent extends SubscriberComponent implements OnInit, AfterViewInit {
 
   private loading: boolean;
+
+  public readonly navigationItems = Routes.All;
 
   @ViewChild('converter-list-card') listElement: ElementRef;
 

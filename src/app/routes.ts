@@ -1,6 +1,6 @@
 import { NavigationItem } from '../material-design/components/md-rail/navigation-item';
 
-export class Pages {
+export class Routes {
   public static readonly Account = new NavigationItem(
     'Account',
     'person',
@@ -23,9 +23,9 @@ export class Pages {
     ['/settings']);
 
   public static readonly All: Array<NavigationItem> = [
-    // Pages.Account,
-    Pages.Conversions,
-    Pages.Lists,
-    // Pages.Settings
+    // Routes.Account,
+    Routes.Conversions,
+    Routes.Lists,
+    // Routes.Settings
   ];
 }

@@ -3,7 +3,7 @@
  */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UnitsService } from '../../services/units.service';
-import { Pages } from '../../pages';
+import { Routes } from '../../routes';
 
 export const ROOT_SELECTOR = 'app';
 
@@ -21,7 +21,7 @@ export const ROOT_SELECTOR = 'app';
 })
 export class AppComponent implements OnInit {
 
-  public readonly navigationItems = Pages.All;
+  public readonly navigationItems = Routes.All;
 
   constructor(private unitsService: UnitsService) {}
 

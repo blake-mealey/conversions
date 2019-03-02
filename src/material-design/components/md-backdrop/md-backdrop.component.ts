@@ -16,7 +16,7 @@ const slideParams = {
 };
 
 @Component({
-  selector: 'md-backdrop-component',
+  selector: 'md-backdrop',
   styleUrls: [
     './md-backdrop.component.scss'
   ],

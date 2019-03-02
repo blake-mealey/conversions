@@ -15,10 +15,7 @@ $title-spacing: 10px;
   height: 100%;
 
   @include bp-small {
-    //@apply .fixed .pin-b .flex-row .justify-around;
-    @apply .flex-row .justify-around;
-    width: 100%;
-    height: $bottom-bar-height;
+    display: none;
   }
 
   .navigation-item {

@@ -1,5 +1,6 @@
 @import "src/styles/fonts";
 @import "src/styles/tailwind";
+@import "src/styles/breakpoints";
 
 $border-radius: 16px;
 $backdrop-padding: 16px;
@@ -22,10 +23,27 @@ $app-bar-menu-button-spacing: 24px;
 
       .menu-button {
         margin-right: $app-bar-menu-button-spacing;
+        display: none;
       }
 
       .actions {
         margin-left: auto;
+      }
+    }
+
+    .navigation-menu {
+      display: none;
+    }
+
+    @include bp-small {
+      .app-bar {
+        .menu-button {
+          display: initial;
+        }
+      }
+
+      .navigation-menu {
+        display: initial;
       }
     }
   }

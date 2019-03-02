@@ -14,6 +14,8 @@ export class MdListButtonComponent {
   @Input() icon: string;
   @Input() iconFloatRight: boolean;
 
+  @Input() selected: boolean;
+
   constructor() {}
 
 }

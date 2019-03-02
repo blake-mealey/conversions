@@ -10,12 +10,12 @@ $spacing: (56px - $height) / 2;
 
 .md-list-button-component {
   @apply .select-none .cursor-pointer;
-  @apply .bg-primary .text-light .rounded;
+  @apply .bg-black-0 .text-light-md .rounded;
   @apply .flex .items-center .w-full;
   @extend .typeface-btn;
 
   height: $height;
-  margin: $spacing;
+  margin: $spacing 0;
   padding: 0 $spacing / 2;
 
   @include transition();
@@ -25,13 +25,11 @@ $spacing: (56px - $height) / 2;
     margin-right: $icon-spacing;
   }
 
-  //&:hover {
-  //  @apply bg-teal;
-  //  @apply .shadow-md;
-  //}
-  //
-  //&:active {
-  //  @apply bg-teal-light;
-  //  @apply .shadow-lg;
-  //}
+  &:hover {
+    @apply .bg-black-5 text-light;
+  }
+
+  &.active {
+    @apply .bg-black-10 text-light;
+  }
 }

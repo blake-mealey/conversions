@@ -4,14 +4,6 @@
 .app-component {
   @apply .flex .flex-row .h-full .w-full;
 
-  @include bp-small {
-    @apply .flex-col-reverse;
-
-    main {
-      max-height: calc(100% - 56px);
-    }
-  }
-
   main {
     @apply .flex-1 .relative;
   }
