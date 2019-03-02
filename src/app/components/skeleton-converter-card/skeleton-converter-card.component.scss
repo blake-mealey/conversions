@@ -20,7 +20,7 @@ $skeleton-raised-button-width: 80px;
   height: $small-path-size;
 }
 
-.skeleton-converter-component {
+.skeleton-converter-card-component {
   @apply .flex .flex-col .shadow .rounded .bg-white .m-3 .relative .select-none;
 
   .header {

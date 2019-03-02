@@ -7,7 +7,7 @@ doctype html
       // Skeleton screen
       each i in [0,0,0]
         div(*ngIf="!ready")
-          skeleton-converter
+          skeleton-converter-card
 
       // Empty text
       .empty(*ngIf="ready && (!conversions || conversions.length == 0)")
