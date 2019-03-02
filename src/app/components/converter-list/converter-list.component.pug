@@ -17,6 +17,6 @@ doctype html
 
       // Converters
       div(*ngFor="let c of conversions")
-        converter(on-closed="onClosed($event)" bind-conversion="c")
+        converter-card(on-closed="onClosed($event)" bind-conversion="c")
 
 md-floating-action-button(*ngIf="ready" on-click="onAddClicked()" icon="add")

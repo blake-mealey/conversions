@@ -16,7 +16,7 @@ import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 
 import { AppComponent } from './components/app/app.component';
 import { ConverterListComponent } from './components/converter-list/converter-list.component';
-import { ConverterComponent } from './components/converter/converter.component';
+import { ConverterCardComponent } from './components/converter-card/converter-card.component';
 import { SkeletonConverterComponent } from './components/skeleton-converter/skeleton-converter.component';
 import { SkeletonConverterListCardComponent } from './components/skeleton-converter-list-card/skeleton-converter-list-card.component';
 import { PublicListsComponent } from './components/public-lists/public-lists.component';
@@ -64,7 +64,7 @@ const APP_PROVIDERS = [
     // Components
     AppComponent,
     ConverterListComponent,
-    ConverterComponent,
+    ConverterCardComponent,
     SkeletonConverterComponent,
     SkeletonConverterListCardComponent,
     PublicListsComponent,
