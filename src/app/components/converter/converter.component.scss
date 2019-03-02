@@ -6,7 +6,7 @@ $small-path-size: 12px / 2;
 $path-gap: 14px;
 
 @mixin path-circle($top) {
-  @apply .bg-grey-light .rounded-full .absolute;
+  @apply .bg-black-10 .rounded-full .absolute;
 
   content: '';
 
@@ -22,7 +22,7 @@ $path-gap: 14px;
 
   .header {
     @apply .flex .justify-between .items-center;
-    @apply .rounded-t .h-12 .bg-teal .pr-1 .pl-2 .text-white;
+    @apply .h-12 .pr-1 .pl-2;
 
     .title {
       @extend .typeface-h5;
@@ -34,28 +34,28 @@ $path-gap: 14px;
   }
 
   .body {
-    @apply .rounded-b .p-2 .pt-5;
+    @apply .p-2 .pb-0;
 
     .row {
       @apply .flex .items-center .mb-3;
 
       .path {
         @apply .flex .items-center .justify-center;
-        @apply .bg-grey .rounded-full .mr-2 .relative .select-none;
+        @apply .bg-black-30 .rounded-full .mr-2 .relative .select-none;
 
         width: $path-size;
         height: $path-size;
 
         .material-icons {
-          @apply .font-bold .text-grey .hidden;
+          @apply .font-bold .text-black-30 .hidden;
           font-size: $path-size + 4px;
 
           &:hover {
-            @apply .text-grey-dark;
+            @apply .text-black-50;
           }
 
           &:active {
-            @apply .text-grey-darker;
+            @apply .text-black-90;
           }
         }
 

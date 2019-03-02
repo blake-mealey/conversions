@@ -25,7 +25,7 @@ $skeleton-raised-button-width: 80px;
 
   .header {
     @apply .flex .justify-between .items-center;
-    @apply .rounded-t .h-12 .bg-grey-light .pr-1 .pl-2 .text-white;
+    @apply .rounded-t .h-12 .bg-grey-light .pr-1 .pl-2 .text-light;
 
     .title {
       @apply .typeface-h5 .font-bold;

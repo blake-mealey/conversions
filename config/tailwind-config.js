@@ -46,7 +46,55 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
   'transparent': 'transparent',
 
-  'black': '#22292f',
+  //region Text Colors
+  'dark': 'rgba(0, 0, 0, 0.87)',
+  'dark-md': 'rgba(0, 0, 0, 0.60)',
+  'dark-disabled': 'rgba(0, 0, 0, 0.38)',
+
+  'light': 'rgba(255, 255, 255, 1.00)',
+  'light-md': 'rgba(255, 255, 255, 0.70)',
+  'light-disabled': 'rgba(255, 255, 255, 0.50)',
+
+  'error': '#b00020',
+  //endregion
+
+  //region Shades
+  //region White
+  'white': '#ffffff',
+  'white-100': 'rgba(255, 255, 255, 1.00)',
+  'white-90': 'rgba(255, 255, 255, 0.90)',
+  'white-80': 'rgba(255, 255, 255, 0.80)',
+  'white-75': 'rgba(255, 255, 255, 0.75)',
+  'white-70': 'rgba(255, 255, 255, 0.70)',
+  'white-60': 'rgba(255, 255, 255, 0.60)',
+  'white-50': 'rgba(255, 255, 255, 0.50)',
+  'white-40': 'rgba(255, 255, 255, 0.40)',
+  'white-30': 'rgba(255, 255, 255, 0.30)',
+  'white-25': 'rgba(255, 255, 255, 0.25)',
+  'white-20': 'rgba(255, 255, 255, 0.20)',
+  'white-10': 'rgba(255, 255, 255, 0.10)',
+  'white-0': 'rgba(255, 255, 255, 0.00)',
+  //endregion
+
+  //region Black
+  'black': '#000000',
+  'black-100': 'rgba(0, 0, 0, 1.00)',
+  'black-90': 'rgba(0, 0, 0, 0.90)',
+  'black-80': 'rgba(0, 0, 0, 0.80)',
+  'black-75': 'rgba(0, 0, 0, 0.75)',
+  'black-70': 'rgba(0, 0, 0, 0.70)',
+  'black-60': 'rgba(0, 0, 0, 0.60)',
+  'black-50': 'rgba(0, 0, 0, 0.50)',
+  'black-40': 'rgba(0, 0, 0, 0.40)',
+  'black-30': 'rgba(0, 0, 0, 0.30)',
+  'black-25': 'rgba(0, 0, 0, 0.25)',
+  'black-20': 'rgba(0, 0, 0, 0.20)',
+  'black-10': 'rgba(0, 0, 0, 0.10)',
+  'black-5': 'rgba(0, 0, 0, 0.05)',
+  'black-0': 'rgba(0, 0, 0, 0.00)',
+  //endregion
+
+  //region Grey
   'grey-darkest': '#3d4852',
   'grey-darker': '#606f7b',
   'grey-dark': '#8795a1',
@@ -54,79 +102,18 @@ let colors = {
   'grey-light': '#dae1e7',
   'grey-lighter': '#f1f5f8',
   'grey-lightest': '#f8fafc',
-  'white': '#ffffff',
+  //endregion
+  //endregion
 
-  'red-darkest': '#3b0d0c',
-  'red-darker': '#621b18',
-  'red-dark': '#cc1f1a',
-  'red': '#e3342f',
-  'red-light': '#ef5753',
-  'red-lighter': '#f9acaa',
-  'red-lightest': '#fcebea',
+  //region App Colors
+  'primary-dark': '#008f85',
+  'primary': '#4dc0b5',
+  'primary-light': '#83f3e7',
 
-  'orange-darkest': '#462a16',
-  'orange-darker': '#613b1f',
-  'orange-dark': '#de751f',
-  'orange': '#f6993f',
-  'orange-light': '#faad63',
-  'orange-lighter': '#fcd9b6',
-  'orange-lightest': '#fff5eb',
-
-  'yellow-darkest': '#453411',
-  'yellow-darker': '#684f1d',
-  'yellow-dark': '#f2d024',
-  'yellow': '#ffed4a',
-  'yellow-light': '#fff382',
-  'yellow-lighter': '#fff9c2',
-  'yellow-lightest': '#fcfbeb',
-
-  'green-darkest': '#0f2f21',
-  'green-darker': '#1a4731',
-  'green-dark': '#1f9d55',
-  'green': '#38c172',
-  'green-light': '#51d88a',
-  'green-lighter': '#a2f5bf',
-  'green-lightest': '#e3fcec',
-
-  'teal-darkest': '#0d3331',
-  'teal-darker': '#20504f',
-  'teal-dark': '#38a89d',
-  'teal': '#4dc0b5',
-  'teal-light': '#64d5ca',
-  'teal-lighter': '#a0f0ed',
-  'teal-lightest': '#e8fffe',
-
-  'blue-darkest': '#12283a',
-  'blue-darker': '#1c3d5a',
-  'blue-dark': '#2779bd',
-  'blue': '#3490dc',
-  'blue-light': '#6cb2eb',
-  'blue-lighter': '#bcdefa',
-  'blue-lightest': '#eff8ff',
-
-  'indigo-darkest': '#191e38',
-  'indigo-darker': '#2f365f',
-  'indigo-dark': '#5661b3',
-  'indigo': '#6574cd',
-  'indigo-light': '#7886d7',
-  'indigo-lighter': '#b2b7ff',
-  'indigo-lightest': '#e6e8ff',
-
-  'purple-darkest': '#21183c',
-  'purple-darker': '#382b5f',
-  'purple-dark': '#794acf',
-  'purple': '#9561e2',
-  'purple-light': '#a779e9',
-  'purple-lighter': '#d6bbfc',
-  'purple-lightest': '#f3ebff',
-
-  'pink-darkest': '#451225',
-  'pink-darker': '#6f213f',
-  'pink-dark': '#eb5286',
-  'pink': '#f66d9b',
-  'pink-light': '#fa7ea8',
-  'pink-lighter': '#ffbbca',
-  'pink-lightest': '#ffebef',
+  'secondary-dark': '#00cbcc',
+  'secondary': '#18ffff',
+  'secondary-light': '#76ffff',
+  //endregion
 };
 
 module.exports = {
@@ -293,10 +280,19 @@ module.exports = {
   */
 
   leading: {
-    'none': 1,
-    'tight': 1.25,
-    'normal': 1.5,
-    'loose': 2,
+    'h1': '134px',
+    'h2': '84px',
+    'h3': '67px',
+    'h4': '48px',
+    'h5': '34px',
+    'h6': '28px',
+    's1': '22px',
+    's2': '20px',
+    'b1': '22px',
+    'b2': '20px',
+    'btn': '20px',
+    'cap': '17px',
+    'ovr': '14px'
   },
 
 
@@ -747,7 +743,7 @@ module.exports = {
   */
 
   shadows: {
-    default: '0 2px 4px 1px rgba(0,0,0,0.10)',
+    default: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 0 3px 0 rgba(0,0,0,.12)',
     'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
     'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',

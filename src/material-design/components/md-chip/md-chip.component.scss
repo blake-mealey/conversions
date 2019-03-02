@@ -7,7 +7,7 @@ $chip-spacing: 4px;
 
 .md-chip-component {
   @extend .typeface-s2;
-  @apply .font-regular .bg-teal .text-white .rounded-full .select-none;
+  @apply .font-regular .bg-primary .text-light .rounded-full .select-none;
   height: $chip-height;
   line-height: $chip-height;
   padding: 0 $chip-padding;

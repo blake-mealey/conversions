@@ -5,7 +5,7 @@
 
 html,
 body {
-  @apply .bg-white .text-black .m-0 .font-sans .h-full .overflow-hidden;
+  @apply .bg-white .text-dark .m-0 .font-sans .h-full .overflow-hidden;
   @extend .typeface-b1;
 
   ul, ol {

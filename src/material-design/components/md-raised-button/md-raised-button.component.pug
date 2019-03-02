@@ -1,6 +1,4 @@
-doctype html
-
-.md-raised-button-component(mdRipple)
+.md-raised-button-component(mdRipple="Light")
   span.material-icons.left(*ngIf="icon && !iconFloatRight") {{icon}}
   span {{text}}
   span.material-icons.right(*ngIf="icon && iconFloatRight") {{icon}}

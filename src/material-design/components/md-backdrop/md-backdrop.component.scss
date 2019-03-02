@@ -3,7 +3,7 @@
 
 .md-backdrop-component {
   @apply .h-full .flex .flex-col;
-  @apply .bg-teal;
+  @apply .bg-primary;
 
   .back-layer {
     @apply .p-4;
@@ -13,7 +13,7 @@
     @apply .bg-white .h-full .flex-1 .flex .flex-col .rounded-t-lg;
 
     .header {
-      @apply .mx-4 .mt-4 .pb-4 .border-b .border-grey-light;
+      @apply .mx-4 .mt-4 .pb-4 .border-b .border-black-10;
       @extend .typeface-s1;
     }
 
