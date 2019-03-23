@@ -7,15 +7,10 @@ import { AuthParameters } from 'app/models/auth-parameters';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserAuth } from 'app/models/user-auth';
 import { AuthSessionResult } from '../models/broadcast-messages/auth-session-result';
+import { SessionService } from './session.service';
 
 @Injectable()
 export class AuthService {
-
-  // TODO: SessionService
-  private static readonly STATE_TOKEN_SESSION_KEY = 'stateToken';
-  private static readonly NONCE_SESSION_KEY = 'nonce';
-  private static readonly IDENTITY_PROVIDER_SESSION_KEY = 'identityProvider';
-  private static readonly USER_AUTH_SESSION_KEY = 'userAuth';
 
   /**
    * Defines the default settings for the authentication popup
@@ -41,7 +36,8 @@ export class AuthService {
   private popupReference: any;
   private popupChannel: BroadcastChannel;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService,
+              private sessionService: SessionService) {
     this.userAuth = new BehaviorSubject<UserAuth>(this.getUserAuth());
     this.userAuth$ = this.userAuth.asObservable();
 
@@ -52,7 +48,7 @@ export class AuthService {
 
   private getUserAuth(): UserAuth {
     try {
-      return new UserAuth(JSON.parse(localStorage.getItem(AuthService.USER_AUTH_SESSION_KEY)));
+      return this.sessionService.getUserAuth();
     } catch (e) {
       return null;
     }
@@ -76,7 +72,7 @@ export class AuthService {
   public loginWithIdentityProvider(identityProvider: IdentityProvider): void {
     const url = this.getAuthorizationUrl(identityProvider);
 
-    sessionStorage.setItem(AuthService.IDENTITY_PROVIDER_SESSION_KEY, JSON.stringify(identityProvider));
+    this.sessionService.setIdentityProvider(identityProvider);
 
     if (!this.popupReference || this.popupReference.closed) {
       // Center the popup
@@ -124,11 +120,11 @@ export class AuthService {
    * @returns {Observable<UserAuth>} an observable of an authorization token
    */
   public getAuthToken(authResponse: AuthResponse): Observable<UserAuth> {
-    const nonce = sessionStorage.getItem(AuthService.NONCE_SESSION_KEY);
-    sessionStorage.removeItem(AuthService.NONCE_SESSION_KEY);
+    const nonce = this.sessionService.getNonce();
+    this.sessionService.clearNonce();
 
-    const identityProvider = new IdentityProvider(JSON.parse(sessionStorage.getItem(AuthService.IDENTITY_PROVIDER_SESSION_KEY)));
-    sessionStorage.removeItem(AuthService.IDENTITY_PROVIDER_SESSION_KEY);
+    const identityProvider = this.sessionService.getIdentityProvider();
+    this.sessionService.clearIdentityProvider();
 
     return this.apiService.getAuthToken(new AuthParameters({
       clientId: identityProvider.clientId,
@@ -144,7 +140,7 @@ export class AuthService {
    * @param userAuth the user auth to store in session storage
    */
   public finishAuthenticating(userAuth: UserAuth): void {
-    localStorage.setItem(AuthService.USER_AUTH_SESSION_KEY, JSON.stringify(userAuth));
+    this.sessionService.setUserAuth(userAuth);
     this.popupChannel.postMessage(new AuthSessionResult(true, null, userAuth));
   }
 
@@ -165,8 +161,8 @@ export class AuthService {
    * storage
    */
   private isValidStateToken(responseStateToken: string): boolean {
-    const stateToken = sessionStorage.getItem(AuthService.STATE_TOKEN_SESSION_KEY);
-    sessionStorage.removeItem(AuthService.STATE_TOKEN_SESSION_KEY);
+    const stateToken = this.sessionService.getStateToken();
+    this.sessionService.clearStateToken();
     return responseStateToken && stateToken === responseStateToken;
   }
 
@@ -180,11 +176,11 @@ export class AuthService {
   private getAuthorizationUrl(identityProvider: IdentityProvider): string {
     // Generate a state token and save it in session storage
     const stateToken = this.generateStateToken();
-    sessionStorage.setItem(AuthService.STATE_TOKEN_SESSION_KEY, stateToken);
+    this.sessionService.setStateToken(stateToken);
 
     // Genreate a nonce and save it in session storage
     const nonce = this.generateNonce();
-    sessionStorage.setItem(AuthService.NONCE_SESSION_KEY, nonce);
+    this.sessionService.setNonce(nonce);
 
     // Build and return the URL
     return new HttpRequest(null, identityProvider.authorizationEndpoint)
