@@ -20,7 +20,7 @@ export class BaseModel {
 
   private getOptionalProperty(name: string, type?: string, defaultValue?: any): any {
     let value = this.model[name];
-    if (value == undefined || value == null) {
+    if (value === undefined || value === null) {
       return defaultValue;
     }
     BaseModel.checkType(value, name, type);

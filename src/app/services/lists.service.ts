@@ -20,20 +20,13 @@ export class ListsService {
 
   constructor(private apiService: ApiService) {}
 
-  private addPublicList(list: SimpleConverterList): void {
-    if (this.publicListsMap[list.id]) return;
-
-    this.publicListsMap[list.id] = true;
-    this.publicLists.push(list);
-  }
-
   public getConverterLists(): Observable<Array<SimpleConverterList>> {
     return this.apiService.getLists(0, 10);
   }
 
   public loadNextPage(): void {
     // You cannot start loading the next page if a load is already in progress
-    if (this.loading.getValue()) return;
+    if (this.loading.getValue()) { return; }
 
     // Start loading the next page
     this.loading.next(true);
@@ -59,5 +52,12 @@ export class ListsService {
 
   public getConverterList(id: string): Observable<ConverterList> {
     return this.apiService.getList(id);
+  }
+
+  private addPublicList(list: SimpleConverterList): void {
+    if (this.publicListsMap[list.id]) { return; }
+
+    this.publicListsMap[list.id] = true;
+    this.publicLists.push(list);
   }
 }

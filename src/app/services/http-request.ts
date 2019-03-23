@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export class HttpRequest {
-  private parameters: Array<string> = [];
+  private parameters: string[] = [];
+  private data: any;
 
   constructor(private httpClient: HttpClient, private baseUrl: string) {
     this.baseUrl = baseUrl.endsWith('/') ? baseUrl.substring(0, baseUrl.length - 2) : baseUrl;
   }
 
-  public path(...path: Array<string>): HttpRequest {
-    let pathUrl = path.join('/');
+  public path(...path: string[]): HttpRequest {
+    const pathUrl = path.join('/');
     this.baseUrl += pathUrl.startsWith('/') ? pathUrl : '/' + pathUrl;
     return this;
   }
@@ -19,13 +20,28 @@ export class HttpRequest {
     return this;
   }
 
+  public body(data: any): HttpRequest {
+    this.data = data;
+    return this;
+  }
+
   public get(): Observable<any> {
     return this.request('get');
   }
 
-  private request(method: string): Observable<any> {
+  public post(): Observable<any> {
+    return this.request('post');
+  }
+
+  public toString(): string {
     let query = this.parameters.join('&');
     query = query ? '?' + query : '';
-    return this.httpClient.request(method, this.baseUrl + query);
+    return this.baseUrl + query;
+  }
+
+  private request(method: string): Observable<any> {
+    return this.httpClient.request(method, this.toString(), {
+      body: this.data
+    });
   }
 }

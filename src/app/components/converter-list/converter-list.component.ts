@@ -10,6 +10,8 @@ import { EMPTY, Observable } from 'rxjs';
 import { ConversionOutput } from '../../logic/conversion-output';
 import { SubscriberComponent } from '../../../app-common/components/subscriber-component';
 import { Routes } from '../../routes';
+import { AuthService } from 'app/services/auth.service';
+import { IdentityProvider } from 'app/models/identity-provider';
 
 @Component({
   selector: 'converter-list',
@@ -30,19 +32,28 @@ export class ConverterListComponent extends SubscriberComponent implements OnIni
   constructor(private userInputService: UserInputService,
               private unitsService: UnitsService,
               private listsService: ListsService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private authService: AuthService) {
     super();
+
+    this.authService.userAuth$.subscribe((userAuth) => {
+      if (userAuth) {
+        console.log(`Welcome, ${userAuth.displayName}!`);
+      } else {
+        console.log('The user is not logged in.');
+      }
+    });
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.subscriptions.push(this.unitsService.ready$.subscribe(value => {
       if (value) {
         this.init();
       }
     }));
   }
-  
-  init(): void {
+
+  public init(): void {
     this.converterList$ = this.activatedRoute.paramMap.pipe(
       switchMap((params: ParamMap) => {
         let id = params.get('id');
@@ -80,14 +91,21 @@ export class ConverterListComponent extends SubscriberComponent implements OnIni
     this.subscriptions.push(this.userInputService.registerHotkey('a', () => this.onAddClicked()));
   }
 
-  onAddClicked() {
+  public onAddClicked() {
     this.conversions.push(new Conversion(this.unitsService.unitTypes[0]));
   }
 
-  onClosed(conversion: Conversion) {
-    let index = this.conversions.indexOf(conversion);
+  public onClosed(conversion: Conversion) {
+    const index = this.conversions.indexOf(conversion);
     if (index > -1) {
       this.conversions.splice(index, 1);
     }
+  }
+
+  public onLoginClicked() {
+    this.authService.loginWithIdentityProvider(new IdentityProvider({
+      clientId: '965333333109-fsvv8gv885e5e3bksjvvsmq1k9jj19gc.apps.googleusercontent.com',
+      authorizationEndpoint: 'https://accounts.google.com/o/oauth2/v2/auth'
+    }));
   }
 }

@@ -12,6 +12,7 @@
     "node_modules/rxjs-tslint"
   ],
   "rules": {
+    "comment-format": [true, {"check-space": "never"}],
     "trailing-comma": [false, {"multiline": "always", "singleline": "never"}],
     "interface-name": [false, "always-prefix"],
     "component-class-suffix": true,
@@ -36,8 +37,7 @@
       "trace"
     ],
     "max-line-length": [
-      true,
-      100
+      false
     ],
     "no-string-literal": false,
     "no-use-before-declare": true,

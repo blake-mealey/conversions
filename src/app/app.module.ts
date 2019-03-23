@@ -21,10 +21,12 @@ import { SkeletonConverterCardComponent } from './components/skeleton-converter-
 import { SkeletonConverterListCardComponent } from './components/skeleton-converter-list-card/skeleton-converter-list-card.component';
 import { PublicListsComponent } from './components/public-lists/public-lists.component';
 import { ConverterListCardComponent } from './components/converter-list-card/converter-list-card.component';
+import { AuthRedirectComponent } from './components/auth-redirect/auth-redirect.component';
 
 import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton-shimmer.directive';
 
 import { ApiService } from './services/api.service';
+import { AuthService } from './services/auth.service';
 import { UnitsService } from './services/units.service';
 import { ListsService } from './services/lists.service';
 
@@ -69,6 +71,7 @@ const APP_PROVIDERS = [
     SkeletonConverterListCardComponent,
     PublicListsComponent,
     ConverterListCardComponent,
+    AuthRedirectComponent,
 
     // Directives
     SkeletonShimmerDirective
@@ -77,6 +80,7 @@ const APP_PROVIDERS = [
     environment.ENV_PROVIDERS,
 
     ApiService,
+    AuthService,
     UnitsService,
     ListsService,
 

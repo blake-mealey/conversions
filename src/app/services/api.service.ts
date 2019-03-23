@@ -7,19 +7,34 @@ import { CONVERSIONS_SERVER } from '../../../config/appsettings'
 import { ConverterList } from '../models/converter-list';
 import { HttpRequest } from './http-request';
 import { SimpleConverterList } from '../models/simple-converter-list';
+import { AuthParameters } from 'app/models/auth-parameters';
+import { UserAuth } from 'app/models/user-auth';
 
 /**
  * Handles all requests to the API, including converting raw data to models
  */
 @Injectable()
 export class ApiService {
-  constructor(private httpClient: HttpClient) {}
-
-  //region Helpers
-  private static handleError(err): ObservableInput<any> {
+  private static handleError(err: any): ObservableInput<any> {
     // TODO: Better error handling
     console.log(err);
     return EMPTY;
+  }
+
+  constructor(private httpClient: HttpClient) {}
+
+  //region Auth API
+  public getAuthToken(authParameters: AuthParameters) {
+    return new HttpRequest(this.httpClient, CONVERSIONS_SERVER)
+      .path('api', 'Auth', 'Token')
+      .body(authParameters)
+      .post()
+      .pipe(
+        map<any, UserAuth>((data) => {
+          return new UserAuth(data);
+        }),
+        catchError(ApiService.handleError));
+
   }
   //endregion
 
@@ -31,8 +46,8 @@ export class ApiService {
       .parameter('pageLength', pageLength)
       .get()
       .pipe(
-        map<any, Array<SimpleConverterList>>(data => {
-          return data.map(function (list) {
+        map<any, SimpleConverterList[]>((data) => {
+          return data.map(function(list: any) {
             return new SimpleConverterList(list);
           });
         }),
@@ -44,25 +59,24 @@ export class ApiService {
       .path('api', 'Lists', id)
       .get()
       .pipe(
-        map<any, ConverterList>(data => {
+        map<any, ConverterList>((data) => {
           return new ConverterList(data);
         }),
-        catchError(err => {
-          console.log(err);
-          return EMPTY;
-        }));
+        catchError(ApiService.handleError));
   }
   //endregion
 
   //region Units API
-  public getUnitTypes(): Observable<Array<UnitType>> {
+  public getUnitTypes(): Observable<UnitType[]> {
     return new HttpRequest(this.httpClient, CONVERSIONS_SERVER)
       .path('api', 'Conversions', 'Types', 'ConversionGraphs')
       .get()
       .pipe(
-        map<any, Array<UnitType>>(data => {
-          return data.map(function (unitTypeConversionGraphModel) {
-            return new UnitType(unitTypeConversionGraphModel.unitType, unitTypeConversionGraphModel.conversionGraph);
+        map<any, UnitType[]>((data) => {
+          return data.map(function(unitTypeConversionGraphModel: any) {
+            return new UnitType(
+              unitTypeConversionGraphModel.unitType,
+              unitTypeConversionGraphModel.conversionGraph);
           });
         }),
         catchError(ApiService.handleError));
