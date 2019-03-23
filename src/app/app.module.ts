@@ -25,6 +25,7 @@ import { AuthRedirectComponent } from './components/auth-redirect/auth-redirect.
 
 import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton-shimmer.directive';
 
+import { SessionService } from './services/session.service';
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 import { UnitsService } from './services/units.service';
@@ -79,6 +80,7 @@ const APP_PROVIDERS = [
   providers: [
     environment.ENV_PROVIDERS,
 
+    SessionService,
     ApiService,
     AuthService,
     UnitsService,
