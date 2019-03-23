@@ -43,7 +43,7 @@ export class AuthService {
 
     this.popupChannel = new BroadcastChannel('auth-session');
     this.popupChannel.onmessage = (result: MessageEvent) =>
-      this.handleAuthSessionResult(<AuthSessionResult>result.data);
+      this.handleAuthSessionResult(<UserAuth | string>result.data);
   }
 
   private getUserAuth(): UserAuth {
@@ -54,11 +54,11 @@ export class AuthService {
     }
   }
 
-  private handleAuthSessionResult(result: AuthSessionResult): void {
-    if (result.success) {
-      this.userAuth.next(result.userAuth);
+  private handleAuthSessionResult(result: UserAuth | string): void {
+    if (result instanceof UserAuth) {
+      this.userAuth.next(result);
     } else {
-      this.authenticationError();
+      this.authenticationError(result);
     }
     this.popupReference.close();
     this.popupReference = null;
@@ -101,12 +101,12 @@ export class AuthService {
     // TODO: Check for error code/message in auth response
 
     if (!this.isValidStateToken(authResponse.state)) {
-      this.authenticationError();
+      this.authenticationError('The state token does not match.');
       return false;
     }
 
     if (!authResponse.code) {
-      this.authenticationError();
+      this.authenticationError('No authorization code.');
       return false;
     }
 
@@ -148,7 +148,8 @@ export class AuthService {
    * Closes the authentication popup.
    * TODO: display an error somewhere
    */
-  public authenticationError(): void {
+  public authenticationError(message: string): void {
+    console.error(message);
     if (this.popupReference) {
       this.popupReference.close();
     } else {

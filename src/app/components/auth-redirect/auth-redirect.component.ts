@@ -22,7 +22,7 @@ export class AuthRedirectComponent implements OnInit {
     try {
       authResponse = new AuthResponse(this.route.snapshot.queryParams);
     } catch {
-      this.authService.authenticationError();
+      this.authService.authenticationError('Invalid auth response :(');
     }
 
     if (!this.authService.validateAuthResponse(authResponse)) {
