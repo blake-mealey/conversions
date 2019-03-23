@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { IdentityProvider } from 'app/models/identity-provider';
-import { HttpRequest } from './http-request';
+import { HttpRequest } from '../http-request';
 import { AuthResponse } from 'app/models/auth-response';
-import { ApiService } from './api.service';
+import { ApiService } from '../api.service';
 import { AuthParameters } from 'app/models/auth-parameters';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserAuth } from 'app/models/user-auth';
 import { AuthSessionResult } from '../models/broadcast-messages/auth-session-result';
-import { SessionService } from './session.service';
+import { SessionService } from '../session.service';
 
 @Injectable()
 export class AuthService {

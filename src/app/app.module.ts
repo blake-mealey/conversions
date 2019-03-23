@@ -27,7 +27,7 @@ import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton
 
 import { SessionService } from './services/session.service';
 import { ApiService } from './services/api.service';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service';
 import { UnitsService } from './services/units.service';
 import { ListsService } from './services/lists.service';
 

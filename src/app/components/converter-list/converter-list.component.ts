@@ -10,7 +10,7 @@ import { EMPTY, Observable } from 'rxjs';
 import { ConversionOutput } from '../../logic/conversion-output';
 import { SubscriberComponent } from '../../../app-common/components/subscriber-component';
 import { Routes } from '../../routes';
-import { AuthService } from 'app/services/auth.service';
+import { AuthService } from 'app/services/auth/auth.service';
 import { IdentityProvider } from 'app/models/identity-provider';
 
 @Component({
