@@ -24,7 +24,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
   //region Auth API
-  public getAuthToken(authParameters: AuthParameters) {
+  public getAuthToken(authParameters: AuthParameters): Observable<UserAuth> {
     return new HttpRequest(this.httpClient, CONVERSIONS_SERVER)
       .path('api', 'Auth', 'Token')
       .body(authParameters)

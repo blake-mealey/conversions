@@ -1,67 +1,31 @@
 import { Injectable } from '@angular/core';
 import { IdentityProvider } from 'app/models/identity-provider';
 import { HttpRequest } from '../http-request';
-import { AuthResponse } from 'app/models/auth-response';
 import { ApiService } from '../api.service';
-import { AuthParameters } from 'app/models/auth-parameters';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserAuth } from 'app/models/user-auth';
-import { AuthSessionResult } from '../models/broadcast-messages/auth-session-result';
 import { SessionService } from '../session.service';
+import { AuthWindow } from './auth-window';
 
 @Injectable()
 export class AuthService {
-
-  /**
-   * Defines the default settings for the authentication popup
-   */
-  private readonly popupProperties = {
-    width: 605,
-    height: 600,
-    top: 0,
-    left: 0,
-    resizable: 'no',
-    scrollbars: 'no',
-    toolbar: 'no',
-    menubar: 'no',
-    location: 'no',
-    status: 'yes',
-    centerscreen: 'yes',
-    chrome: 'yes'
-  };
-
   private userAuth: BehaviorSubject<UserAuth>;
   public userAuth$: Observable<UserAuth>;
 
-  private popupReference: any;
-  private popupChannel: BroadcastChannel;
+  private authWindow: AuthWindow;
 
   constructor(private apiService: ApiService,
               private sessionService: SessionService) {
-    this.userAuth = new BehaviorSubject<UserAuth>(this.getUserAuth());
+    this.userAuth = new BehaviorSubject<UserAuth>(this.getUserAuthFromSessionStorage());
     this.userAuth$ = this.userAuth.asObservable();
-
-    this.popupChannel = new BroadcastChannel('auth-session');
-    this.popupChannel.onmessage = (result: MessageEvent) =>
-      this.handleAuthSessionResult(<UserAuth | string>result.data);
   }
 
-  private getUserAuth(): UserAuth {
+  private getUserAuthFromSessionStorage(): UserAuth {
     try {
       return this.sessionService.getUserAuth();
     } catch (e) {
       return null;
     }
-  }
-
-  private handleAuthSessionResult(result: UserAuth | string): void {
-    if (result instanceof UserAuth) {
-      this.userAuth.next(result);
-    } else {
-      this.authenticationError(result);
-    }
-    this.popupReference.close();
-    this.popupReference = null;
   }
 
   /**
@@ -70,78 +34,21 @@ export class AuthService {
    * @param identityProvider the identity provider to authenticate with
    */
   public loginWithIdentityProvider(identityProvider: IdentityProvider): void {
-    const url = this.getAuthorizationUrl(identityProvider);
-
     this.sessionService.setIdentityProvider(identityProvider);
 
-    if (!this.popupReference || this.popupReference.closed) {
-      // Center the popup
-      this.popupProperties.top = 0.5 * (window.screen.height - this.popupProperties.height);
-      this.popupProperties.left = 0.5 * (window.screen.width - this.popupProperties.width);
+    const url = this.getAuthorizationUrl(identityProvider);
 
-      // Serialize the popup properties
-      const properties = Object.keys(this.popupProperties).reduce(
-        (acc, key) => acc.concat(`${key}=${this.popupProperties[key]}`), []).join(',');
-
-      // Show the popup
-      this.popupReference = window.open(url, 'popUpWindow', properties);
+    if (!this.authWindow || this.authWindow.closed) {
+      this.authWindow = new AuthWindow(this.sessionService, url);
+      this.authWindow.userAuth$.subscribe((userAuth: UserAuth) => {
+        this.userAuth.next(userAuth);
+        this.sessionService.setUserAuth(userAuth);
+      }, (message: string) => {
+        this.authenticationError(message);
+      });
     } else {
-      // Focus the existing popup
-      this.popupReference.focus();
+      this.authWindow.focus();
     }
-  }
-
-  /**
-   * Validates the auth response from the auth redirect handler
-   *
-   * @param authResponse the response from the identity provider after authenticating
-   * @returns whether or not the response is valid
-   */
-  public validateAuthResponse(authResponse: AuthResponse): boolean {
-    // TODO: Check for error code/message in auth response
-
-    if (!this.isValidStateToken(authResponse.state)) {
-      this.authenticationError('The state token does not match.');
-      return false;
-    }
-
-    if (!authResponse.code) {
-      this.authenticationError('No authorization code.');
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
-   * Gets an authorization token
-   *
-   * @param authResponse the response from the identity provider after the user authenticated with them
-   * @returns {Observable<UserAuth>} an observable of an authorization token
-   */
-  public getAuthToken(authResponse: AuthResponse): Observable<UserAuth> {
-    const nonce = this.sessionService.getNonce();
-    this.sessionService.clearNonce();
-
-    const identityProvider = this.sessionService.getIdentityProvider();
-    this.sessionService.clearIdentityProvider();
-
-    return this.apiService.getAuthToken(new AuthParameters({
-      clientId: identityProvider.clientId,
-      redirectUri: this.getRedirectUri(),
-      code: authResponse.code,
-      nonce,
-    }));
-  }
-
-  /**
-   * Stores the user auth in session storage and closes the window (which is the popup)
-   *
-   * @param userAuth the user auth to store in session storage
-   */
-  public finishAuthenticating(userAuth: UserAuth): void {
-    this.sessionService.setUserAuth(userAuth);
-    this.popupChannel.postMessage(new AuthSessionResult(true, null, userAuth));
   }
 
   /**
@@ -150,21 +57,9 @@ export class AuthService {
    */
   public authenticationError(message: string): void {
     console.error(message);
-    if (this.popupReference) {
-      this.popupReference.close();
-    } else {
-      this.popupChannel.postMessage(new AuthSessionResult(false, '', null));
+    if (this.authWindow) {
+      this.authWindow.close();
     }
-  }
-
-  /**
-   * @returns whether or not the response state token exists and matches the one stored in session
-   * storage
-   */
-  private isValidStateToken(responseStateToken: string): boolean {
-    const stateToken = this.sessionService.getStateToken();
-    this.sessionService.clearStateToken();
-    return responseStateToken && stateToken === responseStateToken;
   }
 
   /**
@@ -179,7 +74,7 @@ export class AuthService {
     const stateToken = this.generateStateToken();
     this.sessionService.setStateToken(stateToken);
 
-    // Genreate a nonce and save it in session storage
+    // Generate a nonce and save it in session storage
     const nonce = this.generateNonce();
     this.sessionService.setNonce(nonce);
 
@@ -188,7 +83,7 @@ export class AuthService {
       .parameter('client_id', identityProvider.clientId)
       .parameter('response_type', 'code')
       .parameter('scope', 'openid profile')
-      .parameter('redirect_uri', this.getRedirectUri())
+      .parameter('redirect_uri', AuthService.getRedirectUri())
       .parameter('state', stateToken)
       .parameter('nonce', nonce)
       .toString();
@@ -197,10 +92,11 @@ export class AuthService {
   /**
    * @returns {string} the redirect URI relative to the current URL's origin
    */
-  private getRedirectUri(): string {
+  public static getRedirectUri(): string {
     return window.location.origin + '/auth/redirect';
   }
 
+  //region Random values
   /**
    * Generates a random string using characters from a charset with a given length
    *
@@ -211,7 +107,7 @@ export class AuthService {
   private generateRandomString(charset: string, length: number): string {
     const result = [];
     window.crypto.getRandomValues(new Uint8Array(length)).forEach((c) =>
-        result.push(charset[c % charset.length]));
+      result.push(charset[c % charset.length]));
     return result.join('');
   }
 
@@ -229,4 +125,5 @@ export class AuthService {
     return this.generateRandomString(
       '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~', 32);
   }
+  //endregion
 }
