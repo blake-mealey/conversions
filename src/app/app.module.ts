@@ -15,6 +15,7 @@ import { ROUTES } from './app.routes';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 
 import { AppComponent } from './components/app/app.component';
+import { ModalOutletComponent } from './components/modal-outlet/modal-outlet.component';
 import { ConverterListComponent } from './components/converter-list/converter-list.component';
 import { ConverterCardComponent } from './components/converter-card/converter-card.component';
 import { SkeletonConverterCardComponent } from './components/skeleton-converter-card/skeleton-converter-card.component';
@@ -23,8 +24,10 @@ import { PublicListsComponent } from './components/public-lists/public-lists.com
 import { ConverterListCardComponent } from './components/converter-list-card/converter-list-card.component';
 import { AuthRedirectComponent } from './components/auth-redirect/auth-redirect.component';
 
+import { ModalOutletHostDirective } from './components/modal-outlet/modal-outlet-host.directive';
 import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton-shimmer.directive';
 
+import { ModalService } from './services/modal.service';
 import { SessionService } from './services/session.service';
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth/auth.service';
@@ -66,6 +69,7 @@ const APP_PROVIDERS = [
   declarations: [
     // Components
     AppComponent,
+    ModalOutletComponent,
     ConverterListComponent,
     ConverterCardComponent,
     SkeletonConverterCardComponent,
@@ -75,11 +79,13 @@ const APP_PROVIDERS = [
     AuthRedirectComponent,
 
     // Directives
+    ModalOutletHostDirective,
     SkeletonShimmerDirective
   ],
   providers: [
     environment.ENV_PROVIDERS,
 
+    ModalService,
     SessionService,
     ApiService,
     AuthService,
@@ -87,6 +93,8 @@ const APP_PROVIDERS = [
     ListsService,
 
     APP_PROVIDERS
+  ],
+  entryComponents: [
   ]
 })
 export class AppModule {}

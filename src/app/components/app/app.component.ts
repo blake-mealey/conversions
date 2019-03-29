@@ -1,16 +1,9 @@
-/**
- * Angular 2 decorators and services
- */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UnitsService } from '../../services/units.service';
 import { Routes } from '../../routes';
 
 export const ROOT_SELECTOR = 'app';
 
-/**
- * App Component
- * Top Level Component
- */
 @Component({
   selector: ROOT_SELECTOR,
   encapsulation: ViewEncapsulation.None,

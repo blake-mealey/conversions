@@ -8,6 +8,10 @@ export class SubscriberComponent implements OnDestroy{
     this.subscriptions = [];
   }
 
+  protected addSubscription(subscription: Subscription): void {
+    this.subscriptions.push(subscription);
+  }
+
   ngOnDestroy(): void {
     for (let subscription of this.subscriptions) {
       subscription.unsubscribe();
