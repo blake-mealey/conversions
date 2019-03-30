@@ -20,6 +20,10 @@ $icon-margin-outer: -4px;
 
   @include transition();
 
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
   .material-icons {
     font-size: 18px;
 

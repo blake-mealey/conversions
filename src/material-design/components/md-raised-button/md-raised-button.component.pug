@@ -1,4 +1,4 @@
-.md-raised-button-component(mdRipple="Light")
+.md-raised-button-component(mdRipple="Light" bind-ngClass="{'uppercase': !allowLowercase}")
   span.material-icons.left(*ngIf="icon && !iconFloatRight") {{icon}}
   span {{text}}
   span.material-icons.right(*ngIf="icon && iconFloatRight") {{icon}}
