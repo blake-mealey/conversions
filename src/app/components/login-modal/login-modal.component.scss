@@ -1,0 +1,5 @@
+@import 'src/styles/tailwind';
+
+.login-modal-component {
+  @apply .rounded .bg-white .p-2;
+}

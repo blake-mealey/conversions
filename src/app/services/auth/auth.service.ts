@@ -79,7 +79,7 @@ export class AuthService {
     this.sessionService.setNonce(nonce);
 
     // Build and return the URL
-    return new HttpRequest(null, identityProvider.authorizationEndpoint)
+    return new HttpRequest(null, identityProvider.authorizeUrl)
       .parameter('client_id', identityProvider.clientId)
       .parameter('response_type', 'code')
       .parameter('scope', 'openid profile')

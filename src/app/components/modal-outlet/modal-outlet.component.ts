@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ComponentFactoryResolver, ComponentRef, ElementRef, OnInit,
   QueryList,
@@ -29,7 +29,8 @@ export class ModalOutletComponent extends SubscriberComponent implements OnInit,
 
   constructor(private elementRef: ElementRef,
               private modalService: ModalService,
-              private componentFactoryResolver: ComponentFactoryResolver) {
+              private componentFactoryResolver: ComponentFactoryResolver,
+              private changeDetectorRef: ChangeDetectorRef) {
     super();
   }
 
@@ -48,6 +49,7 @@ export class ModalOutletComponent extends SubscriberComponent implements OnInit,
   }
 
   private updateModalHost(hosts: QueryList<ModalOutletHostDirective>): void {
+    if (!hosts) { return; }
     this.modalHost = hosts.first;
     this.loadComponent();
   }
@@ -71,9 +73,17 @@ export class ModalOutletComponent extends SubscriberComponent implements OnInit,
     // Initialize the component instance
     const componentInstance = (<ModalComponent>this.componentRef.instance);
     componentInstance.data = this.componentModel.data;
-    componentInstance.result.subscribe((result: any) => {
-      this.modalService.closeModal(result);
-    });
+    if (componentInstance.result) {
+      componentInstance.result.subscribe((result: any) => {
+        this.modalService.closeModal(result);
+      });
+    } else {
+      console.warn('The modal component instance\'s `result` EventEmitter is undefined. ' +
+        'Result events will not be captured.');
+    }
+
+    // Tell Angular to re-check for changes because we manually set the data on the component instance
+    this.changeDetectorRef.detectChanges();
   }
 
   public onOverlayClicked(event) {

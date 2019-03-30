@@ -32,10 +32,10 @@ export class ModalService {
   }
 
   public closeModal(result: any = null) {
-    if (this.currentSubscriber) {
-      // Tell the modal component outlet to close the modal
-      this.modalComponent.next(null);
+    // Tell the modal component outlet to close the modal
+    this.modalComponent.next(null);
 
+    if (this.currentSubscriber) {
       // Let the subscriber to the modal know that the modal closed with whatever result we have
       this.currentSubscriber.next(result);
       this.currentSubscriber.complete();

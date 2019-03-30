@@ -1,0 +1,2 @@
+.login-modal-component
+  md-list-button(*ngFor="let i of data.identityProviders" on-click="result.emit(i)" bind-text="'Sign in with ' + i.displayName" bind-image="i.iconUrl" isLight="true")

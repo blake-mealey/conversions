@@ -10,8 +10,6 @@ import { EMPTY, Observable } from 'rxjs';
 import { ConversionOutput } from '../../logic/conversion-output';
 import { SubscriberComponent } from '../../../app-common/components/subscriber-component';
 import { Routes } from '../../routes';
-import { AuthService } from 'app/services/auth/auth.service';
-import { IdentityProvider } from 'app/models/identity-provider';
 
 @Component({
   selector: 'converter-list',
@@ -32,17 +30,8 @@ export class ConverterListComponent extends SubscriberComponent implements OnIni
   constructor(private userInputService: UserInputService,
               private unitsService: UnitsService,
               private listsService: ListsService,
-              private activatedRoute: ActivatedRoute,
-              private authService: AuthService) {
+              private activatedRoute: ActivatedRoute) {
     super();
-
-    this.authService.userAuth$.subscribe((userAuth) => {
-      if (userAuth) {
-        console.log(`Welcome, ${userAuth.displayName}!`);
-      } else {
-        console.log('The user is not logged in.');
-      }
-    });
   }
 
   public ngOnInit(): void {
@@ -100,12 +89,5 @@ export class ConverterListComponent extends SubscriberComponent implements OnIni
     if (index > -1) {
       this.conversions.splice(index, 1);
     }
-  }
-
-  public onLoginClicked() {
-    this.authService.loginWithIdentityProvider(new IdentityProvider({
-      clientId: '965333333109-fsvv8gv885e5e3bksjvvsmq1k9jj19gc.apps.googleusercontent.com',
-      authorizationEndpoint: 'https://accounts.google.com/o/oauth2/v2/auth'
-    }));
   }
 }

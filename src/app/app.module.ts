@@ -23,6 +23,9 @@ import { SkeletonConverterListCardComponent } from './components/skeleton-conver
 import { PublicListsComponent } from './components/public-lists/public-lists.component';
 import { ConverterListCardComponent } from './components/converter-list-card/converter-list-card.component';
 import { AuthRedirectComponent } from './components/auth-redirect/auth-redirect.component';
+import { UserAuthComponent } from './components/user-auth/user-auth.component';
+
+import { LoginModalComponent } from './components/login-modal/login-modal.component';
 
 import { ModalOutletHostDirective } from './components/modal-outlet/modal-outlet-host.directive';
 import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton-shimmer.directive';
@@ -77,6 +80,8 @@ const APP_PROVIDERS = [
     PublicListsComponent,
     ConverterListCardComponent,
     AuthRedirectComponent,
+    UserAuthComponent,
+    LoginModalComponent,
 
     // Directives
     ModalOutletHostDirective,
@@ -95,6 +100,7 @@ const APP_PROVIDERS = [
     APP_PROVIDERS
   ],
   entryComponents: [
+    LoginModalComponent
   ]
 })
 export class AppModule {}
