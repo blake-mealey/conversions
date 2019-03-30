@@ -5,6 +5,8 @@
 $border-radius: 16px;
 $backdrop-padding: 16px;
 
+$action-button-spacing: 24px - (36px - 24px);
+
 $app-bar-height: 56px;
 $app-bar-menu-button-spacing: 24px;
 
@@ -26,8 +28,14 @@ $app-bar-menu-button-spacing: 24px;
         display: none;
       }
 
-      .actions {
+      /deep/ .actions {
+        @apply .flex .items-center;
+
         margin-left: auto;
+
+        & > * {
+          margin-left: $action-button-spacing;
+        }
       }
     }
 

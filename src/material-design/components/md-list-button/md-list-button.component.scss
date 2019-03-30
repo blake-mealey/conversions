@@ -25,7 +25,8 @@ $spacing: (56px - $height) / 2;
     margin-right: $icon-spacing;
   }
 
-  img {
+  .image {
+    @apply .rounded-full .bg-cover;
     width: $icon-size;
     height: $icon-size;
     margin-right: $icon-spacing;

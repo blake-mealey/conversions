@@ -9,20 +9,20 @@ export class SessionService {
 
   //region Helpers
   private set(key: string, value: any): void {
-    sessionStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
   private get(key: string): any {
-    return JSON.parse(sessionStorage.getItem(key));
+    return JSON.parse(localStorage.getItem(key));
   }
 
   private remove(key: string): void {
-    sessionStorage.removeItem(key);
+    localStorage.removeItem(key);
   }
   //endregion
 
   public clear(): void {
-    sessionStorage.clear();
+    localStorage.clear();
   }
 
   //region Properties

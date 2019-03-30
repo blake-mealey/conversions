@@ -5,6 +5,7 @@ import { ModalService } from '../../services/modal.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { filter } from 'rxjs/operators';
 import { ApiService } from '../../services/api.service';
+import { UserAuth } from '../../models/user-auth';
 
 @Component({
   selector: 'user-auth',
@@ -17,21 +18,20 @@ export class UserAuthComponent implements OnInit {
 
   private identityProviders: IdentityProvider[];
 
+  public userAuth: UserAuth;
+
   constructor(private authService: AuthService,
               private modalService: ModalService,
               private apiService: ApiService) {
-    this.apiService.getIdentityProviders().subscribe((identityProviders) => {
-      this.identityProviders = identityProviders;
-    });
   }
 
   public ngOnInit() {
+    this.apiService.getIdentityProviders().subscribe((identityProviders) => {
+      this.identityProviders = identityProviders;
+    });
+
     this.authService.userAuth$.subscribe((userAuth) => {
-      if (userAuth) {
-        console.log(`Welcome, ${userAuth.displayName}!`);
-      } else {
-        console.log('The user is not logged in.');
-      }
+      this.userAuth = userAuth;
     });
   }
 

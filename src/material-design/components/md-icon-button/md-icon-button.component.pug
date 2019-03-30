@@ -1,3 +1,4 @@
 .md-icon-button-component(on-click="onClick()" bind-mdRipple="rippleColor || 'Dark'")
-  span.material-icons {{icon}}
+  span.material-icons(*ngIf="icon") {{icon}}
+  span.image(*ngIf="image" bind-ngStyle="{ 'background-image': 'url(' + image + ')' }")
 ng-content

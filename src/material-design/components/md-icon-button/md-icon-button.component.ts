@@ -10,6 +10,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class MdIconButtonComponent {
 
   @Input() icon: string;
+  @Input() image: string;
   @Input() rippleColor: string;
   @Output() buttonClick = new EventEmitter();
 

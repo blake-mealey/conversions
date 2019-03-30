@@ -11,6 +11,7 @@ import { MenuItem } from '../md-menu/menu-item';
 export class MdIconButtonMenuComponent implements OnInit {
 
   @Input() icon: string;
+  @Input() image: string;
 
   @Input() open: boolean = false;
   @Input() items: Array<MenuItem>;
