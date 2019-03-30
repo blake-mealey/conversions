@@ -25,11 +25,29 @@ $spacing: (56px - $height) / 2;
     margin-right: $icon-spacing;
   }
 
+  img {
+    width: $icon-size;
+    height: $icon-size;
+    margin-right: $icon-spacing;
+  }
+
   &:hover {
-    @apply .bg-white-10 text-light;
+    @apply .bg-white-10 .text-light;
   }
 
   &.active {
-    @apply .bg-white-20 text-light;
+    @apply .bg-white-20 .text-light;
+  }
+
+  &.light {
+    @apply .text-dark;
+
+    &:hover {
+      @apply .bg-black-10;
+    }
+
+    &:active {
+      @apply .bg-black-20;
+    }
   }
 }

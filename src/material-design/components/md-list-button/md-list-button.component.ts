@@ -12,9 +12,12 @@ export class MdListButtonComponent {
   @Input() text: string;
 
   @Input() icon: string;
+  @Input() image: string;
   @Input() iconFloatRight: boolean;
 
   @Input() selected: boolean;
+
+  @Input() isLight: boolean;
 
   constructor() {}
 
