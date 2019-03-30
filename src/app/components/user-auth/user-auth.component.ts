@@ -6,6 +6,11 @@ import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { filter } from 'rxjs/operators';
 import { ApiService } from '../../services/api.service';
 import { UserAuth } from '../../models/user-auth';
+import { MenuItem } from '../../../material-design/components/md-menu/menu-item';
+
+enum ProfileMenuItem {
+  LOGOUT
+}
 
 @Component({
   selector: 'user-auth',
@@ -20,9 +25,12 @@ export class UserAuthComponent implements OnInit {
 
   public userAuth: UserAuth;
 
+  public profileMenuItems: MenuItem[];
+
   constructor(private authService: AuthService,
               private modalService: ModalService,
               private apiService: ApiService) {
+    this.profileMenuItems = [new MenuItem(ProfileMenuItem.LOGOUT, 'Logout')];
   }
 
   public ngOnInit() {

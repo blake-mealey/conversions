@@ -2,7 +2,7 @@
   .back-layer
     .app-bar
       md-icon-button.menu-button(*ngIf="navigationItems" on-buttonClick="onMenuButtonClicked()" bind-icon="menuOpen ? 'close' : 'menu'" rippleColor="Light")
-      h6 {{title}}
+      h6 {{pageTitle}}
       ng-content(*ngIf="!menuOpen" select=".actions")
     .navigation-menu(*ngIf="menuOpen")
       md-list-button(*ngFor="let i of navigationItems" bind-selected="i.isActive(router)"

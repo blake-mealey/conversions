@@ -34,7 +34,7 @@ export class MdBackdropComponent {
 
   @Input() navigationItems: Array<NavigationItem>;
 
-  @Input() title: string;
+  @Input() pageTitle: string;
   @Input() subtitle: string;
 
   menuOpen: boolean;
