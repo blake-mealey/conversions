@@ -4,6 +4,7 @@ import { IdentityProvider } from '../../models/identity-provider';
 import { ModalService } from '../../services/modal.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { filter } from 'rxjs/operators';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'user-auth',
@@ -14,8 +15,14 @@ import { filter } from 'rxjs/operators';
 })
 export class UserAuthComponent implements OnInit {
 
+  private identityProviders: IdentityProvider[];
+
   constructor(private authService: AuthService,
-              private modalService: ModalService) {
+              private modalService: ModalService,
+              private apiService: ApiService) {
+    this.apiService.getIdentityProviders().subscribe((identityProviders) => {
+      this.identityProviders = identityProviders;
+    });
   }
 
   public ngOnInit() {
@@ -29,14 +36,7 @@ export class UserAuthComponent implements OnInit {
   }
 
   public onLoginClicked(): void {
-    let identityProviders = [new IdentityProvider({
-      clientId: '965333333109-fsvv8gv885e5e3bksjvvsmq1k9jj19gc.apps.googleusercontent.com',
-      displayName: 'Google',
-      iconUrl: 'https://banner2.kisspng.com/20180324/sww/kisspng-google-logo-g-suite-chrome-5ab6e618b3b2c3.5810634915219358967361.jpg',
-      authorizeUrl: 'https://accounts.google.com/o/oauth2/v2/auth'
-    })];
-
-    this.modalService.showModal(LoginModalComponent, { identityProviders: identityProviders })
+    this.modalService.showModal(LoginModalComponent, { identityProviders: this.identityProviders })
       .pipe(filter(Boolean)).subscribe((identityProvider) => {
         this.authService.loginWithIdentityProvider(identityProvider);
       });

@@ -9,6 +9,7 @@ import { HttpRequest } from './http-request';
 import { SimpleConverterList } from '../models/simple-converter-list';
 import { AuthParameters } from 'app/models/auth-parameters';
 import { UserAuth } from 'app/models/user-auth';
+import { IdentityProvider } from '../models/identity-provider';
 
 /**
  * Handles all requests to the API, including converting raw data to models
@@ -34,7 +35,19 @@ export class ApiService {
           return new UserAuth(data);
         }),
         catchError(ApiService.handleError));
+  }
 
+  public getIdentityProviders(): Observable<IdentityProvider[]> {
+    return new HttpRequest(this.httpClient, CONVERSIONS_SERVER)
+      .path('api', 'auth', 'IdentityProviders')
+      .get()
+      .pipe(
+        map<any, IdentityProvider[]>((data) => {
+          return data.map(function(identityProviderModel: any) {
+            return new IdentityProvider(identityProviderModel);
+          });
+        }),
+        catchError(ApiService.handleError));
   }
   //endregion
 
