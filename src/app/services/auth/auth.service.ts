@@ -18,6 +18,9 @@ export class AuthService {
               private sessionService: SessionService) {
     this.userAuth = new BehaviorSubject<UserAuth>(this.getUserAuthFromSessionStorage());
     this.userAuth$ = this.userAuth.asObservable();
+
+    this.userAuth$.subscribe((userAuth) =>
+      this.sessionService.setUserAuth(userAuth));
   }
 
   private getUserAuthFromSessionStorage(): UserAuth {
@@ -42,13 +45,20 @@ export class AuthService {
       this.authWindow = new AuthWindow(this.sessionService, url);
       this.authWindow.userAuth$.subscribe((userAuth: UserAuth) => {
         this.userAuth.next(userAuth);
-        this.sessionService.setUserAuth(userAuth);
       }, (message: string) => {
         this.authenticationError(message);
       });
     } else {
       this.authWindow.focus();
     }
+  }
+
+  /**
+   * Logs out the user if they are logged in
+   */
+  public logout() {
+    // TODO: Revoke the token on the server
+    this.userAuth.next(null);
   }
 
   /**

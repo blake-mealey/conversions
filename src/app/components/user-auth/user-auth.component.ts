@@ -3,10 +3,11 @@ import { AuthService } from '../../services/auth/auth.service';
 import { IdentityProvider } from '../../models/identity-provider';
 import { ModalService } from '../../services/modal.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
-import { filter } from 'rxjs/operators';
+import { filter, share } from 'rxjs/operators';
 import { ApiService } from '../../services/api.service';
 import { UserAuth } from '../../models/user-auth';
 import { MenuItem } from '../../../material-design/components/md-menu/menu-item';
+import { Observable } from 'rxjs';
 
 enum ProfileMenuItem {
   SIGN_OUT
@@ -23,7 +24,7 @@ export class UserAuthComponent implements OnInit {
 
   private identityProviders: IdentityProvider[];
 
-  public userAuth: UserAuth;
+  public userAuth: Observable<UserAuth>;
 
   public profileMenuItems: MenuItem[];
 
@@ -38,9 +39,7 @@ export class UserAuthComponent implements OnInit {
       this.identityProviders = identityProviders;
     });
 
-    this.authService.userAuth$.subscribe((userAuth) => {
-      this.userAuth = userAuth;
-    });
+    this.userAuth = this.authService.userAuth$.pipe(share());
   }
 
   public onLoginClicked(): void {
@@ -48,5 +47,11 @@ export class UserAuthComponent implements OnInit {
       .pipe(filter(Boolean)).subscribe((identityProvider) => {
         this.authService.loginWithIdentityProvider(identityProvider);
       });
+  }
+
+  public onProfileMenuItemSelected(profileMenuItem: ProfileMenuItem): void {
+    if (profileMenuItem === ProfileMenuItem.SIGN_OUT) {
+      this.authService.logout();
+    }
   }
 }
