@@ -9,7 +9,7 @@ import { UserAuth } from '../../models/user-auth';
 import { MenuItem } from '../../../material-design/components/md-menu/menu-item';
 
 enum ProfileMenuItem {
-  LOGOUT
+  SIGN_OUT
 }
 
 @Component({
@@ -30,7 +30,7 @@ export class UserAuthComponent implements OnInit {
   constructor(private authService: AuthService,
               private modalService: ModalService,
               private apiService: ApiService) {
-    this.profileMenuItems = [new MenuItem(ProfileMenuItem.LOGOUT, 'Logout')];
+    this.profileMenuItems = [new MenuItem(ProfileMenuItem.SIGN_OUT, 'Sign out')];
   }
 
   public ngOnInit() {
