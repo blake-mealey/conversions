@@ -40,7 +40,7 @@ $spacing: (56px - $height) / 2;
     @apply .bg-white-20 .text-light;
   }
 
-  &.light {
+  &.dark {
     @apply .text-dark;
 
     &:hover {

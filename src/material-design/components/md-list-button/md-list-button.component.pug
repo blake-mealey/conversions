@@ -1,6 +1,6 @@
 doctype html
 
-.md-list-button-component(bind-mdRipple="isLight ? 'Dark' : 'Light'" bind-ngClass="{'active': selected, 'light': isLight}")
+.md-list-button-component(bind-mdRipple="isDark ? 'Dark' : 'Light'" bind-ngClass="{'active': selected, 'dark': isDark}")
   span.material-icons(*ngIf="icon") {{icon}}
   span.image(*ngIf="image" bind-ngStyle="{ 'background-image': 'url(' + image + ')' }")
   span {{text}}

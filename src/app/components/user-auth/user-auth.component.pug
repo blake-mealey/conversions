@@ -3,4 +3,4 @@ doctype html
 .user-auth-component
   md-icon-button-menu(*ngIf="userAuth | async; let user; else login" bind-image="user.profilePictureUrl" bind-items="profileMenuItems" on-itemSelected="onProfileMenuItemSelected($event)")
   ng-template(#login)
-    md-icon-button(on-buttonClick="onLoginClicked()" icon="arrow_forward_ios")
+    md-flat-button(on-click="onLoginClicked()" isOutlined="true" text="Sign in")

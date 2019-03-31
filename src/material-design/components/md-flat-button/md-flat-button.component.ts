@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'md-flat-button',
@@ -7,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   ],
   templateUrl: './md-flat-button.component.pug'
 })
-export class MdFlatButtonComponent implements OnInit {
+export class MdFlatButtonComponent {
+
+  @Input() allowLowercase: boolean;
+
+  @Input() text: string;
+
+  @Input() isDark: boolean;
+  @Input() isOutlined: boolean;
 
   constructor() {}
-
-  public ngOnInit() {}
 
 }

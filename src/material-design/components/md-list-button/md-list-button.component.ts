@@ -17,7 +17,7 @@ export class MdListButtonComponent {
 
   @Input() selected: boolean;
 
-  @Input() isLight: boolean;
+  @Input() isDark: boolean;
 
   constructor() {}
 

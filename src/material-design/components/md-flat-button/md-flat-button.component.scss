@@ -1,3 +1,37 @@
-.md-flat-button-component {
+@import 'src/styles/animations';
+@import "src/styles/fonts";
+@import "src/styles/tailwind";
 
+$height: 36px;
+$min-width: 64px;
+$padding: 16px;
+
+$outline-color-light: rgba(255, 255, 255, 0.2);
+$outline-color-dark: rgba(0, 0, 0, 0.12);
+$outline-width: 1px;
+
+.md-flat-button-component {
+  @apply .select-none .cursor-pointer;
+  @apply .text-light .rounded;
+  @apply .flex .items-center;
+
+  height: $height;
+  min-width: $min-width;
+  padding: 0 $padding;
+
+  &.outlined {
+    border: $outline-width solid $outline-color-light;
+  }
+
+  &.dark {
+    @apply .text-primary;
+
+    &.outlined {
+      border: $outline-width solid $outline-color-dark;
+    }
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
 }
