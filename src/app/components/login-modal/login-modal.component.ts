@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ModalComponent } from '../modal-outlet/modal-component';
 import { IdentityProvider } from '../../models/identity-provider';
+import { ModalService } from '../../services/modal.service';
 
 export type LoginModalData = {
   identityProviders: IdentityProvider[];
@@ -18,8 +19,12 @@ export class LoginModalComponent implements ModalComponent {
 
   @Output() public result: EventEmitter<IdentityProvider>;
 
-  constructor() {
+  constructor(private modalService: ModalService) {
     this.result = new EventEmitter<IdentityProvider>()
+  }
+
+  public onCancelClicked() {
+    this.modalService.closeModal();
   }
 
 }

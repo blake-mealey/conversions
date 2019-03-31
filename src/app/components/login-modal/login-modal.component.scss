@@ -2,4 +2,8 @@
 
 .login-modal-component {
   @apply .rounded .bg-white .p-2;
+
+  .buttons {
+    @apply .flex .justify-end;
+  }
 }
