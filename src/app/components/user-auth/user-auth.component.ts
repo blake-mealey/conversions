@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { IdentityProvider } from '../../models/identity-provider';
-import { ModalService } from '../../services/modal.service';
+import { ModalService } from '../../../app-common/services/modal.service';
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { filter, share } from 'rxjs/operators';
 import { ApiService } from '../../services/api.service';

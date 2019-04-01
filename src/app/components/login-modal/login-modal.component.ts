@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ModalComponent } from '../modal-outlet/modal-component';
+import { ModalComponent } from '../../../app-common/components/modal-component';
 import { IdentityProvider } from '../../models/identity-provider';
-import { ModalService } from '../../services/modal.service';
+import { ModalService } from '../../../app-common/services/modal.service';
 
 export type LoginModalData = {
   identityProviders: IdentityProvider[];

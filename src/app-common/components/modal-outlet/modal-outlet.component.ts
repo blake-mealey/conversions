@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 import { ComponentModel, ModalService } from '../../services/modal.service';
 import { ModalOutletHostDirective } from './modal-outlet-host.directive';
-import { ModalComponent } from './modal-component';
-import { SubscriberComponent } from '../../../app-common/components/subscriber-component';
+import { ModalComponent } from '../modal-component';
+import { SubscriberComponent } from '../subscriber-component';
 
 @Component({
   selector: 'modal-outlet',
