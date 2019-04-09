@@ -6,7 +6,7 @@ $content-padding: 24px;
 $buttons-padding: 8px;
 
 .md-dialog-component {
-  @apply .rounded .bg-white;
+  @apply .rounded .bg-white .shadow-lg;
 
   min-width: $min-width;
 
