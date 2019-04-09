@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { IdentityProvider } from '../../models/identity-provider';
 import { ModalService } from '../../../app-common/services/modal.service';
-import { LoginModalComponent } from '../login-modal/login-modal.component';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { filter, share } from 'rxjs/operators';
 import { ApiService } from '../../services/api.service';
 import { UserAuth } from '../../models/user-auth';
@@ -43,7 +43,7 @@ export class UserAuthComponent implements OnInit {
   }
 
   public onLoginClicked(): void {
-    this.modalService.showModal(LoginModalComponent, { identityProviders: this.identityProviders })
+    this.modalService.showModal(LoginDialogComponent, { identityProviders: this.identityProviders })
       .pipe(filter(Boolean)).subscribe((identityProvider) => {
         this.authService.loginWithIdentityProvider(identityProvider);
       });

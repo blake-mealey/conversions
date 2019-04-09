@@ -24,7 +24,7 @@ import { ConverterListCardComponent } from './components/converter-list-card/con
 import { AuthRedirectComponent } from './components/auth-redirect/auth-redirect.component';
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
 
-import { LoginModalComponent } from './components/login-modal/login-modal.component';
+import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 
 import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton-shimmer.directive';
 
@@ -77,7 +77,7 @@ const APP_PROVIDERS = [
     ConverterListCardComponent,
     AuthRedirectComponent,
     UserAuthComponent,
-    LoginModalComponent,
+    LoginDialogComponent,
 
     // Directives
     SkeletonShimmerDirective
@@ -94,7 +94,7 @@ const APP_PROVIDERS = [
     APP_PROVIDERS
   ],
   entryComponents: [
-    LoginModalComponent
+    LoginDialogComponent
   ]
 })
 export class AppModule {}

@@ -8,23 +8,19 @@ export type LoginModalData = {
 }
 
 @Component({
-  selector: 'login-modal',
+  selector: 'login-dialog',
   styleUrls: [
-    './login-modal.component.scss'
+    './login-dialog.component.scss'
   ],
-  templateUrl: './login-modal.component.pug'
+  templateUrl: './login-dialog.component.pug'
 })
-export class LoginModalComponent implements ModalComponent {
+export class LoginDialogComponent implements ModalComponent {
   @Input() public data: LoginModalData;
 
   @Output() public result: EventEmitter<IdentityProvider>;
 
   constructor(private modalService: ModalService) {
     this.result = new EventEmitter<IdentityProvider>()
-  }
-
-  public onCancelClicked() {
-    this.modalService.closeModal();
   }
 
 }
