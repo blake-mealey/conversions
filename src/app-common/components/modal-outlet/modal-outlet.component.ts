@@ -9,13 +9,29 @@ import { ComponentModel, ModalService } from '../../services/modal.service';
 import { ModalOutletHostDirective } from './modal-outlet-host.directive';
 import { ModalComponent } from '../modal-component';
 import { SubscriberComponent } from '../subscriber-component';
+import { state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { fadeIn, fadeOut } from '../../animations';
 
 @Component({
   selector: 'modal-outlet',
   styleUrls: [
     './modal-outlet.component.scss'
   ],
-  templateUrl: './modal-outlet.component.pug'
+  templateUrl: './modal-outlet.component.pug',
+  animations: [
+    trigger('fade', [
+      state('out', style({
+        display: 'none'
+      })),
+      state('in', style({})),
+      transition('out => in', [
+        useAnimation(fadeIn)
+      ]),
+      transition('in => out', [
+        useAnimation(fadeOut)
+      ])
+    ])
+  ]
 })
 export class ModalOutletComponent extends SubscriberComponent implements OnInit, AfterViewInit {
   public componentModel: ComponentModel;
