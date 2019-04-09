@@ -16,6 +16,7 @@ import { MdAppBarComponent } from './components/md-app-bar/md-app-bar.component'
 import { MdRailComponent } from './components/md-rail/md-rail.component';
 import { MdBackdropComponent } from './components/md-backdrop/md-backdrop.component';
 import { MdChipComponent } from './components/md-chip/md-chip.component';
+import { MdDialogComponent } from './components/md-dialog/md-dialog.component';
 
 import { MdRippleDirective } from './directives/md-ripple/md-ripple.directive';
 
@@ -40,6 +41,7 @@ import { MdRippleDirective } from './directives/md-ripple/md-ripple.directive';
     MdRailComponent,
     MdBackdropComponent,
     MdChipComponent,
+    MdDialogComponent,
 
     // Directives
     MdRippleDirective
@@ -59,6 +61,7 @@ import { MdRippleDirective } from './directives/md-ripple/md-ripple.directive';
     MdRailComponent,
     MdBackdropComponent,
     MdChipComponent,
+    MdDialogComponent,
 
     // Directives
     MdRippleDirective

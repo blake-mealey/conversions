@@ -1,0 +1,31 @@
+@import 'src/styles/tailwind';
+@import "src/styles/fonts";
+
+$min-width: 280px;
+$content-padding: 24px;
+$buttons-padding: 8px;
+
+.md-dialog-component {
+  @apply .rounded .bg-white;
+
+  min-width: $min-width;
+
+  .content {
+    padding: $content-padding $content-padding $content-padding/2 $content-padding;
+
+    .header {
+      @extend .typeface-h6;
+    }
+
+    .body {
+      @extend .typeface-b1;
+      @apply .text-dark-md;
+    }
+  }
+
+  .actions {
+    @apply .flex .justify-end;
+
+    padding: $buttons-padding;
+  }
+}
