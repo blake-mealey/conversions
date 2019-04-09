@@ -22,7 +22,7 @@ enum ProfileMenuItem {
 })
 export class UserAuthComponent implements OnInit {
 
-  private identityProviders: IdentityProvider[];
+  private identityProviders: Observable<IdentityProvider[]>;
 
   public userAuth: Observable<UserAuth>;
 
@@ -35,10 +35,7 @@ export class UserAuthComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.apiService.getIdentityProviders().subscribe((identityProviders) => {
-      this.identityProviders = identityProviders;
-    });
-
+    this.identityProviders = this.apiService.getIdentityProviders().pipe(share());
     this.userAuth = this.authService.userAuth$.pipe(share());
   }
 
