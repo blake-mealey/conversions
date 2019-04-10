@@ -1,6 +1,11 @@
 @import 'src/styles/tailwind';
 
 .modal-outlet-component {
-  @apply .fixed .pin .bg-black-50 .z-50;
+  @apply .fixed .bg-black-50 .z-50;
   @apply .flex .items-center .justify-center;
+
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
 }

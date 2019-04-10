@@ -10,7 +10,7 @@ import { ModalOutletHostDirective } from './modal-outlet-host.directive';
 import { ModalComponent } from '../modal-component';
 import { SubscriberComponent } from '../subscriber-component';
 import { state, style, transition, trigger, useAnimation } from '@angular/animations';
-import { fadeIn, fadeOut } from '../../animations';
+import { popIn, popOut } from '../../animations';
 
 @Component({
   selector: 'modal-outlet',
@@ -25,10 +25,10 @@ import { fadeIn, fadeOut } from '../../animations';
       })),
       state('in', style({})),
       transition('out => in', [
-        useAnimation(fadeIn)
+        useAnimation(popIn)
       ]),
       transition('in => out', [
-        useAnimation(fadeOut)
+        useAnimation(popOut)
       ])
     ])
   ]
