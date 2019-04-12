@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { UserAuth } from '../../models/user-auth';
 import { AuthParameters } from '../../models/auth-parameters';
 import { ApiService } from '../../services/api.service';
+import { ModelBindingService } from '../../services/model-binding.service';
 
 @Component({
   selector: 'auth-redirect',
@@ -22,7 +23,8 @@ export class AuthRedirectComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private sessionService: SessionService,
-              private apiService: ApiService) {}
+              private apiService: ApiService,
+              private modelBindingService: ModelBindingService) {}
 
   public ngOnInit(): void {
     console.log(this.route.snapshot.queryParams);
@@ -31,7 +33,7 @@ export class AuthRedirectComponent implements OnInit {
 
     let authResponse: AuthResponse;
     try {
-      authResponse = new AuthResponse(this.route.snapshot.queryParams);
+      authResponse = this.modelBindingService.bindModelToObject(AuthResponse, this.route.snapshot.queryParams);
     } catch {
       this.broadcastChannel.postMessage('Invalid auth response :(');
       return;
@@ -91,12 +93,14 @@ export class AuthRedirectComponent implements OnInit {
     const identityProvider = this.sessionService.getIdentityProvider();
     this.sessionService.clearIdentityProvider();
 
-    return this.apiService.getAuthToken(new AuthParameters({
+    const authParameters = this.modelBindingService.bindModelToObject(AuthParameters, {
       clientId: identityProvider.clientId,
       redirectUri: AuthService.getRedirectUri(),
       code: authResponse.code,
-      nonce,
-    }));
+      nonce
+    });
+
+    return this.apiService.getAuthToken(authParameters);
   }
 
 }

@@ -10,10 +10,9 @@ import { SimpleConverterList } from '../models/simple-converter-list';
 import { AuthParameters } from 'app/models/auth-parameters';
 import { UserAuth } from 'app/models/user-auth';
 import { IdentityProvider } from '../models/identity-provider';
-import { plainToClass } from 'class-transformer';
-import { ClassType } from 'class-transformer/ClassTransformer';
 import { ModalService } from '../../app-common/services/modal.service';
 import { ErrorDialogComponent } from '../components/error-dialog/error-dialog.component';
+import { ModelBindingService } from './model-binding.service';
 
 /**
  * Handles all requests to the API, including converting raw data to models
@@ -21,7 +20,8 @@ import { ErrorDialogComponent } from '../components/error-dialog/error-dialog.co
 @Injectable()
 export class ApiService {
   constructor(private httpClient: HttpClient,
-              private modalService: ModalService) {}
+              private modalService: ModalService,
+              private modelBindingService: ModelBindingService) {}
 
   private handleError(err: any): ObservableInput<any> {
     this.modalService.showModal(ErrorDialogComponent, {
@@ -31,22 +31,6 @@ export class ApiService {
     return EMPTY;
   }
 
-  private bindModelToArray<T>(classType: ClassType<T>, model: any): T[] {
-    return plainToClass(classType, model, {
-      // TODO: Uncomment once a new NPM version becomes available. See: https://github.com/typestack/class-transformer/issues/198
-      // excludeExtraneousValues: true
-    });
-  }
-
-  private bindModelToObject<T>(classType: ClassType<T>, model: any): T {
-    let array = this.bindModelToArray(classType, model);
-    if (Array.isArray(array)) {
-      return array[0];
-    } else {
-      return array;
-    }
-  }
-
   //region Auth API
   public getAuthToken(authParameters: AuthParameters): Observable<UserAuth> {
     return new HttpRequest(this.httpClient, CONVERSIONS_SERVER)
@@ -54,7 +38,7 @@ export class ApiService {
       .body(authParameters)
       .post()
       .pipe(
-        map<any, UserAuth>((model) => this.bindModelToObject(UserAuth, model)),
+        map<any, UserAuth>((model) => this.modelBindingService.bindModelToObject(UserAuth, model)),
         catchError((e) => this.handleError(e)));
   }
 
@@ -63,7 +47,7 @@ export class ApiService {
       .path('api', 'auth', 'IdentityProviders')
       .get()
       .pipe(
-        map<any, IdentityProvider[]>((model) => this.bindModelToArray(IdentityProvider, model)),
+        map<any, IdentityProvider[]>((model) => this.modelBindingService.bindModelToArray(IdentityProvider, model)),
         catchError((e) => this.handleError(e)));
   }
   //endregion
@@ -76,7 +60,7 @@ export class ApiService {
       .parameter('pageLength', pageLength)
       .get()
       .pipe(
-        map<any, SimpleConverterList[]>((model) => this.bindModelToArray(SimpleConverterList, model)),
+        map<any, SimpleConverterList[]>((model) => this.modelBindingService.bindModelToArray(SimpleConverterList, model)),
         catchError((e) => this.handleError(e)));
   }
 
@@ -85,7 +69,7 @@ export class ApiService {
       .path('api', 'Lists', id)
       .get()
       .pipe(
-        map<any, ConverterList>((model) => this.bindModelToObject(ConverterList, model)),
+        map<any, ConverterList>((model) => this.modelBindingService.bindModelToObject(ConverterList, model)),
         catchError((e) => this.handleError(e)));
   }
   //endregion
@@ -98,7 +82,7 @@ export class ApiService {
       .pipe(
         map<any, UnitType[]>((data) => {
           return data.map((model) => {
-            const unitType = this.bindModelToObject(UnitType, model.unitType);
+            const unitType = this.modelBindingService.bindModelToObject(UnitType, model.unitType);
             unitType.conversionGraph = model.conversionGraph;
             return unitType;
           });
