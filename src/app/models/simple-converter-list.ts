@@ -1,8 +1,10 @@
 import { SimpleConverter } from './simple-converter';
+import { Expose, Type } from 'class-transformer';
 
 export class SimpleConverterList {
-  public readonly id: string;
-  public readonly displayName: string;
+  @Expose() public readonly id: string;
+  @Expose() public readonly displayName: string;
 
-  public readonly converters: Array<SimpleConverter>;
+  @Type(() => SimpleConverter)
+  @Expose() public readonly converters: Array<SimpleConverter>;
 }

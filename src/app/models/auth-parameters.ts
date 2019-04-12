@@ -1,6 +1,8 @@
+import { Expose } from 'class-transformer';
+
 export class AuthParameters {
-  public readonly clientId: string;
-  public readonly redirectUri: string;
-  public readonly code: string;
-  public readonly nonce: string;
+  @Expose() public readonly clientId: string;
+  @Expose() public readonly redirectUri: string;
+  @Expose() public readonly code: string;
+  @Expose() public readonly nonce: string;
 }

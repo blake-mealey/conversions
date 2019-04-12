@@ -1,4 +1,6 @@
+import { Expose } from 'class-transformer';
+
 export class AuthResponse {
-  public readonly code: string;
-  public readonly state: string;
+  @Expose() public readonly code: string;
+  @Expose() public readonly state: string;
 }

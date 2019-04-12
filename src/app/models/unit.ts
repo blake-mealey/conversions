@@ -1,4 +1,6 @@
+import { Expose } from 'class-transformer';
+
 export class Unit {
-  public readonly symbol: string;
-  public readonly displayName: string;
+  @Expose() public readonly symbol: string;
+  @Expose() public readonly displayName: string;
 }

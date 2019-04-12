@@ -1,5 +1,7 @@
+import { Expose } from 'class-transformer';
+
 export class UserAuth {
-  public readonly accessToken: string;
-  public readonly displayName: string;
-  public readonly profilePictureUrl: string;
+  @Expose() public readonly accessToken: string;
+  @Expose() public readonly displayName: string;
+  @Expose() public readonly profilePictureUrl: string;
 }

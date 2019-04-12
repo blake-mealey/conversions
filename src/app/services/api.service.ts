@@ -10,19 +10,37 @@ import { SimpleConverterList } from '../models/simple-converter-list';
 import { AuthParameters } from 'app/models/auth-parameters';
 import { UserAuth } from 'app/models/user-auth';
 import { IdentityProvider } from '../models/identity-provider';
+import { plainToClass } from 'class-transformer';
+import { ClassType } from 'class-transformer/ClassTransformer';
 
 /**
  * Handles all requests to the API, including converting raw data to models
  */
 @Injectable()
 export class ApiService {
-  private static handleError(err: any): ObservableInput<any> {
+  constructor(private httpClient: HttpClient) {}
+
+  private handleError(err: any): ObservableInput<any> {
     // TODO: Better error handling
     console.log(err);
     return EMPTY;
   }
 
-  constructor(private httpClient: HttpClient) {}
+  private bindModelToArray<T>(classType: ClassType<T>, model: any): T[] {
+    return plainToClass(classType, model, {
+      // TODO: Uncomment once a new NPM version becomes available. See: https://github.com/typestack/class-transformer/issues/198
+      // excludeExtraneousValues: true
+    });
+  }
+
+  private bindModelToObject<T>(classType: ClassType<T>, model: any): T {
+    let array = this.bindModelToArray(classType, model);
+    if (Array.isArray(array)) {
+      return array[0];
+    } else {
+      return array;
+    }
+  }
 
   //region Auth API
   public getAuthToken(authParameters: AuthParameters): Observable<UserAuth> {
@@ -31,10 +49,8 @@ export class ApiService {
       .body(authParameters)
       .post()
       .pipe(
-        map<any, UserAuth>((data) => {
-          return new UserAuth(data);
-        }),
-        catchError(ApiService.handleError));
+        map<any, UserAuth>((model) => this.bindModelToObject(UserAuth, model)),
+        catchError(this.handleError));
   }
 
   public getIdentityProviders(): Observable<IdentityProvider[]> {
@@ -42,12 +58,8 @@ export class ApiService {
       .path('api', 'auth', 'IdentityProviders')
       .get()
       .pipe(
-        map<any, IdentityProvider[]>((data) => {
-          return data.map(function(identityProviderModel: any) {
-            return new IdentityProvider(identityProviderModel);
-          });
-        }),
-        catchError(ApiService.handleError));
+        map<any, IdentityProvider[]>((model) => this.bindModelToArray(IdentityProvider, model)),
+        catchError(this.handleError));
   }
   //endregion
 
@@ -59,12 +71,8 @@ export class ApiService {
       .parameter('pageLength', pageLength)
       .get()
       .pipe(
-        map<any, SimpleConverterList[]>((data) => {
-          return data.map(function(list: any) {
-            return new SimpleConverterList(list);
-          });
-        }),
-        catchError(ApiService.handleError));
+        map<any, SimpleConverterList[]>((model) => this.bindModelToArray(SimpleConverterList, model)),
+        catchError(this.handleError));
   }
 
   public getList(id: string): Observable<ConverterList> {
@@ -72,10 +80,8 @@ export class ApiService {
       .path('api', 'Lists', id)
       .get()
       .pipe(
-        map<any, ConverterList>((data) => {
-          return new ConverterList(data);
-        }),
-        catchError(ApiService.handleError));
+        map<any, ConverterList>((model) => this.bindModelToObject(ConverterList, model)),
+        catchError(this.handleError));
   }
   //endregion
 
@@ -86,13 +92,13 @@ export class ApiService {
       .get()
       .pipe(
         map<any, UnitType[]>((data) => {
-          return data.map(function(unitTypeConversionGraphModel: any) {
-            return new UnitType(
-              unitTypeConversionGraphModel.unitType,
-              unitTypeConversionGraphModel.conversionGraph);
+          return data.map((model) => {
+            const unitType = this.bindModelToObject(UnitType, model.unitType);
+            unitType.conversionGraph = model.conversionGraph;
+            return unitType;
           });
         }),
-        catchError(ApiService.handleError));
+        catchError(this.handleError));
   }
   //endregion
 }

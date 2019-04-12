@@ -1,6 +1,8 @@
+import { Expose } from 'class-transformer';
+
 export class IdentityProvider {
-  public readonly clientId: string;
-  public readonly displayName: string;
-  public readonly iconUrl: string;
-  public readonly authorizeUrl: string;
+  @Expose() public readonly clientId: string;
+  @Expose() public readonly displayName: string;
+  @Expose() public readonly iconUrl: string;
+  @Expose() public readonly authorizeUrl: string;
 }

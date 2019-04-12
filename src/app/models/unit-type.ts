@@ -1,25 +1,34 @@
 import { Unit } from './unit';
+import { Exclude, Expose, Type } from 'class-transformer';
 
 export class UnitType {
-  public readonly id: number;
-  public readonly displayName: string;
-  public readonly baseUnit: Unit;
-  public readonly units: Array<Unit>;
-  private readonly unitsMap: { [ unitId: string ]: Unit };
-  public conversionGraph: { [ fromUnitId: string ]: { [ toUnitId: string ]: number } };
+  @Expose() public readonly id: number;
+  @Expose() public readonly displayName: string;
 
-  constructor() {
-    this.unitsMap = {};
-    for (let unit of this.units) {
-      this.unitsMap[unit.symbol] = unit;
+  @Type(() => Unit)
+  @Expose() public readonly baseUnit: Unit;
+
+  @Type(() => Unit)
+  @Expose() public readonly units: Array<Unit>;
+
+  @Exclude() public conversionGraph: { [ fromUnitId: string ]: { [ toUnitId: string ]: number } };
+
+  @Exclude() private _unitsMap: { [ unitId: string ]: Unit };
+  @Exclude() private get unitsMap() {
+    if (!this._unitsMap) {
+      this._unitsMap = {};
+      for (let unit of this.units) {
+        this._unitsMap[unit.symbol] = unit;
+      }
     }
+    return this._unitsMap;
   }
 
-  validUnit(unit: Unit) {
+  public validUnit(unit: Unit): boolean {
     return !!this.getUnit(unit.symbol);
   }
 
-  getUnit(id: string) {
+  public getUnit(id: string): Unit {
     return this.unitsMap[id];
   }
 }

@@ -1,10 +1,14 @@
 import { ConverterInput } from './converter-input';
 import { ConverterOutput } from './converter-output';
+import { Expose, Type } from 'class-transformer';
 
 export class Converter {
-  public readonly id: string;
-  public readonly unitTypeId: number;
+  @Expose() public readonly id: string;
+  @Expose() public readonly unitTypeId: number;
 
-  public readonly input: ConverterInput;
-  public readonly outputs: Array<ConverterOutput>;
+  @Type(() => ConverterInput)
+  @Expose() public readonly input: ConverterInput;
+
+  @Type(() => ConverterOutput)
+  @Expose() public readonly outputs: Array<ConverterOutput>;
 }

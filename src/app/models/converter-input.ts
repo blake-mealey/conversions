@@ -1,4 +1,6 @@
+import { Expose } from 'class-transformer';
+
 export class ConverterInput {
-  public readonly unitSymbol: string;
-  public readonly value: number;
+  @Expose() public readonly unitSymbol: string;
+  @Expose() public readonly value: number;
 }
