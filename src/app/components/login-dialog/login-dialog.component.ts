@@ -10,9 +10,6 @@ export type LoginModalData = {
 
 @Component({
   selector: 'login-dialog',
-  styleUrls: [
-    './login-dialog.component.scss'
-  ],
   templateUrl: './login-dialog.component.pug'
 })
 export class LoginDialogComponent implements ModalComponent {
