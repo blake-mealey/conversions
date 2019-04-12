@@ -1,11 +1,16 @@
 import { IdentityProvider } from '../models/identity-provider';
 import { UserAuth } from '../models/user-auth';
+import { Injectable } from '@angular/core';
+import { ModelBindingService } from './model-binding.service';
 
+@Injectable()
 export class SessionService {
   private static readonly STATE_TOKEN_KEY = 'stateToken';
   private static readonly NONCE_KEY = 'nonce';
   private static readonly IDENTITY_PROVIDER_KEY = 'identityProvider';
   private static readonly USER_AUTH_KEY = 'userAuth';
+
+  constructor(private modelBindingService: ModelBindingService) {}
 
   //region Helpers
   private set(key: string, value: any): void {
@@ -55,7 +60,8 @@ export class SessionService {
   }
 
   public getIdentityProvider(): IdentityProvider {
-    return new IdentityProvider(this.get(SessionService.IDENTITY_PROVIDER_KEY));
+    return this.modelBindingService.bindModelToObject(IdentityProvider,
+      this.get(SessionService.IDENTITY_PROVIDER_KEY));
   }
 
   public clearIdentityProvider(): void {
@@ -67,7 +73,8 @@ export class SessionService {
   }
 
   public getUserAuth(): UserAuth {
-    return new UserAuth(this.get(SessionService.USER_AUTH_KEY));
+    return this.modelBindingService.bindModelToObject(UserAuth,
+      this.get(SessionService.USER_AUTH_KEY));
   }
 
   public clearUserAuth(): void {

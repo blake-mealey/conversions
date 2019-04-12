@@ -29,6 +29,7 @@ import { ErrorDialogComponent } from './components/error-dialog/error-dialog.com
 
 import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton-shimmer.directive';
 
+import { ModelBindingService } from './services/model-binding.service';
 import { SessionService } from './services/session.service';
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth/auth.service';
@@ -87,6 +88,7 @@ const APP_PROVIDERS = [
   providers: [
     environment.ENV_PROVIDERS,
 
+    ModelBindingService,
     SessionService,
     ApiService,
     AuthService,
