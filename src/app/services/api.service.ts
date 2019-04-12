@@ -12,17 +12,22 @@ import { UserAuth } from 'app/models/user-auth';
 import { IdentityProvider } from '../models/identity-provider';
 import { plainToClass } from 'class-transformer';
 import { ClassType } from 'class-transformer/ClassTransformer';
+import { ModalService } from '../../app-common/services/modal.service';
+import { ErrorDialogComponent } from '../components/error-dialog/error-dialog.component';
 
 /**
  * Handles all requests to the API, including converting raw data to models
  */
 @Injectable()
 export class ApiService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,
+              private modalService: ModalService) {}
 
   private handleError(err: any): ObservableInput<any> {
-    // TODO: Better error handling
-    console.log(err);
+    this.modalService.showModal(ErrorDialogComponent, {
+      name: 'API error',
+      message: err.message
+    });
     return EMPTY;
   }
 
@@ -50,7 +55,7 @@ export class ApiService {
       .post()
       .pipe(
         map<any, UserAuth>((model) => this.bindModelToObject(UserAuth, model)),
-        catchError(this.handleError));
+        catchError((e) => this.handleError(e)));
   }
 
   public getIdentityProviders(): Observable<IdentityProvider[]> {
@@ -59,7 +64,7 @@ export class ApiService {
       .get()
       .pipe(
         map<any, IdentityProvider[]>((model) => this.bindModelToArray(IdentityProvider, model)),
-        catchError(this.handleError));
+        catchError((e) => this.handleError(e)));
   }
   //endregion
 
@@ -72,7 +77,7 @@ export class ApiService {
       .get()
       .pipe(
         map<any, SimpleConverterList[]>((model) => this.bindModelToArray(SimpleConverterList, model)),
-        catchError(this.handleError));
+        catchError((e) => this.handleError(e)));
   }
 
   public getList(id: string): Observable<ConverterList> {
@@ -81,7 +86,7 @@ export class ApiService {
       .get()
       .pipe(
         map<any, ConverterList>((model) => this.bindModelToObject(ConverterList, model)),
-        catchError(this.handleError));
+        catchError((e) => this.handleError(e)));
   }
   //endregion
 
@@ -98,7 +103,7 @@ export class ApiService {
             return unitType;
           });
         }),
-        catchError(this.handleError));
+        catchError((e) => this.handleError(e)));
   }
   //endregion
 }

@@ -6,6 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { UserAuth } from 'app/models/user-auth';
 import { SessionService } from '../session.service';
 import { AuthWindow } from './auth-window';
+import { ModalService } from '../../../app-common/services/modal.service';
+import { ErrorDialogComponent } from '../../components/error-dialog/error-dialog.component';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +17,8 @@ export class AuthService {
   private authWindow: AuthWindow;
 
   constructor(private apiService: ApiService,
-              private sessionService: SessionService) {
+              private sessionService: SessionService,
+              private modalService: ModalService) {
     this.userAuth = new BehaviorSubject<UserAuth>(this.getUserAuthFromSessionStorage());
     this.userAuth$ = this.userAuth.asObservable();
 
@@ -66,7 +69,10 @@ export class AuthService {
    * TODO: display an error somewhere
    */
   public authenticationError(message: string): void {
-    console.error(message);
+    this.modalService.showModal(ErrorDialogComponent, {
+      name: 'Sign in error',
+      message
+    });
     if (this.authWindow) {
       this.authWindow.close();
     }
