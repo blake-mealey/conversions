@@ -1,7 +1,11 @@
 @import 'src/styles/tailwind';
 @import "src/styles/fonts";
+@import "src/styles/breakpoints";
 
 $min-width: 280px;
+$mobile-max-width: $min-width;
+$desktop-max-width: 560px;
+
 $content-padding: 24px;
 $buttons-padding: 8px;
 
@@ -9,17 +13,20 @@ $buttons-padding: 8px;
   @apply .rounded .bg-white .shadow-lg;
 
   min-width: $min-width;
+  max-width: $desktop-max-width;
+
+  @include bp-small {
+    max-width: $mobile-max-width;
+  }
 
   .content {
-    padding: $content-padding $content-padding $content-padding/2 $content-padding;
-
-    .header {
-      @extend .typeface-h6;
-    }
+    padding: $content-padding $content-padding ($content-padding - $buttons-padding) $content-padding;
 
     .body {
       @extend .typeface-b1;
       @apply .text-dark-md;
+
+      padding-top: $content-padding;
     }
   }
 
