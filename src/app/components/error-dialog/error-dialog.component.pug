@@ -1,0 +1,4 @@
+md-dialog(bind-header="data.name")
+  .body {{data.message}}
+  .actions
+    md-flat-button(on-click="this.modalService.closeModal()" text="Continue" bind-isDark="true")

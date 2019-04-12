@@ -25,6 +25,7 @@ import { AuthRedirectComponent } from './components/auth-redirect/auth-redirect.
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
 
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 import { SkeletonShimmerDirective } from './directives/skeleton-shimmer/skeleton-shimmer.directive';
 
@@ -78,6 +79,7 @@ const APP_PROVIDERS = [
     AuthRedirectComponent,
     UserAuthComponent,
     LoginDialogComponent,
+    ErrorDialogComponent,
 
     // Directives
     SkeletonShimmerDirective
@@ -94,7 +96,8 @@ const APP_PROVIDERS = [
     APP_PROVIDERS
   ],
   entryComponents: [
-    LoginDialogComponent
+    LoginDialogComponent,
+    ErrorDialogComponent
   ]
 })
 export class AppModule {}
